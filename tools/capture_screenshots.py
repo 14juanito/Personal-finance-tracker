@@ -58,7 +58,7 @@ def render_terminal(lines: list[str], path: Path, title: str) -> Path:
     Args:
         lines: Text to draw (typed user answers start with "> ").
         path: Destination PNG.
-        title: Window title shown in the fake title bar.
+        title: Caption shown in the bar above the text.
 
     Returns:
         The path written.
@@ -71,10 +71,10 @@ def render_terminal(lines: list[str], path: Path, title: str) -> Path:
     height = len(lines) * LINE_HEIGHT + 2 * MARGIN + 30
     image = Image.new("RGB", (max(width, 700), height), BG)
     draw = ImageDraw.Draw(image)
+    # A plain caption bar (no imitation window buttons): these images are the
+    # program's real output drawn with a monospace font, and are labelled as such.
     draw.rectangle([0, 0, image.width, 30], fill="#333333")
-    for index, color in enumerate(("#FF5F56", "#FFBD2E", "#27C93F")):
-        draw.ellipse([12 + index * 22, 9, 24 + index * 22, 21], fill=color)
-    draw.text((90, 7), title, font=font, fill="#BBBBBB")
+    draw.text((MARGIN, 7), title, font=font, fill="#BBBBBB")
     y = 30 + MARGIN
     for line in lines:
         is_prompt = line.startswith("$ ") or "▸" in line
@@ -100,8 +100,18 @@ def capture_cli() -> list[Path]:
     # Hide the machine-specific temp folder; the real default is output/.
     demo_lines = [line.replace(tmp, "output") for line in demo_lines]
     split = next(i for i, line in enumerate(demo_lines) if "5. Top 5" in line)
-    written.append(render_terminal(demo_lines[:split], OUT_DIR / "cli_demo.png", "Terminal"))
-    written.append(render_terminal(demo_lines[split:], OUT_DIR / "cli_demo_alerts.png", "Terminal"))
+    written.append(
+        render_terminal(
+            demo_lines[:split], OUT_DIR / "cli_demo.png", "Demo mode — rendered console output"
+        )
+    )
+    written.append(
+        render_terminal(
+            demo_lines[split:],
+            OUT_DIR / "cli_demo_alerts.png",
+            "Demo mode — rendered console output",
+        )
+    )
 
     # Interactive session: typed answers are echoed after each prompt, as in a terminal.
     answers = iter(["1", "expense", "abc", "64.20", "2026-09-28", "Groceries", "Farmers market",
@@ -134,13 +144,17 @@ def capture_cli() -> list[Path]:
         i for i, line in enumerate(lines) if i > summary_start and "=== PERSONAL" in line
     )
     written.append(
-        render_terminal(lines[: alert_line + 1], OUT_DIR / "cli_session.png", "Terminal — CLI mode")
+        render_terminal(
+            lines[: alert_line + 1],
+            OUT_DIR / "cli_session.png",
+            "CLI mode — rendered console output",
+        )
     )
     written.append(
         render_terminal(
             ["Choose an option: 6", *lines[summary_start:summary_end]],
             OUT_DIR / "cli_summary.png",
-            "Terminal — CLI mode",
+            "CLI mode — rendered console output",
         )
     )
     return written
@@ -214,7 +228,8 @@ def capture_dashboard() -> list[Path]:
     try:
         with sync_playwright() as p:
             browser = p.chromium.launch()
-            page = browser.new_page(viewport={"width": 1440, "height": 1100})
+            # Force US formatting ("$3,179.23"): the audience is an American college.
+            page = browser.new_page(viewport={"width": 1440, "height": 1100}, locale="en-US")
             for _ in range(60):
                 try:
                     page.goto(f"http://localhost:{port}")

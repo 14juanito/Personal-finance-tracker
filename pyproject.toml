@@ -2,11 +2,11 @@
 name = "finance-tracker"
 version = "1.0.0"
 description = "Personal Finance Tracker — DATA 333, Bellevue College"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 
 [tool.ruff]
 line-length = 100
-target-version = "py310"
+target-version = "py311"
 extend-exclude = [".claude"]
 
 [tool.ruff.lint]

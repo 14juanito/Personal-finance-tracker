@@ -1,6 +1,6 @@
 # 💰 Personal Finance Tracker
 
-![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)
 ![pandas](https://img.shields.io/badge/pandas-3.0-150458?logo=pandas&logoColor=white)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.64-FF4B4B?logo=streamlit&logoColor=white)
 ![matplotlib](https://img.shields.io/badge/matplotlib-3.11-11557C)
@@ -46,7 +46,7 @@ All screenshots are real captures, regenerated with `python tools/capture_screen
 
 ## 🚀 Installation
 
-Requires **Python 3.10+** (Tkinter is included with python.org installers; on Debian/Ubuntu
+Requires **Python 3.11+** (pandas 3 needs it) (Tkinter is included with python.org installers; on Debian/Ubuntu
 run `sudo apt install python3-tk`).
 
 ```bash

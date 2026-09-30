@@ -3,7 +3,7 @@ pandas==3.0.6
 matplotlib==3.11.2
 streamlit==1.64.0
 plotly==7.1.0
-openpyxl==3.1.5
+pillow==12.3.0
 
 # Deliverable generation (report, slides, screenshots)
 python-docx==1.2.0
