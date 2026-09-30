@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "saved_at": "2026-09-30T14:16:26",
+  "saved_at": "2026-09-30T15:06:44",
   "transactions": [
     {
-      "id": "bd472fca",
+      "id": "c9af18f8",
       "date": "2026-04-01",
       "amount": 1513.94,
       "kind": "income",
@@ -11,7 +11,7 @@
       "description": "Paycheck"
     },
     {
-      "id": "38e62da4",
+      "id": "ca8f3653",
       "date": "2026-04-15",
       "amount": 1452.5,
       "kind": "income",
@@ -19,7 +19,7 @@
       "description": "Paycheck"
     },
     {
-      "id": "6f267f3a",
+      "id": "a003cd28",
       "date": "2026-04-12",
       "amount": 212.79,
       "kind": "income",
@@ -27,7 +27,7 @@
       "description": "Website project"
     },
     {
-      "id": "49d9f956",
+      "id": "96fc734d",
       "date": "2026-04-01",
       "amount": 950.0,
       "kind": "expense",
@@ -35,7 +35,7 @@
       "description": "Rent (shared apartment)"
     },
     {
-      "id": "fc44a458",
+      "id": "a9434aa0",
       "date": "2026-04-05",
       "amount": 45.0,
       "kind": "expense",
@@ -43,7 +43,7 @@
       "description": "Phone plan"
     },
     {
-      "id": "5207c160",
+      "id": "cdccc33a",
       "date": "2026-04-12",
       "amount": 30.0,
       "kind": "expense",
@@ -51,7 +51,7 @@
       "description": "Internet (split)"
     },
     {
-      "id": "ac302662",
+      "id": "ef04e57d",
       "date": "2026-04-15",
       "amount": 22.98,
       "kind": "expense",
@@ -59,7 +59,7 @@
       "description": "Streaming subscriptions"
     },
     {
-      "id": "d42700d1",
+      "id": "32a447b2",
       "date": "2026-04-20",
       "amount": 38.0,
       "kind": "expense",
@@ -67,7 +67,7 @@
       "description": "Electricity (split)"
     },
     {
-      "id": "21ffaeb3",
+      "id": "6cd5e859",
       "date": "2026-04-19",
       "amount": 38.58,
       "kind": "expense",
@@ -75,7 +75,7 @@
       "description": "Safeway"
     },
     {
-      "id": "00f58b46",
+      "id": "1d61fac3",
       "date": "2026-04-03",
       "amount": 25.77,
       "kind": "expense",
@@ -83,7 +83,7 @@
       "description": "Farmers market"
     },
     {
-      "id": "e635dd8b",
+      "id": "8b6870b5",
       "date": "2026-04-20",
       "amount": 13.67,
       "kind": "expense",
@@ -91,7 +91,7 @@
       "description": "QFC"
     },
     {
-      "id": "6b61a19d",
+      "id": "398d1ca6",
       "date": "2026-04-23",
       "amount": 52.94,
       "kind": "expense",
@@ -99,7 +99,7 @@
       "description": "Farmers market"
     },
     {
-      "id": "d52ca80b",
+      "id": "a5cb63a2",
       "date": "2026-04-14",
       "amount": 25.89,
       "kind": "expense",
@@ -107,7 +107,7 @@
       "description": "Farmers market"
     },
     {
-      "id": "bc7b97b3",
+      "id": "26242b40",
       "date": "2026-04-09",
       "amount": 62.99,
       "kind": "expense",
@@ -115,7 +115,7 @@
       "description": "Safeway"
     },
     {
-      "id": "4a50b1f3",
+      "id": "e88da719",
       "date": "2026-04-25",
       "amount": 62.77,
       "kind": "expense",
@@ -123,7 +123,7 @@
       "description": "Costco run"
     },
     {
-      "id": "4c7c401b",
+      "id": "44007d5a",
       "date": "2026-04-11",
       "amount": 29.51,
       "kind": "expense",
@@ -131,7 +131,7 @@
       "description": "QFC"
     },
     {
-      "id": "fee289dc",
+      "id": "d39e198b",
       "date": "2026-04-25",
       "amount": 33.21,
       "kind": "expense",
@@ -139,7 +139,7 @@
       "description": "Safeway"
     },
     {
-      "id": "18d1dbae",
+      "id": "246998e8",
       "date": "2026-04-04",
       "amount": 13.33,
       "kind": "expense",
@@ -147,7 +147,7 @@
       "description": "Pho"
     },
     {
-      "id": "45f4a52e",
+      "id": "1247ea4e",
       "date": "2026-04-20",
       "amount": 10.88,
       "kind": "expense",
@@ -155,7 +155,7 @@
       "description": "Coffee"
     },
     {
-      "id": "842e1e8d",
+      "id": "0f44704f",
       "date": "2026-04-24",
       "amount": 15.95,
       "kind": "expense",
@@ -163,7 +163,7 @@
       "description": "Coffee"
     },
     {
-      "id": "518fe765",
+      "id": "2a79ea68",
       "date": "2026-04-30",
       "amount": 13.84,
       "kind": "expense",
@@ -171,7 +171,7 @@
       "description": "Sushi"
     },
     {
-      "id": "16beeba9",
+      "id": "cae9b4a7",
       "date": "2026-04-10",
       "amount": 25.56,
       "kind": "expense",
@@ -179,7 +179,7 @@
       "description": "Sushi"
     },
     {
-      "id": "a903c053",
+      "id": "4ebfa5c3",
       "date": "2026-04-29",
       "amount": 26.4,
       "kind": "expense",
@@ -187,7 +187,7 @@
       "description": "Sushi"
     },
     {
-      "id": "1eaf43ff",
+      "id": "9854ce4e",
       "date": "2026-04-07",
       "amount": 22.32,
       "kind": "expense",
@@ -195,7 +195,7 @@
       "description": "Coffee"
     },
     {
-      "id": "9173c71e",
+      "id": "bfbbb17f",
       "date": "2026-04-22",
       "amount": 9.93,
       "kind": "expense",
@@ -203,7 +203,7 @@
       "description": "Pho"
     },
     {
-      "id": "dea780e7",
+      "id": "d3016989",
       "date": "2026-04-03",
       "amount": 26.24,
       "kind": "expense",
@@ -211,7 +211,7 @@
       "description": "Coffee"
     },
     {
-      "id": "52c063c4",
+      "id": "91b78d8e",
       "date": "2026-04-13",
       "amount": 11.23,
       "kind": "expense",
@@ -219,7 +219,7 @@
       "description": "Pho"
     },
     {
-      "id": "73d49c9e",
+      "id": "ebd34616",
       "date": "2026-04-06",
       "amount": 13.62,
       "kind": "expense",
@@ -227,7 +227,7 @@
       "description": "Lunch on campus"
     },
     {
-      "id": "0bd6ac30",
+      "id": "49e2623d",
       "date": "2026-04-22",
       "amount": 10.94,
       "kind": "expense",
@@ -235,7 +235,7 @@
       "description": "Coffee"
     },
     {
-      "id": "a2f30ed8",
+      "id": "706c5c56",
       "date": "2026-04-20",
       "amount": 20.51,
       "kind": "expense",
@@ -243,7 +243,7 @@
       "description": "Sushi"
     },
     {
-      "id": "73f39d09",
+      "id": "1fd5a423",
       "date": "2026-04-24",
       "amount": 10.37,
       "kind": "expense",
@@ -251,7 +251,7 @@
       "description": "Pizza night"
     },
     {
-      "id": "4fd0708b",
+      "id": "77fc9703",
       "date": "2026-04-13",
       "amount": 11.02,
       "kind": "expense",
@@ -259,7 +259,7 @@
       "description": "Sushi"
     },
     {
-      "id": "1304b5dd",
+      "id": "b04d3376",
       "date": "2026-04-08",
       "amount": 21.8,
       "kind": "expense",
@@ -267,7 +267,7 @@
       "description": "Coffee"
     },
     {
-      "id": "a4d65967",
+      "id": "4dd8eb85",
       "date": "2026-04-27",
       "amount": 9.51,
       "kind": "expense",
@@ -275,7 +275,7 @@
       "description": "Parking"
     },
     {
-      "id": "b7c4f11a",
+      "id": "b321bf21",
       "date": "2026-04-13",
       "amount": 20.58,
       "kind": "expense",
@@ -283,7 +283,7 @@
       "description": "ORCA card reload"
     },
     {
-      "id": "8587302c",
+      "id": "670acc5c",
       "date": "2026-04-30",
       "amount": 52.32,
       "kind": "expense",
@@ -291,7 +291,7 @@
       "description": "Parking"
     },
     {
-      "id": "ef255c32",
+      "id": "f1533ae8",
       "date": "2026-04-07",
       "amount": 38.81,
       "kind": "expense",
@@ -299,7 +299,7 @@
       "description": "Uber"
     },
     {
-      "id": "549417b4",
+      "id": "45b1ed25",
       "date": "2026-04-29",
       "amount": 50.98,
       "kind": "expense",
@@ -307,7 +307,7 @@
       "description": "Uber"
     },
     {
-      "id": "0f0e95b0",
+      "id": "801ef1da",
       "date": "2026-04-05",
       "amount": 20.45,
       "kind": "expense",
@@ -315,7 +315,7 @@
       "description": "ORCA card reload"
     },
     {
-      "id": "940d0a73",
+      "id": "8a3c3b5e",
       "date": "2026-04-24",
       "amount": 39.23,
       "kind": "expense",
@@ -323,7 +323,7 @@
       "description": "Game purchase"
     },
     {
-      "id": "b4e2a81e",
+      "id": "7e695d0d",
       "date": "2026-04-12",
       "amount": 20.97,
       "kind": "expense",
@@ -331,7 +331,7 @@
       "description": "Concert"
     },
     {
-      "id": "b160bb0e",
+      "id": "7010f719",
       "date": "2026-04-17",
       "amount": 34.68,
       "kind": "expense",
@@ -339,7 +339,7 @@
       "description": "Movie ticket"
     },
     {
-      "id": "48546122",
+      "id": "1497d658",
       "date": "2026-04-28",
       "amount": 15.48,
       "kind": "expense",
@@ -347,7 +347,7 @@
       "description": "Concert"
     },
     {
-      "id": "dead8232",
+      "id": "9918ee46",
       "date": "2026-04-26",
       "amount": 44.02,
       "kind": "expense",
@@ -355,7 +355,7 @@
       "description": "Movie ticket"
     },
     {
-      "id": "65628f44",
+      "id": "0a3450fc",
       "date": "2026-04-13",
       "amount": 65.65,
       "kind": "expense",
@@ -363,7 +363,7 @@
       "description": "Shoes"
     },
     {
-      "id": "82edea61",
+      "id": "e3b137fc",
       "date": "2026-04-17",
       "amount": 36.37,
       "kind": "expense",
@@ -371,7 +371,7 @@
       "description": "Clothes"
     },
     {
-      "id": "0ff347e5",
+      "id": "6e996e3e",
       "date": "2026-04-22",
       "amount": 76.26,
       "kind": "expense",
@@ -379,7 +379,7 @@
       "description": "Target"
     },
     {
-      "id": "020408ed",
+      "id": "bc0a6a5d",
       "date": "2026-04-25",
       "amount": 69.48,
       "kind": "expense",
@@ -387,7 +387,7 @@
       "description": "Clothes"
     },
     {
-      "id": "572c4090",
+      "id": "5283aac7",
       "date": "2026-04-10",
       "amount": 51.96,
       "kind": "expense",
@@ -395,7 +395,7 @@
       "description": "Shoes"
     },
     {
-      "id": "63090c30",
+      "id": "9a8cfa3c",
       "date": "2026-04-24",
       "amount": 45.03,
       "kind": "expense",
@@ -403,7 +403,7 @@
       "description": "Gym drop-in"
     },
     {
-      "id": "a2422e44",
+      "id": "40181c6e",
       "date": "2026-05-01",
       "amount": 1547.19,
       "kind": "income",
@@ -411,7 +411,7 @@
       "description": "Paycheck"
     },
     {
-      "id": "e48f6225",
+      "id": "069f14f1",
       "date": "2026-05-15",
       "amount": 1526.2,
       "kind": "income",
@@ -419,7 +419,7 @@
       "description": "Paycheck"
     },
     {
-      "id": "ffb146b3",
+      "id": "176132ed",
       "date": "2026-05-08",
       "amount": 541.73,
       "kind": "income",
@@ -427,7 +427,7 @@
       "description": "Tutoring"
     },
     {
-      "id": "a6608eab",
+      "id": "3a9aca5e",
       "date": "2026-05-01",
       "amount": 950.0,
       "kind": "expense",
@@ -435,7 +435,7 @@
       "description": "Rent (shared apartment)"
     },
     {
-      "id": "db385920",
+      "id": "f63fce41",
       "date": "2026-05-05",
       "amount": 45.0,
       "kind": "expense",
@@ -443,7 +443,7 @@
       "description": "Phone plan"
     },
     {
-      "id": "19fe8f74",
+      "id": "ac9ed156",
       "date": "2026-05-12",
       "amount": 30.0,
       "kind": "expense",
@@ -451,7 +451,7 @@
       "description": "Internet (split)"
     },
     {
-      "id": "14c5bd29",
+      "id": "d6016237",
       "date": "2026-05-15",
       "amount": 22.98,
       "kind": "expense",
@@ -459,7 +459,7 @@
       "description": "Streaming subscriptions"
     },
     {
-      "id": "c5b0dbb3",
+      "id": "dc4ad56b",
       "date": "2026-05-20",
       "amount": 38.0,
       "kind": "expense",
@@ -467,7 +467,7 @@
       "description": "Electricity (split)"
     },
     {
-      "id": "a75b7ee0",
+      "id": "93403fad",
       "date": "2026-05-05",
       "amount": 35.56,
       "kind": "expense",
@@ -475,7 +475,7 @@
       "description": "QFC"
     },
     {
-      "id": "73b3d6b0",
+      "id": "964db03f",
       "date": "2026-05-18",
       "amount": 72.07,
       "kind": "expense",
@@ -483,7 +483,7 @@
       "description": "Farmers market"
     },
     {
-      "id": "3e3fa979",
+      "id": "f366bad4",
       "date": "2026-05-30",
       "amount": 12.04,
       "kind": "expense",
@@ -491,7 +491,7 @@
       "description": "Trader Joe's"
     },
     {
-      "id": "5c591c66",
+      "id": "054f92ff",
       "date": "2026-05-16",
       "amount": 13.23,
       "kind": "expense",
@@ -499,7 +499,7 @@
       "description": "Trader Joe's"
     },
     {
-      "id": "39029daa",
+      "id": "ffe3fa49",
       "date": "2026-05-29",
       "amount": 74.08,
       "kind": "expense",
@@ -507,7 +507,7 @@
       "description": "Trader Joe's"
     },
     {
-      "id": "8c235a4f",
+      "id": "c3c75611",
       "date": "2026-05-08",
       "amount": 15.65,
       "kind": "expense",
@@ -515,7 +515,7 @@
       "description": "Farmers market"
     },
     {
-      "id": "730b6b78",
+      "id": "ac1aa554",
       "date": "2026-05-31",
       "amount": 16.96,
       "kind": "expense",
@@ -523,7 +523,7 @@
       "description": "Costco run"
     },
     {
-      "id": "2acdc8ec",
+      "id": "d248a9a7",
       "date": "2026-05-27",
       "amount": 16.36,
       "kind": "expense",
@@ -531,7 +531,7 @@
       "description": "Farmers market"
     },
     {
-      "id": "792e38ed",
+      "id": "44feacae",
       "date": "2026-05-25",
       "amount": 19.92,
       "kind": "expense",
@@ -539,7 +539,7 @@
       "description": "Costco run"
     },
     {
-      "id": "48cdc498",
+      "id": "9384ec2b",
       "date": "2026-05-31",
       "amount": 46.64,
       "kind": "expense",
@@ -547,7 +547,7 @@
       "description": "Trader Joe's"
     },
     {
-      "id": "8b5ee28d",
+      "id": "0a4c9f7f",
       "date": "2026-05-31",
       "amount": 9.51,
       "kind": "expense",
@@ -555,7 +555,7 @@
       "description": "Sushi"
     },
     {
-      "id": "572599a9",
+      "id": "c35b1c8c",
       "date": "2026-05-25",
       "amount": 22.98,
       "kind": "expense",
@@ -563,7 +563,7 @@
       "description": "Lunch on campus"
     },
     {
-      "id": "7d239f98",
+      "id": "c19ad58c",
       "date": "2026-05-23",
       "amount": 12.1,
       "kind": "expense",
@@ -571,7 +571,7 @@
       "description": "Pho"
     },
     {
-      "id": "d9f616bb",
+      "id": "2cd94cbb",
       "date": "2026-05-15",
       "amount": 27.39,
       "kind": "expense",
@@ -579,7 +579,7 @@
       "description": "Pizza night"
     },
     {
-      "id": "140dd5bb",
+      "id": "7872bdeb",
       "date": "2026-05-04",
       "amount": 10.45,
       "kind": "expense",
@@ -587,7 +587,7 @@
       "description": "Coffee"
     },
     {
-      "id": "2d2db87c",
+      "id": "84dad06a",
       "date": "2026-05-11",
       "amount": 4.55,
       "kind": "expense",
@@ -595,7 +595,7 @@
       "description": "Sushi"
     },
     {
-      "id": "9c4b4eed",
+      "id": "a6c9537f",
       "date": "2026-05-08",
       "amount": 19.3,
       "kind": "expense",
@@ -603,7 +603,7 @@
       "description": "Coffee"
     },
     {
-      "id": "41e6f4da",
+      "id": "7135f221",
       "date": "2026-05-03",
       "amount": 22.4,
       "kind": "expense",
@@ -611,7 +611,7 @@
       "description": "Coffee"
     },
     {
-      "id": "4d7f28ef",
+      "id": "ea83bf00",
       "date": "2026-05-08",
       "amount": 5.75,
       "kind": "expense",
@@ -619,7 +619,7 @@
       "description": "Coffee"
     },
     {
-      "id": "7324d007",
+      "id": "473544f9",
       "date": "2026-05-28",
       "amount": 12.59,
       "kind": "expense",
@@ -627,7 +627,7 @@
       "description": "Sushi"
     },
     {
-      "id": "06d1de71",
+      "id": "2e76128b",
       "date": "2026-05-08",
       "amount": 11.24,
       "kind": "expense",
@@ -635,7 +635,7 @@
       "description": "Pizza night"
     },
     {
-      "id": "ed887f2c",
+      "id": "ff37d19c",
       "date": "2026-05-07",
       "amount": 18.02,
       "kind": "expense",
@@ -643,7 +643,7 @@
       "description": "Sushi"
     },
     {
-      "id": "1b3defdd",
+      "id": "95d82980",
       "date": "2026-05-19",
       "amount": 16.29,
       "kind": "expense",
@@ -651,7 +651,7 @@
       "description": "Pizza night"
     },
     {
-      "id": "4280af49",
+      "id": "6f962882",
       "date": "2026-05-26",
       "amount": 14.58,
       "kind": "expense",
@@ -659,7 +659,7 @@
       "description": "Coffee"
     },
     {
-      "id": "93050be5",
+      "id": "a2814044",
       "date": "2026-05-04",
       "amount": 21.13,
       "kind": "expense",
@@ -667,7 +667,7 @@
       "description": "Pho"
     },
     {
-      "id": "00294887",
+      "id": "d0725b5c",
       "date": "2026-05-14",
       "amount": 14.69,
       "kind": "expense",
@@ -675,7 +675,7 @@
       "description": "Coffee"
     },
     {
-      "id": "00371c0b",
+      "id": "7de1bdfe",
       "date": "2026-05-02",
       "amount": 26.92,
       "kind": "expense",
@@ -683,7 +683,7 @@
       "description": "Parking"
     },
     {
-      "id": "d311fc30",
+      "id": "f8140102",
       "date": "2026-05-26",
       "amount": 48.5,
       "kind": "expense",
@@ -691,7 +691,7 @@
       "description": "ORCA card reload"
     },
     {
-      "id": "b3b60041",
+      "id": "175ba98d",
       "date": "2026-05-07",
       "amount": 16.94,
       "kind": "expense",
@@ -699,7 +699,7 @@
       "description": "Uber"
     },
     {
-      "id": "1c6a5968",
+      "id": "785299f4",
       "date": "2026-05-05",
       "amount": 27.83,
       "kind": "expense",
@@ -707,7 +707,7 @@
       "description": "Parking"
     },
     {
-      "id": "e82226b2",
+      "id": "5913f9d3",
       "date": "2026-05-15",
       "amount": 19.74,
       "kind": "expense",
@@ -715,7 +715,7 @@
       "description": "Gas"
     },
     {
-      "id": "a38910dc",
+      "id": "6889803e",
       "date": "2026-05-26",
       "amount": 53.07,
       "kind": "expense",
@@ -723,7 +723,7 @@
       "description": "Movie ticket"
     },
     {
-      "id": "84f24078",
+      "id": "5553b2fe",
       "date": "2026-05-02",
       "amount": 42.61,
       "kind": "expense",
@@ -731,7 +731,7 @@
       "description": "Movie ticket"
     },
     {
-      "id": "ab6ccf0a",
+      "id": "5230dfbd",
       "date": "2026-05-03",
       "amount": 56.32,
       "kind": "expense",
@@ -739,7 +739,7 @@
       "description": "Concert"
     },
     {
-      "id": "24339449",
+      "id": "ab8ddeb4",
       "date": "2026-05-06",
       "amount": 30.32,
       "kind": "expense",
@@ -747,7 +747,7 @@
       "description": "Game purchase"
     },
     {
-      "id": "03b80b77",
+      "id": "1ac70ec0",
       "date": "2026-05-07",
       "amount": 53.23,
       "kind": "expense",
@@ -755,7 +755,7 @@
       "description": "Movie ticket"
     },
     {
-      "id": "eae1e97d",
+      "id": "db946570",
       "date": "2026-05-06",
       "amount": 28.95,
       "kind": "expense",
@@ -763,7 +763,7 @@
       "description": "Game purchase"
     },
     {
-      "id": "1910991d",
+      "id": "292bd156",
       "date": "2026-05-30",
       "amount": 81.65,
       "kind": "expense",
@@ -771,7 +771,7 @@
       "description": "Shoes"
     },
     {
-      "id": "b029c491",
+      "id": "546e035a",
       "date": "2026-05-10",
       "amount": 50.96,
       "kind": "expense",
@@ -779,7 +779,7 @@
       "description": "Shoes"
     },
     {
-      "id": "dd3f41dd",
+      "id": "6961929e",
       "date": "2026-05-05",
       "amount": 31.14,
       "kind": "expense",
@@ -787,7 +787,7 @@
       "description": "Amazon order"
     },
     {
-      "id": "6de87a19",
+      "id": "b194990b",
       "date": "2026-05-31",
       "amount": 19.97,
       "kind": "expense",
@@ -795,7 +795,7 @@
       "description": "Clothes"
     },
     {
-      "id": "4fef475b",
+      "id": "7ed70ed7",
       "date": "2026-05-02",
       "amount": 12.01,
       "kind": "expense",
@@ -803,7 +803,7 @@
       "description": "Gym drop-in"
     },
     {
-      "id": "c893cd93",
+      "id": "49c8a43f",
       "date": "2026-05-17",
       "amount": 46.78,
       "kind": "expense",
@@ -811,7 +811,7 @@
       "description": "Vitamins"
     },
     {
-      "id": "84226259",
+      "id": "a99f1318",
       "date": "2026-05-06",
       "amount": 12.28,
       "kind": "expense",
@@ -819,7 +819,7 @@
       "description": "Vitamins"
     },
     {
-      "id": "70dcd27c",
+      "id": "f1f8343e",
       "date": "2026-05-05",
       "amount": 394.73,
       "kind": "expense",
@@ -827,7 +827,7 @@
       "description": "Textbooks & course fees"
     },
     {
-      "id": "bdb8049c",
+      "id": "668409e3",
       "date": "2026-06-01",
       "amount": 1456.85,
       "kind": "income",
@@ -835,7 +835,7 @@
       "description": "Paycheck"
     },
     {
-      "id": "bc11e914",
+      "id": "d045dd1c",
       "date": "2026-06-15",
       "amount": 1456.8,
       "kind": "income",
@@ -843,7 +843,7 @@
       "description": "Paycheck"
     },
     {
-      "id": "9452e72f",
+      "id": "c2b01cfd",
       "date": "2026-06-01",
       "amount": 950.0,
       "kind": "expense",
@@ -851,7 +851,7 @@
       "description": "Rent (shared apartment)"
     },
     {
-      "id": "9ae7ef1a",
+      "id": "8cd321b0",
       "date": "2026-06-05",
       "amount": 45.0,
       "kind": "expense",
@@ -859,7 +859,7 @@
       "description": "Phone plan"
     },
     {
-      "id": "d9c04230",
+      "id": "0964fbbf",
       "date": "2026-06-12",
       "amount": 30.0,
       "kind": "expense",
@@ -867,7 +867,7 @@
       "description": "Internet (split)"
     },
     {
-      "id": "c27fdf15",
+      "id": "746f7891",
       "date": "2026-06-15",
       "amount": 22.98,
       "kind": "expense",
@@ -875,7 +875,7 @@
       "description": "Streaming subscriptions"
     },
     {
-      "id": "dc5b89c6",
+      "id": "168b1625",
       "date": "2026-06-20",
       "amount": 38.0,
       "kind": "expense",
@@ -883,7 +883,7 @@
       "description": "Electricity (split)"
     },
     {
-      "id": "4eafea31",
+      "id": "50843242",
       "date": "2026-06-04",
       "amount": 71.32,
       "kind": "expense",
@@ -891,7 +891,7 @@
       "description": "Farmers market"
     },
     {
-      "id": "fb8d6442",
+      "id": "409d3602",
       "date": "2026-06-08",
       "amount": 48.47,
       "kind": "expense",
@@ -899,7 +899,7 @@
       "description": "Safeway"
     },
     {
-      "id": "39b667e9",
+      "id": "52c21221",
       "date": "2026-06-20",
       "amount": 17.16,
       "kind": "expense",
@@ -907,7 +907,7 @@
       "description": "Farmers market"
     },
     {
-      "id": "eb2d21e8",
+      "id": "1dad09b2",
       "date": "2026-06-19",
       "amount": 44.94,
       "kind": "expense",
@@ -915,7 +915,7 @@
       "description": "Trader Joe's"
     },
     {
-      "id": "2ea9dbcf",
+      "id": "f85e06a1",
       "date": "2026-06-07",
       "amount": 54.19,
       "kind": "expense",
@@ -923,7 +923,7 @@
       "description": "Trader Joe's"
     },
     {
-      "id": "392970d2",
+      "id": "c5c5b37a",
       "date": "2026-06-08",
       "amount": 28.73,
       "kind": "expense",
@@ -931,7 +931,7 @@
       "description": "QFC"
     },
     {
-      "id": "1e088f91",
+      "id": "6778043b",
       "date": "2026-06-22",
       "amount": 52.67,
       "kind": "expense",
@@ -939,7 +939,7 @@
       "description": "Costco run"
     },
     {
-      "id": "5b36c08e",
+      "id": "dd6ac7b8",
       "date": "2026-06-11",
       "amount": 70.53,
       "kind": "expense",
@@ -947,7 +947,7 @@
       "description": "Safeway"
     },
     {
-      "id": "f513ba16",
+      "id": "83bc9478",
       "date": "2026-06-01",
       "amount": 40.87,
       "kind": "expense",
@@ -955,7 +955,7 @@
       "description": "Farmers market"
     },
     {
-      "id": "c44dae49",
+      "id": "d32e6dcd",
       "date": "2026-06-04",
       "amount": 16.62,
       "kind": "expense",
@@ -963,7 +963,7 @@
       "description": "QFC"
     },
     {
-      "id": "b52673c7",
+      "id": "fcf56188",
       "date": "2026-06-17",
       "amount": 28.71,
       "kind": "expense",
@@ -971,7 +971,7 @@
       "description": "Trader Joe's"
     },
     {
-      "id": "8df047b6",
+      "id": "004b6fab",
       "date": "2026-06-29",
       "amount": 16.33,
       "kind": "expense",
@@ -979,7 +979,7 @@
       "description": "QFC"
     },
     {
-      "id": "e9e2ad60",
+      "id": "a85c6e4a",
       "date": "2026-06-10",
       "amount": 8.1,
       "kind": "expense",
@@ -987,7 +987,7 @@
       "description": "Sushi"
     },
     {
-      "id": "3b14017b",
+      "id": "de8ede0b",
       "date": "2026-06-23",
       "amount": 11.87,
       "kind": "expense",
@@ -995,7 +995,7 @@
       "description": "Sushi"
     },
     {
-      "id": "e1973238",
+      "id": "8ae769ed",
       "date": "2026-06-01",
       "amount": 21.36,
       "kind": "expense",
@@ -1003,7 +1003,7 @@
       "description": "Sushi"
     },
     {
-      "id": "df137f0c",
+      "id": "764414fd",
       "date": "2026-06-10",
       "amount": 28.23,
       "kind": "expense",
@@ -1011,7 +1011,7 @@
       "description": "Coffee"
     },
     {
-      "id": "f8db43cc",
+      "id": "69ca97d2",
       "date": "2026-06-29",
       "amount": 7.49,
       "kind": "expense",
@@ -1019,7 +1019,7 @@
       "description": "Coffee"
     },
     {
-      "id": "2609d43a",
+      "id": "0de051a6",
       "date": "2026-06-29",
       "amount": 6.78,
       "kind": "expense",
@@ -1027,7 +1027,7 @@
       "description": "Sushi"
     },
     {
-      "id": "34642037",
+      "id": "300568d2",
       "date": "2026-06-05",
       "amount": 11.08,
       "kind": "expense",
@@ -1035,7 +1035,7 @@
       "description": "Sushi"
     },
     {
-      "id": "924159e4",
+      "id": "84b871bb",
       "date": "2026-06-07",
       "amount": 22.66,
       "kind": "expense",
@@ -1043,7 +1043,7 @@
       "description": "Lunch on campus"
     },
     {
-      "id": "1916cb7a",
+      "id": "5c9d927d",
       "date": "2026-06-22",
       "amount": 20.49,
       "kind": "expense",
@@ -1051,7 +1051,7 @@
       "description": "Pho"
     },
     {
-      "id": "7d749cfc",
+      "id": "9f64eeed",
       "date": "2026-06-17",
       "amount": 16.7,
       "kind": "expense",
@@ -1059,7 +1059,7 @@
       "description": "Coffee"
     },
     {
-      "id": "d898df63",
+      "id": "c1a6423b",
       "date": "2026-06-03",
       "amount": 20.49,
       "kind": "expense",
@@ -1067,7 +1067,7 @@
       "description": "Pho"
     },
     {
-      "id": "73e16b81",
+      "id": "7f9d3e64",
       "date": "2026-06-02",
       "amount": 4.09,
       "kind": "expense",
@@ -1075,7 +1075,7 @@
       "description": "Lunch on campus"
     },
     {
-      "id": "1d963cf1",
+      "id": "a01ac992",
       "date": "2026-06-21",
       "amount": 29.47,
       "kind": "expense",
@@ -1083,7 +1083,7 @@
       "description": "Lunch on campus"
     },
     {
-      "id": "7e2557de",
+      "id": "71299889",
       "date": "2026-06-24",
       "amount": 15.49,
       "kind": "expense",
@@ -1091,7 +1091,7 @@
       "description": "Pizza night"
     },
     {
-      "id": "10262774",
+      "id": "c28ebd70",
       "date": "2026-06-18",
       "amount": 4.25,
       "kind": "expense",
@@ -1099,7 +1099,7 @@
       "description": "Coffee"
     },
     {
-      "id": "9043b761",
+      "id": "0d366dfc",
       "date": "2026-06-18",
       "amount": 9.69,
       "kind": "expense",
@@ -1107,7 +1107,7 @@
       "description": "Parking"
     },
     {
-      "id": "17236392",
+      "id": "341c6494",
       "date": "2026-06-19",
       "amount": 33.97,
       "kind": "expense",
@@ -1115,7 +1115,7 @@
       "description": "Uber"
     },
     {
-      "id": "0b2c7920",
+      "id": "445dcc38",
       "date": "2026-06-05",
       "amount": 9.97,
       "kind": "expense",
@@ -1123,7 +1123,7 @@
       "description": "Parking"
     },
     {
-      "id": "ca7de2f8",
+      "id": "8c99a894",
       "date": "2026-06-29",
       "amount": 51.86,
       "kind": "expense",
@@ -1131,7 +1131,7 @@
       "description": "Gas"
     },
     {
-      "id": "86658575",
+      "id": "218a1536",
       "date": "2026-06-29",
       "amount": 24.82,
       "kind": "expense",
@@ -1139,7 +1139,7 @@
       "description": "ORCA card reload"
     },
     {
-      "id": "12eed8a4",
+      "id": "ed7bf656",
       "date": "2026-06-22",
       "amount": 12.83,
       "kind": "expense",
@@ -1147,7 +1147,7 @@
       "description": "Uber"
     },
     {
-      "id": "bf53268c",
+      "id": "49bc473f",
       "date": "2026-06-30",
       "amount": 56.49,
       "kind": "expense",
@@ -1155,7 +1155,7 @@
       "description": "Concert"
     },
     {
-      "id": "efc0c77f",
+      "id": "70286046",
       "date": "2026-06-26",
       "amount": 50.54,
       "kind": "expense",
@@ -1163,7 +1163,7 @@
       "description": "Game purchase"
     },
     {
-      "id": "d6ee82bc",
+      "id": "e17f29e1",
       "date": "2026-06-01",
       "amount": 18.97,
       "kind": "expense",
@@ -1171,7 +1171,7 @@
       "description": "Bowling"
     },
     {
-      "id": "dc09388b",
+      "id": "b2c08394",
       "date": "2026-06-26",
       "amount": 56.54,
       "kind": "expense",
@@ -1179,7 +1179,7 @@
       "description": "Concert"
     },
     {
-      "id": "21aea2b2",
+      "id": "7c16128d",
       "date": "2026-06-06",
       "amount": 81.93,
       "kind": "expense",
@@ -1187,7 +1187,7 @@
       "description": "Clothes"
     },
     {
-      "id": "44d0d806",
+      "id": "1f15c7b6",
       "date": "2026-06-13",
       "amount": 89.13,
       "kind": "expense",
@@ -1195,7 +1195,7 @@
       "description": "Shoes"
     },
     {
-      "id": "e1680d86",
+      "id": "0763fcd0",
       "date": "2026-06-08",
       "amount": 31.96,
       "kind": "expense",
@@ -1203,7 +1203,7 @@
       "description": "Shoes"
     },
     {
-      "id": "d1d792c3",
+      "id": "f920264c",
       "date": "2026-06-12",
       "amount": 40.94,
       "kind": "expense",
@@ -1211,7 +1211,7 @@
       "description": "Amazon order"
     },
     {
-      "id": "97a28362",
+      "id": "a14923c2",
       "date": "2026-06-01",
       "amount": 36.4,
       "kind": "expense",
@@ -1219,7 +1219,7 @@
       "description": "Gym drop-in"
     },
     {
-      "id": "4424fa45",
+      "id": "9bdf0377",
       "date": "2026-06-11",
       "amount": 21.14,
       "kind": "expense",
@@ -1227,7 +1227,7 @@
       "description": "Pharmacy"
     },
     {
-      "id": "726ee377",
+      "id": "cc9fd334",
       "date": "2026-07-01",
       "amount": 1546.69,
       "kind": "income",
@@ -1235,7 +1235,7 @@
       "description": "Paycheck"
     },
     {
-      "id": "be2fe6ab",
+      "id": "3d42993c",
       "date": "2026-07-15",
       "amount": 1477.91,
       "kind": "income",
@@ -1243,7 +1243,7 @@
       "description": "Paycheck"
     },
     {
-      "id": "12a912dc",
+      "id": "b5b453ca",
       "date": "2026-07-17",
       "amount": 455.78,
       "kind": "income",
@@ -1251,7 +1251,7 @@
       "description": "Logo design"
     },
     {
-      "id": "6e17c674",
+      "id": "288b78b5",
       "date": "2026-07-01",
       "amount": 950.0,
       "kind": "expense",
@@ -1259,7 +1259,7 @@
       "description": "Rent (shared apartment)"
     },
     {
-      "id": "3d134089",
+      "id": "4f8d5238",
       "date": "2026-07-05",
       "amount": 45.0,
       "kind": "expense",
@@ -1267,7 +1267,7 @@
       "description": "Phone plan"
     },
     {
-      "id": "21440ae2",
+      "id": "8d03c91e",
       "date": "2026-07-12",
       "amount": 30.0,
       "kind": "expense",
@@ -1275,7 +1275,7 @@
       "description": "Internet (split)"
     },
     {
-      "id": "fb4d02c7",
+      "id": "03802b70",
       "date": "2026-07-15",
       "amount": 22.98,
       "kind": "expense",
@@ -1283,7 +1283,7 @@
       "description": "Streaming subscriptions"
     },
     {
-      "id": "ce1e7bb4",
+      "id": "8d605936",
       "date": "2026-07-20",
       "amount": 38.0,
       "kind": "expense",
@@ -1291,7 +1291,7 @@
       "description": "Electricity (split)"
     },
     {
-      "id": "5c91987d",
+      "id": "687213f9",
       "date": "2026-07-31",
       "amount": 18.55,
       "kind": "expense",
@@ -1299,7 +1299,7 @@
       "description": "Trader Joe's"
     },
     {
-      "id": "57e3cd12",
+      "id": "17dc8eff",
       "date": "2026-07-06",
       "amount": 65.58,
       "kind": "expense",
@@ -1307,7 +1307,7 @@
       "description": "Trader Joe's"
     },
     {
-      "id": "029270ee",
+      "id": "3985fb62",
       "date": "2026-07-02",
       "amount": 25.42,
       "kind": "expense",
@@ -1315,7 +1315,7 @@
       "description": "Costco run"
     },
     {
-      "id": "5cf84aa3",
+      "id": "fe049059",
       "date": "2026-07-12",
       "amount": 78.16,
       "kind": "expense",
@@ -1323,7 +1323,7 @@
       "description": "Trader Joe's"
     },
     {
-      "id": "294f8773",
+      "id": "d7665cda",
       "date": "2026-07-14",
       "amount": 67.76,
       "kind": "expense",
@@ -1331,7 +1331,7 @@
       "description": "Farmers market"
     },
     {
-      "id": "4008ea2c",
+      "id": "e9b5c5cf",
       "date": "2026-07-04",
       "amount": 48.96,
       "kind": "expense",
@@ -1339,7 +1339,7 @@
       "description": "Farmers market"
     },
     {
-      "id": "c3b0fad6",
+      "id": "1d0bc9bd",
       "date": "2026-07-07",
       "amount": 37.86,
       "kind": "expense",
@@ -1347,7 +1347,7 @@
       "description": "Costco run"
     },
     {
-      "id": "996961cf",
+      "id": "762172ed",
       "date": "2026-07-01",
       "amount": 60.42,
       "kind": "expense",
@@ -1355,7 +1355,7 @@
       "description": "Farmers market"
     },
     {
-      "id": "593558d8",
+      "id": "f27292b6",
       "date": "2026-07-22",
       "amount": 77.39,
       "kind": "expense",
@@ -1363,7 +1363,7 @@
       "description": "QFC"
     },
     {
-      "id": "7d27e055",
+      "id": "1e1242e3",
       "date": "2026-07-12",
       "amount": 52.88,
       "kind": "expense",
@@ -1371,7 +1371,7 @@
       "description": "Trader Joe's"
     },
     {
-      "id": "1f8e1029",
+      "id": "a5d04d53",
       "date": "2026-07-20",
       "amount": 42.9,
       "kind": "expense",
@@ -1379,7 +1379,7 @@
       "description": "Safeway"
     },
     {
-      "id": "07f7b660",
+      "id": "d50755d9",
       "date": "2026-07-17",
       "amount": 16.26,
       "kind": "expense",
@@ -1387,7 +1387,7 @@
       "description": "Pizza night"
     },
     {
-      "id": "8f097d20",
+      "id": "276aa6ce",
       "date": "2026-07-11",
       "amount": 19.52,
       "kind": "expense",
@@ -1395,7 +1395,7 @@
       "description": "Pho"
     },
     {
-      "id": "7616b2b1",
+      "id": "7f95897c",
       "date": "2026-07-18",
       "amount": 9.87,
       "kind": "expense",
@@ -1403,7 +1403,7 @@
       "description": "Pizza night"
     },
     {
-      "id": "69e2147c",
+      "id": "eec259dc",
       "date": "2026-07-22",
       "amount": 38.41,
       "kind": "expense",
@@ -1411,7 +1411,7 @@
       "description": "Lunch on campus"
     },
     {
-      "id": "f98b93ec",
+      "id": "b77350ca",
       "date": "2026-07-20",
       "amount": 25.38,
       "kind": "expense",
@@ -1419,7 +1419,7 @@
       "description": "Pizza night"
     },
     {
-      "id": "f8ee1a5d",
+      "id": "4ab7706e",
       "date": "2026-07-18",
       "amount": 34.66,
       "kind": "expense",
@@ -1427,7 +1427,7 @@
       "description": "Pho"
     },
     {
-      "id": "c9ae86d5",
+      "id": "82456fb4",
       "date": "2026-07-10",
       "amount": 12.78,
       "kind": "expense",
@@ -1435,7 +1435,7 @@
       "description": "Sushi"
     },
     {
-      "id": "94b35e1b",
+      "id": "b495db4e",
       "date": "2026-07-20",
       "amount": 28.38,
       "kind": "expense",
@@ -1443,7 +1443,7 @@
       "description": "Pizza night"
     },
     {
-      "id": "f4ff56b0",
+      "id": "45ff2c83",
       "date": "2026-07-15",
       "amount": 20.92,
       "kind": "expense",
@@ -1451,7 +1451,7 @@
       "description": "Lunch on campus"
     },
     {
-      "id": "66a5a47c",
+      "id": "6a5d932b",
       "date": "2026-07-17",
       "amount": 22.01,
       "kind": "expense",
@@ -1459,7 +1459,7 @@
       "description": "Lunch on campus"
     },
     {
-      "id": "99158117",
+      "id": "d5b077e0",
       "date": "2026-07-22",
       "amount": 8.38,
       "kind": "expense",
@@ -1467,7 +1467,7 @@
       "description": "Sushi"
     },
     {
-      "id": "35e42a4b",
+      "id": "7b85179a",
       "date": "2026-07-22",
       "amount": 27.62,
       "kind": "expense",
@@ -1475,7 +1475,7 @@
       "description": "Pho"
     },
     {
-      "id": "abcd049e",
+      "id": "faf14ff0",
       "date": "2026-07-03",
       "amount": 34.13,
       "kind": "expense",
@@ -1483,7 +1483,7 @@
       "description": "Lunch on campus"
     },
     {
-      "id": "e665a29c",
+      "id": "78e3654b",
       "date": "2026-07-22",
       "amount": 16.3,
       "kind": "expense",
@@ -1491,7 +1491,7 @@
       "description": "Lunch on campus"
     },
     {
-      "id": "f9b6b352",
+      "id": "3e652603",
       "date": "2026-07-05",
       "amount": 6.26,
       "kind": "expense",
@@ -1499,7 +1499,7 @@
       "description": "Lunch on campus"
     },
     {
-      "id": "663faffc",
+      "id": "74eff545",
       "date": "2026-07-20",
       "amount": 64.72,
       "kind": "expense",
@@ -1507,7 +1507,7 @@
       "description": "Gas"
     },
     {
-      "id": "6802b8c1",
+      "id": "8d1fb540",
       "date": "2026-07-15",
       "amount": 37.1,
       "kind": "expense",
@@ -1515,7 +1515,7 @@
       "description": "ORCA card reload"
     },
     {
-      "id": "0925684a",
+      "id": "25074181",
       "date": "2026-07-23",
       "amount": 54.98,
       "kind": "expense",
@@ -1523,7 +1523,7 @@
       "description": "Uber"
     },
     {
-      "id": "2c0b9bee",
+      "id": "6232b17a",
       "date": "2026-07-13",
       "amount": 26.28,
       "kind": "expense",
@@ -1531,7 +1531,7 @@
       "description": "Gas"
     },
     {
-      "id": "7d515f2f",
+      "id": "30cbd755",
       "date": "2026-07-29",
       "amount": 58.45,
       "kind": "expense",
@@ -1539,7 +1539,7 @@
       "description": "Gas"
     },
     {
-      "id": "e12ec633",
+      "id": "ebff8d15",
       "date": "2026-07-25",
       "amount": 37.78,
       "kind": "expense",
@@ -1547,7 +1547,7 @@
       "description": "ORCA card reload"
     },
     {
-      "id": "ffd9441e",
+      "id": "9970cf60",
       "date": "2026-07-26",
       "amount": 71.58,
       "kind": "expense",
@@ -1555,7 +1555,7 @@
       "description": "Uber"
     },
     {
-      "id": "6fd206a3",
+      "id": "821c1336",
       "date": "2026-07-02",
       "amount": 46.17,
       "kind": "expense",
@@ -1563,7 +1563,7 @@
       "description": "Gas"
     },
     {
-      "id": "77611023",
+      "id": "bf0d073d",
       "date": "2026-07-05",
       "amount": 67.6,
       "kind": "expense",
@@ -1571,7 +1571,7 @@
       "description": "Bowling"
     },
     {
-      "id": "b385b067",
+      "id": "e11b868d",
       "date": "2026-07-31",
       "amount": 64.48,
       "kind": "expense",
@@ -1579,7 +1579,7 @@
       "description": "Game purchase"
     },
     {
-      "id": "0afd5746",
+      "id": "22f235f2",
       "date": "2026-07-20",
       "amount": 68.51,
       "kind": "expense",
@@ -1587,7 +1587,7 @@
       "description": "Game purchase"
     },
     {
-      "id": "89beb112",
+      "id": "dd30de89",
       "date": "2026-07-27",
       "amount": 74.71,
       "kind": "expense",
@@ -1595,7 +1595,7 @@
       "description": "Game purchase"
     },
     {
-      "id": "9ea3a122",
+      "id": "11df12d7",
       "date": "2026-07-29",
       "amount": 24.24,
       "kind": "expense",
@@ -1603,7 +1603,7 @@
       "description": "Game purchase"
     },
     {
-      "id": "cc172553",
+      "id": "46b82659",
       "date": "2026-07-15",
       "amount": 31.0,
       "kind": "expense",
@@ -1611,7 +1611,7 @@
       "description": "Concert"
     },
     {
-      "id": "497d9948",
+      "id": "c5ce099c",
       "date": "2026-07-25",
       "amount": 109.49,
       "kind": "expense",
@@ -1619,7 +1619,7 @@
       "description": "Shoes"
     },
     {
-      "id": "6a1d49d5",
+      "id": "ca3dd859",
       "date": "2026-07-21",
       "amount": 47.7,
       "kind": "expense",
@@ -1627,7 +1627,7 @@
       "description": "Shoes"
     },
     {
-      "id": "68a75d3c",
+      "id": "dabac50d",
       "date": "2026-07-03",
       "amount": 102.13,
       "kind": "expense",
@@ -1635,7 +1635,7 @@
       "description": "Amazon order"
     },
     {
-      "id": "48dcab49",
+      "id": "6a39aaa6",
       "date": "2026-07-09",
       "amount": 58.79,
       "kind": "expense",
@@ -1643,7 +1643,7 @@
       "description": "Clothes"
     },
     {
-      "id": "c9b93a41",
+      "id": "57021049",
       "date": "2026-07-05",
       "amount": 25.99,
       "kind": "expense",
@@ -1651,7 +1651,7 @@
       "description": "Vitamins"
     },
     {
-      "id": "6c54ed59",
+      "id": "ef2ae713",
       "date": "2026-07-05",
       "amount": 51.65,
       "kind": "expense",
@@ -1659,7 +1659,7 @@
       "description": "Pharmacy"
     },
     {
-      "id": "3aaa9949",
+      "id": "c9a7d91f",
       "date": "2026-08-01",
       "amount": 1491.49,
       "kind": "income",
@@ -1667,7 +1667,7 @@
       "description": "Paycheck"
     },
     {
-      "id": "02433099",
+      "id": "81fb18b3",
       "date": "2026-08-15",
       "amount": 1483.09,
       "kind": "income",
@@ -1675,7 +1675,7 @@
       "description": "Paycheck"
     },
     {
-      "id": "7cabf71a",
+      "id": "44656d6b",
       "date": "2026-08-06",
       "amount": 243.08,
       "kind": "income",
@@ -1683,7 +1683,7 @@
       "description": "Tutoring"
     },
     {
-      "id": "a1f8a235",
+      "id": "d20f87d0",
       "date": "2026-08-01",
       "amount": 950.0,
       "kind": "expense",
@@ -1691,7 +1691,7 @@
       "description": "Rent (shared apartment)"
     },
     {
-      "id": "03a6e004",
+      "id": "00a81de9",
       "date": "2026-08-05",
       "amount": 45.0,
       "kind": "expense",
@@ -1699,7 +1699,7 @@
       "description": "Phone plan"
     },
     {
-      "id": "e230fe11",
+      "id": "486822b9",
       "date": "2026-08-12",
       "amount": 30.0,
       "kind": "expense",
@@ -1707,7 +1707,7 @@
       "description": "Internet (split)"
     },
     {
-      "id": "cea1a3c6",
+      "id": "b9de7a3a",
       "date": "2026-08-15",
       "amount": 22.98,
       "kind": "expense",
@@ -1715,7 +1715,7 @@
       "description": "Streaming subscriptions"
     },
     {
-      "id": "67116c5c",
+      "id": "4c6e27ff",
       "date": "2026-08-20",
       "amount": 38.0,
       "kind": "expense",
@@ -1723,7 +1723,7 @@
       "description": "Electricity (split)"
     },
     {
-      "id": "d2364eff",
+      "id": "d664d264",
       "date": "2026-08-29",
       "amount": 60.5,
       "kind": "expense",
@@ -1731,7 +1731,7 @@
       "description": "Safeway"
     },
     {
-      "id": "0d33b5f3",
+      "id": "96418ced",
       "date": "2026-08-28",
       "amount": 67.48,
       "kind": "expense",
@@ -1739,7 +1739,7 @@
       "description": "Farmers market"
     },
     {
-      "id": "40cbb498",
+      "id": "9475dbc9",
       "date": "2026-08-13",
       "amount": 42.05,
       "kind": "expense",
@@ -1747,7 +1747,7 @@
       "description": "Trader Joe's"
     },
     {
-      "id": "2448b7ab",
+      "id": "ffb8102d",
       "date": "2026-08-10",
       "amount": 59.47,
       "kind": "expense",
@@ -1755,7 +1755,7 @@
       "description": "Costco run"
     },
     {
-      "id": "f79704bf",
+      "id": "a8f1e091",
       "date": "2026-08-18",
       "amount": 59.09,
       "kind": "expense",
@@ -1763,7 +1763,7 @@
       "description": "Farmers market"
     },
     {
-      "id": "85934690",
+      "id": "7d5911c6",
       "date": "2026-08-26",
       "amount": 50.0,
       "kind": "expense",
@@ -1771,7 +1771,7 @@
       "description": "QFC"
     },
     {
-      "id": "ca6e08a2",
+      "id": "dd81b7f5",
       "date": "2026-08-16",
       "amount": 25.82,
       "kind": "expense",
@@ -1779,7 +1779,7 @@
       "description": "Costco run"
     },
     {
-      "id": "e4af7f7a",
+      "id": "260a5962",
       "date": "2026-08-16",
       "amount": 13.83,
       "kind": "expense",
@@ -1787,7 +1787,7 @@
       "description": "Trader Joe's"
     },
     {
-      "id": "89467615",
+      "id": "7250ee18",
       "date": "2026-08-22",
       "amount": 54.79,
       "kind": "expense",
@@ -1795,7 +1795,7 @@
       "description": "Costco run"
     },
     {
-      "id": "c7c1de86",
+      "id": "89e06ab3",
       "date": "2026-08-24",
       "amount": 22.4,
       "kind": "expense",
@@ -1803,7 +1803,7 @@
       "description": "Costco run"
     },
     {
-      "id": "e6d002e2",
+      "id": "7bfdcc12",
       "date": "2026-08-30",
       "amount": 20.04,
       "kind": "expense",
@@ -1811,7 +1811,7 @@
       "description": "Farmers market"
     },
     {
-      "id": "4a5193da",
+      "id": "585a0afa",
       "date": "2026-08-18",
       "amount": 13.7,
       "kind": "expense",
@@ -1819,7 +1819,7 @@
       "description": "Costco run"
     },
     {
-      "id": "d0f6a10b",
+      "id": "551ac8ea",
       "date": "2026-08-03",
       "amount": 20.71,
       "kind": "expense",
@@ -1827,7 +1827,7 @@
       "description": "Lunch on campus"
     },
     {
-      "id": "cb60eb49",
+      "id": "8d4a75b8",
       "date": "2026-08-28",
       "amount": 16.0,
       "kind": "expense",
@@ -1835,7 +1835,7 @@
       "description": "Coffee"
     },
     {
-      "id": "177cb721",
+      "id": "c34b9fbb",
       "date": "2026-08-09",
       "amount": 13.86,
       "kind": "expense",
@@ -1843,7 +1843,7 @@
       "description": "Lunch on campus"
     },
     {
-      "id": "9179f18e",
+      "id": "8b1e3b9d",
       "date": "2026-08-15",
       "amount": 12.5,
       "kind": "expense",
@@ -1851,7 +1851,7 @@
       "description": "Pizza night"
     },
     {
-      "id": "4fb8b000",
+      "id": "6090d697",
       "date": "2026-08-09",
       "amount": 23.55,
       "kind": "expense",
@@ -1859,7 +1859,7 @@
       "description": "Pizza night"
     },
     {
-      "id": "c5d41b95",
+      "id": "749176f4",
       "date": "2026-08-09",
       "amount": 25.71,
       "kind": "expense",
@@ -1867,7 +1867,7 @@
       "description": "Pizza night"
     },
     {
-      "id": "06bf12c8",
+      "id": "eecf67d2",
       "date": "2026-08-01",
       "amount": 23.47,
       "kind": "expense",
@@ -1875,7 +1875,7 @@
       "description": "Coffee"
     },
     {
-      "id": "a2dfc5f7",
+      "id": "5260001e",
       "date": "2026-08-31",
       "amount": 13.1,
       "kind": "expense",
@@ -1883,7 +1883,7 @@
       "description": "Coffee"
     },
     {
-      "id": "b350b798",
+      "id": "de9e3757",
       "date": "2026-08-25",
       "amount": 28.89,
       "kind": "expense",
@@ -1891,7 +1891,7 @@
       "description": "Coffee"
     },
     {
-      "id": "01de0a53",
+      "id": "304b8590",
       "date": "2026-08-25",
       "amount": 4.81,
       "kind": "expense",
@@ -1899,7 +1899,7 @@
       "description": "Lunch on campus"
     },
     {
-      "id": "53a07f54",
+      "id": "fb140bc3",
       "date": "2026-08-07",
       "amount": 25.82,
       "kind": "expense",
@@ -1907,7 +1907,7 @@
       "description": "Sushi"
     },
     {
-      "id": "713c3f97",
+      "id": "b28f41de",
       "date": "2026-08-05",
       "amount": 10.2,
       "kind": "expense",
@@ -1915,7 +1915,7 @@
       "description": "Pizza night"
     },
     {
-      "id": "083d8a2a",
+      "id": "3d225c30",
       "date": "2026-08-22",
       "amount": 6.97,
       "kind": "expense",
@@ -1923,7 +1923,7 @@
       "description": "Lunch on campus"
     },
     {
-      "id": "577089b5",
+      "id": "9261549d",
       "date": "2026-08-23",
       "amount": 20.04,
       "kind": "expense",
@@ -1931,7 +1931,7 @@
       "description": "Parking"
     },
     {
-      "id": "713fb8d7",
+      "id": "620a60ac",
       "date": "2026-08-06",
       "amount": 36.48,
       "kind": "expense",
@@ -1939,7 +1939,7 @@
       "description": "Gas"
     },
     {
-      "id": "77c3aaee",
+      "id": "3bcabf85",
       "date": "2026-08-25",
       "amount": 46.51,
       "kind": "expense",
@@ -1947,7 +1947,7 @@
       "description": "Parking"
     },
     {
-      "id": "9eee4c12",
+      "id": "db23aa8c",
       "date": "2026-08-04",
       "amount": 35.2,
       "kind": "expense",
@@ -1955,7 +1955,7 @@
       "description": "Parking"
     },
     {
-      "id": "725afcfa",
+      "id": "c68a152f",
       "date": "2026-08-19",
       "amount": 39.84,
       "kind": "expense",
@@ -1963,7 +1963,7 @@
       "description": "Uber"
     },
     {
-      "id": "12c44556",
+      "id": "69288e92",
       "date": "2026-08-13",
       "amount": 52.25,
       "kind": "expense",
@@ -1971,7 +1971,7 @@
       "description": "ORCA card reload"
     },
     {
-      "id": "28bff25b",
+      "id": "0b2c782a",
       "date": "2026-08-03",
       "amount": 35.83,
       "kind": "expense",
@@ -1979,7 +1979,7 @@
       "description": "ORCA card reload"
     },
     {
-      "id": "418b2266",
+      "id": "517400f8",
       "date": "2026-08-04",
       "amount": 40.77,
       "kind": "expense",
@@ -1987,7 +1987,7 @@
       "description": "Parking"
     },
     {
-      "id": "9d5c7423",
+      "id": "bea4ff31",
       "date": "2026-08-26",
       "amount": 59.19,
       "kind": "expense",
@@ -1995,7 +1995,7 @@
       "description": "Movie ticket"
     },
     {
-      "id": "2254e977",
+      "id": "7914f8a8",
       "date": "2026-08-12",
       "amount": 36.64,
       "kind": "expense",
@@ -2003,7 +2003,7 @@
       "description": "Bowling"
     },
     {
-      "id": "0482d18b",
+      "id": "b489d070",
       "date": "2026-08-03",
       "amount": 35.3,
       "kind": "expense",
@@ -2011,7 +2011,7 @@
       "description": "Bowling"
     },
     {
-      "id": "09686247",
+      "id": "e9d68f23",
       "date": "2026-08-28",
       "amount": 50.7,
       "kind": "expense",
@@ -2019,7 +2019,7 @@
       "description": "Shoes"
     },
     {
-      "id": "0dbce340",
+      "id": "cfb87e6f",
       "date": "2026-08-04",
       "amount": 51.85,
       "kind": "expense",
@@ -2027,7 +2027,7 @@
       "description": "Target"
     },
     {
-      "id": "ff9f974a",
+      "id": "61985d54",
       "date": "2026-08-23",
       "amount": 16.12,
       "kind": "expense",
@@ -2035,7 +2035,7 @@
       "description": "Pharmacy"
     },
     {
-      "id": "2ef36210",
+      "id": "62d60e93",
       "date": "2026-08-24",
       "amount": 30.87,
       "kind": "expense",
@@ -2043,7 +2043,7 @@
       "description": "Vitamins"
     },
     {
-      "id": "f5fb8dc7",
+      "id": "fd08b32c",
       "date": "2026-08-09",
       "amount": 34.64,
       "kind": "expense",
@@ -2051,7 +2051,7 @@
       "description": "Vitamins"
     },
     {
-      "id": "79f3ffcc",
+      "id": "a9e782d4",
       "date": "2026-08-25",
       "amount": 29.34,
       "kind": "expense",
@@ -2059,7 +2059,7 @@
       "description": "Gym drop-in"
     },
     {
-      "id": "954bf88d",
+      "id": "cada4f80",
       "date": "2026-08-21",
       "amount": 295.63,
       "kind": "expense",
@@ -2067,7 +2067,7 @@
       "description": "Textbooks & course fees"
     },
     {
-      "id": "78237d57",
+      "id": "d21c82f8",
       "date": "2026-09-01",
       "amount": 1535.17,
       "kind": "income",
@@ -2075,7 +2075,7 @@
       "description": "Paycheck"
     },
     {
-      "id": "18637504",
+      "id": "a6eab79e",
       "date": "2026-09-15",
       "amount": 1533.07,
       "kind": "income",
@@ -2083,7 +2083,7 @@
       "description": "Paycheck"
     },
     {
-      "id": "458c2635",
+      "id": "fb16e5db",
       "date": "2026-09-19",
       "amount": 259.74,
       "kind": "income",
@@ -2091,7 +2091,7 @@
       "description": "Tutoring"
     },
     {
-      "id": "bd87ee50",
+      "id": "26f05fcf",
       "date": "2026-09-01",
       "amount": 950.0,
       "kind": "expense",
@@ -2099,7 +2099,7 @@
       "description": "Rent (shared apartment)"
     },
     {
-      "id": "7dcb27f8",
+      "id": "7ecddbaf",
       "date": "2026-09-05",
       "amount": 45.0,
       "kind": "expense",
@@ -2107,7 +2107,7 @@
       "description": "Phone plan"
     },
     {
-      "id": "dd85679d",
+      "id": "f6febc0e",
       "date": "2026-09-12",
       "amount": 30.0,
       "kind": "expense",
@@ -2115,7 +2115,7 @@
       "description": "Internet (split)"
     },
     {
-      "id": "bd66812f",
+      "id": "097a1e10",
       "date": "2026-09-15",
       "amount": 22.98,
       "kind": "expense",
@@ -2123,7 +2123,7 @@
       "description": "Streaming subscriptions"
     },
     {
-      "id": "06d61e8f",
+      "id": "2051acef",
       "date": "2026-09-20",
       "amount": 38.0,
       "kind": "expense",
@@ -2131,7 +2131,7 @@
       "description": "Electricity (split)"
     },
     {
-      "id": "df77813b",
+      "id": "80962718",
       "date": "2026-09-11",
       "amount": 13.81,
       "kind": "expense",
@@ -2139,7 +2139,7 @@
       "description": "Trader Joe's"
     },
     {
-      "id": "8567abfe",
+      "id": "f72169bb",
       "date": "2026-09-06",
       "amount": 42.72,
       "kind": "expense",
@@ -2147,7 +2147,7 @@
       "description": "Trader Joe's"
     },
     {
-      "id": "54a15125",
+      "id": "9716108e",
       "date": "2026-09-26",
       "amount": 28.28,
       "kind": "expense",
@@ -2155,7 +2155,7 @@
       "description": "Trader Joe's"
     },
     {
-      "id": "55d8b468",
+      "id": "54fd9ad3",
       "date": "2026-09-29",
       "amount": 49.56,
       "kind": "expense",
@@ -2163,7 +2163,7 @@
       "description": "Trader Joe's"
     },
     {
-      "id": "421d9c28",
+      "id": "dea4ae17",
       "date": "2026-09-18",
       "amount": 12.64,
       "kind": "expense",
@@ -2171,7 +2171,7 @@
       "description": "QFC"
     },
     {
-      "id": "a3616272",
+      "id": "19b17e80",
       "date": "2026-09-03",
       "amount": 27.21,
       "kind": "expense",
@@ -2179,7 +2179,7 @@
       "description": "Costco run"
     },
     {
-      "id": "a415667e",
+      "id": "dfcaf0b7",
       "date": "2026-09-16",
       "amount": 46.98,
       "kind": "expense",
@@ -2187,7 +2187,7 @@
       "description": "QFC"
     },
     {
-      "id": "56e0f574",
+      "id": "d85480f0",
       "date": "2026-09-23",
       "amount": 41.99,
       "kind": "expense",
@@ -2195,7 +2195,7 @@
       "description": "Costco run"
     },
     {
-      "id": "70468f86",
+      "id": "70b7e868",
       "date": "2026-09-15",
       "amount": 61.95,
       "kind": "expense",
@@ -2203,7 +2203,7 @@
       "description": "Safeway"
     },
     {
-      "id": "61698dbb",
+      "id": "1986b4b2",
       "date": "2026-09-10",
       "amount": 25.96,
       "kind": "expense",
@@ -2211,7 +2211,7 @@
       "description": "QFC"
     },
     {
-      "id": "bf77c2c9",
+      "id": "86a4bae4",
       "date": "2026-09-10",
       "amount": 53.83,
       "kind": "expense",
@@ -2219,7 +2219,7 @@
       "description": "Trader Joe's"
     },
     {
-      "id": "97e44639",
+      "id": "e912b4bf",
       "date": "2026-09-16",
       "amount": 46.87,
       "kind": "expense",
@@ -2227,7 +2227,7 @@
       "description": "Trader Joe's"
     },
     {
-      "id": "d671ce65",
+      "id": "74f93d17",
       "date": "2026-09-24",
       "amount": 18.31,
       "kind": "expense",
@@ -2235,7 +2235,7 @@
       "description": "Pho"
     },
     {
-      "id": "ff4349f6",
+      "id": "03edd1f8",
       "date": "2026-09-23",
       "amount": 15.8,
       "kind": "expense",
@@ -2243,7 +2243,7 @@
       "description": "Pho"
     },
     {
-      "id": "26094189",
+      "id": "b8f21423",
       "date": "2026-09-09",
       "amount": 9.99,
       "kind": "expense",
@@ -2251,7 +2251,7 @@
       "description": "Lunch on campus"
     },
     {
-      "id": "0c6f2b73",
+      "id": "24e75e8e",
       "date": "2026-09-11",
       "amount": 7.11,
       "kind": "expense",
@@ -2259,7 +2259,7 @@
       "description": "Sushi"
     },
     {
-      "id": "109bb2e1",
+      "id": "68f45bce",
       "date": "2026-09-25",
       "amount": 21.94,
       "kind": "expense",
@@ -2267,7 +2267,7 @@
       "description": "Lunch on campus"
     },
     {
-      "id": "5cbd40d6",
+      "id": "def57689",
       "date": "2026-09-07",
       "amount": 23.2,
       "kind": "expense",
@@ -2275,7 +2275,7 @@
       "description": "Pho"
     },
     {
-      "id": "7a54162f",
+      "id": "a79fbfaf",
       "date": "2026-09-24",
       "amount": 19.33,
       "kind": "expense",
@@ -2283,7 +2283,7 @@
       "description": "Sushi"
     },
     {
-      "id": "c883aa2a",
+      "id": "f84f16b3",
       "date": "2026-09-20",
       "amount": 11.36,
       "kind": "expense",
@@ -2291,7 +2291,7 @@
       "description": "Coffee"
     },
     {
-      "id": "7ef98b42",
+      "id": "2784378f",
       "date": "2026-09-27",
       "amount": 9.05,
       "kind": "expense",
@@ -2299,7 +2299,7 @@
       "description": "Lunch on campus"
     },
     {
-      "id": "f4cd427f",
+      "id": "1327f1bc",
       "date": "2026-09-12",
       "amount": 8.67,
       "kind": "expense",
@@ -2307,7 +2307,7 @@
       "description": "Coffee"
     },
     {
-      "id": "de2ceb68",
+      "id": "78308930",
       "date": "2026-09-23",
       "amount": 17.89,
       "kind": "expense",
@@ -2315,7 +2315,7 @@
       "description": "Pho"
     },
     {
-      "id": "fb25354b",
+      "id": "c8120a8e",
       "date": "2026-09-02",
       "amount": 29.33,
       "kind": "expense",
@@ -2323,7 +2323,7 @@
       "description": "Sushi"
     },
     {
-      "id": "c37f933a",
+      "id": "f81dbaa1",
       "date": "2026-09-10",
       "amount": 22.13,
       "kind": "expense",
@@ -2331,7 +2331,7 @@
       "description": "Lunch on campus"
     },
     {
-      "id": "19ec8856",
+      "id": "43d88870",
       "date": "2026-09-21",
       "amount": 26.58,
       "kind": "expense",
@@ -2339,7 +2339,7 @@
       "description": "Pizza night"
     },
     {
-      "id": "54ec634c",
+      "id": "56abf2f1",
       "date": "2026-09-04",
       "amount": 26.69,
       "kind": "expense",
@@ -2347,7 +2347,7 @@
       "description": "Sushi"
     },
     {
-      "id": "a542daeb",
+      "id": "9f8ded97",
       "date": "2026-09-10",
       "amount": 16.2,
       "kind": "expense",
@@ -2355,7 +2355,7 @@
       "description": "Pizza night"
     },
     {
-      "id": "df1d59ad",
+      "id": "b15516bc",
       "date": "2026-09-06",
       "amount": 53.38,
       "kind": "expense",
@@ -2363,7 +2363,7 @@
       "description": "Parking"
     },
     {
-      "id": "79908106",
+      "id": "65c17795",
       "date": "2026-09-28",
       "amount": 30.45,
       "kind": "expense",
@@ -2371,7 +2371,7 @@
       "description": "Gas"
     },
     {
-      "id": "ceffb4c4",
+      "id": "a65bb1f2",
       "date": "2026-09-13",
       "amount": 31.11,
       "kind": "expense",
@@ -2379,7 +2379,7 @@
       "description": "Gas"
     },
     {
-      "id": "ac0b3f9d",
+      "id": "148f8b74",
       "date": "2026-09-05",
       "amount": 15.01,
       "kind": "expense",
@@ -2387,7 +2387,7 @@
       "description": "Parking"
     },
     {
-      "id": "eaa320f9",
+      "id": "da0d4a5f",
       "date": "2026-09-03",
       "amount": 54.71,
       "kind": "expense",
@@ -2395,7 +2395,7 @@
       "description": "Gas"
     },
     {
-      "id": "35d44721",
+      "id": "541cdfcd",
       "date": "2026-09-18",
       "amount": 43.93,
       "kind": "expense",
@@ -2403,7 +2403,7 @@
       "description": "ORCA card reload"
     },
     {
-      "id": "8b2a3a65",
+      "id": "da330aa1",
       "date": "2026-09-25",
       "amount": 32.56,
       "kind": "expense",
@@ -2411,7 +2411,7 @@
       "description": "Uber"
     },
     {
-      "id": "185084a3",
+      "id": "aca2b148",
       "date": "2026-09-10",
       "amount": 53.01,
       "kind": "expense",
@@ -2419,7 +2419,7 @@
       "description": "Game purchase"
     },
     {
-      "id": "c0af00f2",
+      "id": "dbfdd97e",
       "date": "2026-09-10",
       "amount": 38.43,
       "kind": "expense",
@@ -2427,7 +2427,7 @@
       "description": "Movie ticket"
     },
     {
-      "id": "bc085cab",
+      "id": "889b78d5",
       "date": "2026-09-20",
       "amount": 58.01,
       "kind": "expense",
@@ -2435,7 +2435,7 @@
       "description": "Movie ticket"
     },
     {
-      "id": "c6f67d13",
+      "id": "61484bb3",
       "date": "2026-09-25",
       "amount": 20.39,
       "kind": "expense",
@@ -2443,7 +2443,7 @@
       "description": "Concert"
     },
     {
-      "id": "fd4c4ee9",
+      "id": "f4427e0b",
       "date": "2026-09-09",
       "amount": 43.02,
       "kind": "expense",
@@ -2451,7 +2451,7 @@
       "description": "Concert"
     },
     {
-      "id": "2281b61d",
+      "id": "5110b492",
       "date": "2026-09-08",
       "amount": 18.69,
       "kind": "expense",
@@ -2459,7 +2459,7 @@
       "description": "Movie ticket"
     },
     {
-      "id": "679abe03",
+      "id": "a075e927",
       "date": "2026-09-01",
       "amount": 49.72,
       "kind": "expense",
@@ -2467,7 +2467,7 @@
       "description": "Shoes"
     },
     {
-      "id": "621c57f0",
+      "id": "b7fddd71",
       "date": "2026-09-10",
       "amount": 17.77,
       "kind": "expense",
@@ -2475,7 +2475,7 @@
       "description": "Target"
     },
     {
-      "id": "9b0d6e5e",
+      "id": "e32f2e63",
       "date": "2026-09-23",
       "amount": 39.03,
       "kind": "expense",
@@ -2483,7 +2483,7 @@
       "description": "Shoes"
     },
     {
-      "id": "35394888",
+      "id": "c268283e",
       "date": "2026-09-22",
       "amount": 19.34,
       "kind": "expense",
@@ -2526,19 +2526,19 @@
       "name": "Emergency Fund",
       "target": 3000.0,
       "saved": 1850.0,
-      "deadline": "2026-12-31"
+      "deadline": "2027-06-30"
     },
     {
       "name": "New Laptop",
       "target": 1400.0,
       "saved": 1050.0,
-      "deadline": "2026-11-30"
+      "deadline": "2027-03-31"
     },
     {
       "name": "Summer Trip",
       "target": 2000.0,
       "saved": 400.0,
-      "deadline": "2027-06-01"
+      "deadline": "2027-08-15"
     }
   ]
 }

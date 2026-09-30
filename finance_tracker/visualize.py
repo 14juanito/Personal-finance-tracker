@@ -34,14 +34,16 @@ INCOME_COLOR = "#2E7D32"
 EXPENSE_COLOR = "#C62828"
 ACCENT_COLOR = "#1565C0"
 MUTED_COLOR = "#9E9E9E"
+# Category colours deliberately avoid INCOME_COLOR / EXPENSE_COLOR so that a slice is
+# never mistaken for "income" (green) or "expense" (red).
 PALETTE: list[str] = [
     "#1565C0",
     "#EF6C00",
-    "#2E7D32",
     "#6A1B9A",
-    "#C62828",
     "#00838F",
     "#AD1457",
+    "#F9A825",
+    "#5D4037",
     "#9E9E9E",
 ]
 MAX_PIE_SLICES = 7
@@ -192,8 +194,10 @@ def trend_line(df: pd.DataFrame, title: str = "Spending Trend", dpi: float = DPI
                 color=MUTED_COLOR,
             )
     ax.yaxis.set_major_formatter(_money)
+    # Start at $0: a truncated axis would make small changes look dramatic.
+    ax.set_ylim(bottom=0, top=trend["expense"].max() * 1.15)
     ax.set_title(title, weight="bold")
-    ax.legend(frameon=False)
+    ax.legend(frameon=False, loc="lower right")
     ax.grid(alpha=0.3)
     ax.spines[["top", "right"]].set_visible(False)
     fig.tight_layout()

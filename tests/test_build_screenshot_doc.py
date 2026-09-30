@@ -35,3 +35,17 @@ def test_images_sorted_naturally_and_embedded(tmp_path: Path) -> None:
     out, real, missing = build_screenshot_doc.build(source, tmp_path / "doc.docx")
     assert (real, missing) == (3, 11)
     assert len(Document(out).inline_shapes) == 3
+
+
+def test_numbered_files_keep_their_slot(tmp_path: Path) -> None:
+    # Regression: with 02 missing, 03_loops.png used to be captioned "Exercise 02".
+    source = tmp_path / "shots"
+    source.mkdir()
+    for name in ["01_sum.png", "03_loops.png", "extra.png"]:
+        Image.new("RGB", (200, 100), "white").save(source / name)
+    slots = build_screenshot_doc.assign_slots(build_screenshot_doc.find_images(source))
+    assert {n: p.name for n, p in slots.items()} == {
+        1: "01_sum.png",
+        3: "03_loops.png",
+        2: "extra.png",
+    }

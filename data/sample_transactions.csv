@@ -1,312 +1,312 @@
 id,date,amount,kind,category,description
-bd472fca,2026-04-01,1513.94,income,Salary,Paycheck
-49d9f956,2026-04-01,950.0,expense,Housing,Rent (shared apartment)
-00f58b46,2026-04-03,25.77,expense,Groceries,Farmers market
-dea780e7,2026-04-03,26.24,expense,Dining Out,Coffee
-18d1dbae,2026-04-04,13.33,expense,Dining Out,Pho
-fc44a458,2026-04-05,45.0,expense,Utilities,Phone plan
-0f0e95b0,2026-04-05,20.45,expense,Transportation,ORCA card reload
-73d49c9e,2026-04-06,13.62,expense,Dining Out,Lunch on campus
-1eaf43ff,2026-04-07,22.32,expense,Dining Out,Coffee
-ef255c32,2026-04-07,38.81,expense,Transportation,Uber
-1304b5dd,2026-04-08,21.8,expense,Dining Out,Coffee
-bc7b97b3,2026-04-09,62.99,expense,Groceries,Safeway
-16beeba9,2026-04-10,25.56,expense,Dining Out,Sushi
-572c4090,2026-04-10,51.96,expense,Shopping,Shoes
-4c7c401b,2026-04-11,29.51,expense,Groceries,QFC
-6f267f3a,2026-04-12,212.79,income,Freelance,Website project
-5207c160,2026-04-12,30.0,expense,Utilities,Internet (split)
-b4e2a81e,2026-04-12,20.97,expense,Entertainment,Concert
-52c063c4,2026-04-13,11.23,expense,Dining Out,Pho
-4fd0708b,2026-04-13,11.02,expense,Dining Out,Sushi
-b7c4f11a,2026-04-13,20.58,expense,Transportation,ORCA card reload
-65628f44,2026-04-13,65.65,expense,Shopping,Shoes
-d52ca80b,2026-04-14,25.89,expense,Groceries,Farmers market
-38e62da4,2026-04-15,1452.5,income,Salary,Paycheck
-ac302662,2026-04-15,22.98,expense,Entertainment,Streaming subscriptions
-b160bb0e,2026-04-17,34.68,expense,Entertainment,Movie ticket
-82edea61,2026-04-17,36.37,expense,Shopping,Clothes
-21ffaeb3,2026-04-19,38.58,expense,Groceries,Safeway
-d42700d1,2026-04-20,38.0,expense,Utilities,Electricity (split)
-e635dd8b,2026-04-20,13.67,expense,Groceries,QFC
-45f4a52e,2026-04-20,10.88,expense,Dining Out,Coffee
-a2f30ed8,2026-04-20,20.51,expense,Dining Out,Sushi
-9173c71e,2026-04-22,9.93,expense,Dining Out,Pho
-0bd6ac30,2026-04-22,10.94,expense,Dining Out,Coffee
-0ff347e5,2026-04-22,76.26,expense,Shopping,Target
-6b61a19d,2026-04-23,52.94,expense,Groceries,Farmers market
-842e1e8d,2026-04-24,15.95,expense,Dining Out,Coffee
-73f39d09,2026-04-24,10.37,expense,Dining Out,Pizza night
-940d0a73,2026-04-24,39.23,expense,Entertainment,Game purchase
-63090c30,2026-04-24,45.03,expense,Health,Gym drop-in
-4a50b1f3,2026-04-25,62.77,expense,Groceries,Costco run
-fee289dc,2026-04-25,33.21,expense,Groceries,Safeway
-020408ed,2026-04-25,69.48,expense,Shopping,Clothes
-dead8232,2026-04-26,44.02,expense,Entertainment,Movie ticket
-a4d65967,2026-04-27,9.51,expense,Transportation,Parking
-48546122,2026-04-28,15.48,expense,Entertainment,Concert
-a903c053,2026-04-29,26.4,expense,Dining Out,Sushi
-549417b4,2026-04-29,50.98,expense,Transportation,Uber
-518fe765,2026-04-30,13.84,expense,Dining Out,Sushi
-8587302c,2026-04-30,52.32,expense,Transportation,Parking
-a2422e44,2026-05-01,1547.19,income,Salary,Paycheck
-a6608eab,2026-05-01,950.0,expense,Housing,Rent (shared apartment)
-00371c0b,2026-05-02,26.92,expense,Transportation,Parking
-84f24078,2026-05-02,42.61,expense,Entertainment,Movie ticket
-4fef475b,2026-05-02,12.01,expense,Health,Gym drop-in
-41e6f4da,2026-05-03,22.4,expense,Dining Out,Coffee
-ab6ccf0a,2026-05-03,56.32,expense,Entertainment,Concert
-140dd5bb,2026-05-04,10.45,expense,Dining Out,Coffee
-93050be5,2026-05-04,21.13,expense,Dining Out,Pho
-db385920,2026-05-05,45.0,expense,Utilities,Phone plan
-a75b7ee0,2026-05-05,35.56,expense,Groceries,QFC
-1c6a5968,2026-05-05,27.83,expense,Transportation,Parking
-dd3f41dd,2026-05-05,31.14,expense,Shopping,Amazon order
-70dcd27c,2026-05-05,394.73,expense,Education,Textbooks & course fees
-24339449,2026-05-06,30.32,expense,Entertainment,Game purchase
-eae1e97d,2026-05-06,28.95,expense,Entertainment,Game purchase
-84226259,2026-05-06,12.28,expense,Health,Vitamins
-ed887f2c,2026-05-07,18.02,expense,Dining Out,Sushi
-b3b60041,2026-05-07,16.94,expense,Transportation,Uber
-03b80b77,2026-05-07,53.23,expense,Entertainment,Movie ticket
-ffb146b3,2026-05-08,541.73,income,Freelance,Tutoring
-8c235a4f,2026-05-08,15.65,expense,Groceries,Farmers market
-9c4b4eed,2026-05-08,19.3,expense,Dining Out,Coffee
-4d7f28ef,2026-05-08,5.75,expense,Dining Out,Coffee
-06d1de71,2026-05-08,11.24,expense,Dining Out,Pizza night
-b029c491,2026-05-10,50.96,expense,Shopping,Shoes
-2d2db87c,2026-05-11,4.55,expense,Dining Out,Sushi
-19fe8f74,2026-05-12,30.0,expense,Utilities,Internet (split)
-00294887,2026-05-14,14.69,expense,Dining Out,Coffee
-e48f6225,2026-05-15,1526.2,income,Salary,Paycheck
-14c5bd29,2026-05-15,22.98,expense,Entertainment,Streaming subscriptions
-d9f616bb,2026-05-15,27.39,expense,Dining Out,Pizza night
-e82226b2,2026-05-15,19.74,expense,Transportation,Gas
-5c591c66,2026-05-16,13.23,expense,Groceries,Trader Joe's
-c893cd93,2026-05-17,46.78,expense,Health,Vitamins
-73b3d6b0,2026-05-18,72.07,expense,Groceries,Farmers market
-1b3defdd,2026-05-19,16.29,expense,Dining Out,Pizza night
-c5b0dbb3,2026-05-20,38.0,expense,Utilities,Electricity (split)
-7d239f98,2026-05-23,12.1,expense,Dining Out,Pho
-792e38ed,2026-05-25,19.92,expense,Groceries,Costco run
-572599a9,2026-05-25,22.98,expense,Dining Out,Lunch on campus
-4280af49,2026-05-26,14.58,expense,Dining Out,Coffee
-d311fc30,2026-05-26,48.5,expense,Transportation,ORCA card reload
-a38910dc,2026-05-26,53.07,expense,Entertainment,Movie ticket
-2acdc8ec,2026-05-27,16.36,expense,Groceries,Farmers market
-7324d007,2026-05-28,12.59,expense,Dining Out,Sushi
-39029daa,2026-05-29,74.08,expense,Groceries,Trader Joe's
-3e3fa979,2026-05-30,12.04,expense,Groceries,Trader Joe's
-1910991d,2026-05-30,81.65,expense,Shopping,Shoes
-730b6b78,2026-05-31,16.96,expense,Groceries,Costco run
-48cdc498,2026-05-31,46.64,expense,Groceries,Trader Joe's
-8b5ee28d,2026-05-31,9.51,expense,Dining Out,Sushi
-6de87a19,2026-05-31,19.97,expense,Shopping,Clothes
-bdb8049c,2026-06-01,1456.85,income,Salary,Paycheck
-9452e72f,2026-06-01,950.0,expense,Housing,Rent (shared apartment)
-f513ba16,2026-06-01,40.87,expense,Groceries,Farmers market
-e1973238,2026-06-01,21.36,expense,Dining Out,Sushi
-d6ee82bc,2026-06-01,18.97,expense,Entertainment,Bowling
-97a28362,2026-06-01,36.4,expense,Health,Gym drop-in
-73e16b81,2026-06-02,4.09,expense,Dining Out,Lunch on campus
-d898df63,2026-06-03,20.49,expense,Dining Out,Pho
-4eafea31,2026-06-04,71.32,expense,Groceries,Farmers market
-c44dae49,2026-06-04,16.62,expense,Groceries,QFC
-9ae7ef1a,2026-06-05,45.0,expense,Utilities,Phone plan
-34642037,2026-06-05,11.08,expense,Dining Out,Sushi
-0b2c7920,2026-06-05,9.97,expense,Transportation,Parking
-21aea2b2,2026-06-06,81.93,expense,Shopping,Clothes
-2ea9dbcf,2026-06-07,54.19,expense,Groceries,Trader Joe's
-924159e4,2026-06-07,22.66,expense,Dining Out,Lunch on campus
-fb8d6442,2026-06-08,48.47,expense,Groceries,Safeway
-392970d2,2026-06-08,28.73,expense,Groceries,QFC
-e1680d86,2026-06-08,31.96,expense,Shopping,Shoes
-e9e2ad60,2026-06-10,8.1,expense,Dining Out,Sushi
-df137f0c,2026-06-10,28.23,expense,Dining Out,Coffee
-5b36c08e,2026-06-11,70.53,expense,Groceries,Safeway
-4424fa45,2026-06-11,21.14,expense,Health,Pharmacy
-d9c04230,2026-06-12,30.0,expense,Utilities,Internet (split)
-d1d792c3,2026-06-12,40.94,expense,Shopping,Amazon order
-44d0d806,2026-06-13,89.13,expense,Shopping,Shoes
-bc11e914,2026-06-15,1456.8,income,Salary,Paycheck
-c27fdf15,2026-06-15,22.98,expense,Entertainment,Streaming subscriptions
-b52673c7,2026-06-17,28.71,expense,Groceries,Trader Joe's
-7d749cfc,2026-06-17,16.7,expense,Dining Out,Coffee
-10262774,2026-06-18,4.25,expense,Dining Out,Coffee
-9043b761,2026-06-18,9.69,expense,Transportation,Parking
-eb2d21e8,2026-06-19,44.94,expense,Groceries,Trader Joe's
-17236392,2026-06-19,33.97,expense,Transportation,Uber
-dc5b89c6,2026-06-20,38.0,expense,Utilities,Electricity (split)
-39b667e9,2026-06-20,17.16,expense,Groceries,Farmers market
-1d963cf1,2026-06-21,29.47,expense,Dining Out,Lunch on campus
-1e088f91,2026-06-22,52.67,expense,Groceries,Costco run
-1916cb7a,2026-06-22,20.49,expense,Dining Out,Pho
-12eed8a4,2026-06-22,12.83,expense,Transportation,Uber
-3b14017b,2026-06-23,11.87,expense,Dining Out,Sushi
-7e2557de,2026-06-24,15.49,expense,Dining Out,Pizza night
-efc0c77f,2026-06-26,50.54,expense,Entertainment,Game purchase
-dc09388b,2026-06-26,56.54,expense,Entertainment,Concert
-8df047b6,2026-06-29,16.33,expense,Groceries,QFC
-f8db43cc,2026-06-29,7.49,expense,Dining Out,Coffee
-2609d43a,2026-06-29,6.78,expense,Dining Out,Sushi
-ca7de2f8,2026-06-29,51.86,expense,Transportation,Gas
-86658575,2026-06-29,24.82,expense,Transportation,ORCA card reload
-bf53268c,2026-06-30,56.49,expense,Entertainment,Concert
-726ee377,2026-07-01,1546.69,income,Salary,Paycheck
-6e17c674,2026-07-01,950.0,expense,Housing,Rent (shared apartment)
-996961cf,2026-07-01,60.42,expense,Groceries,Farmers market
-029270ee,2026-07-02,25.42,expense,Groceries,Costco run
-6fd206a3,2026-07-02,46.17,expense,Transportation,Gas
-abcd049e,2026-07-03,34.13,expense,Dining Out,Lunch on campus
-68a75d3c,2026-07-03,102.13,expense,Shopping,Amazon order
-4008ea2c,2026-07-04,48.96,expense,Groceries,Farmers market
-3d134089,2026-07-05,45.0,expense,Utilities,Phone plan
-f9b6b352,2026-07-05,6.26,expense,Dining Out,Lunch on campus
-77611023,2026-07-05,67.6,expense,Entertainment,Bowling
-c9b93a41,2026-07-05,25.99,expense,Health,Vitamins
-6c54ed59,2026-07-05,51.65,expense,Health,Pharmacy
-57e3cd12,2026-07-06,65.58,expense,Groceries,Trader Joe's
-c3b0fad6,2026-07-07,37.86,expense,Groceries,Costco run
-48dcab49,2026-07-09,58.79,expense,Shopping,Clothes
-c9ae86d5,2026-07-10,12.78,expense,Dining Out,Sushi
-8f097d20,2026-07-11,19.52,expense,Dining Out,Pho
-21440ae2,2026-07-12,30.0,expense,Utilities,Internet (split)
-5cf84aa3,2026-07-12,78.16,expense,Groceries,Trader Joe's
-7d27e055,2026-07-12,52.88,expense,Groceries,Trader Joe's
-2c0b9bee,2026-07-13,26.28,expense,Transportation,Gas
-294f8773,2026-07-14,67.76,expense,Groceries,Farmers market
-be2fe6ab,2026-07-15,1477.91,income,Salary,Paycheck
-fb4d02c7,2026-07-15,22.98,expense,Entertainment,Streaming subscriptions
-f4ff56b0,2026-07-15,20.92,expense,Dining Out,Lunch on campus
-6802b8c1,2026-07-15,37.1,expense,Transportation,ORCA card reload
-cc172553,2026-07-15,31.0,expense,Entertainment,Concert
-12a912dc,2026-07-17,455.78,income,Freelance,Logo design
-07f7b660,2026-07-17,16.26,expense,Dining Out,Pizza night
-66a5a47c,2026-07-17,22.01,expense,Dining Out,Lunch on campus
-7616b2b1,2026-07-18,9.87,expense,Dining Out,Pizza night
-f8ee1a5d,2026-07-18,34.66,expense,Dining Out,Pho
-ce1e7bb4,2026-07-20,38.0,expense,Utilities,Electricity (split)
-1f8e1029,2026-07-20,42.9,expense,Groceries,Safeway
-f98b93ec,2026-07-20,25.38,expense,Dining Out,Pizza night
-94b35e1b,2026-07-20,28.38,expense,Dining Out,Pizza night
-663faffc,2026-07-20,64.72,expense,Transportation,Gas
-0afd5746,2026-07-20,68.51,expense,Entertainment,Game purchase
-6a1d49d5,2026-07-21,47.7,expense,Shopping,Shoes
-593558d8,2026-07-22,77.39,expense,Groceries,QFC
-69e2147c,2026-07-22,38.41,expense,Dining Out,Lunch on campus
-99158117,2026-07-22,8.38,expense,Dining Out,Sushi
-35e42a4b,2026-07-22,27.62,expense,Dining Out,Pho
-e665a29c,2026-07-22,16.3,expense,Dining Out,Lunch on campus
-0925684a,2026-07-23,54.98,expense,Transportation,Uber
-e12ec633,2026-07-25,37.78,expense,Transportation,ORCA card reload
-497d9948,2026-07-25,109.49,expense,Shopping,Shoes
-ffd9441e,2026-07-26,71.58,expense,Transportation,Uber
-89beb112,2026-07-27,74.71,expense,Entertainment,Game purchase
-7d515f2f,2026-07-29,58.45,expense,Transportation,Gas
-9ea3a122,2026-07-29,24.24,expense,Entertainment,Game purchase
-5c91987d,2026-07-31,18.55,expense,Groceries,Trader Joe's
-b385b067,2026-07-31,64.48,expense,Entertainment,Game purchase
-3aaa9949,2026-08-01,1491.49,income,Salary,Paycheck
-a1f8a235,2026-08-01,950.0,expense,Housing,Rent (shared apartment)
-06bf12c8,2026-08-01,23.47,expense,Dining Out,Coffee
-d0f6a10b,2026-08-03,20.71,expense,Dining Out,Lunch on campus
-28bff25b,2026-08-03,35.83,expense,Transportation,ORCA card reload
-0482d18b,2026-08-03,35.3,expense,Entertainment,Bowling
-9eee4c12,2026-08-04,35.2,expense,Transportation,Parking
-418b2266,2026-08-04,40.77,expense,Transportation,Parking
-0dbce340,2026-08-04,51.85,expense,Shopping,Target
-03a6e004,2026-08-05,45.0,expense,Utilities,Phone plan
-713c3f97,2026-08-05,10.2,expense,Dining Out,Pizza night
-7cabf71a,2026-08-06,243.08,income,Freelance,Tutoring
-713fb8d7,2026-08-06,36.48,expense,Transportation,Gas
-53a07f54,2026-08-07,25.82,expense,Dining Out,Sushi
-177cb721,2026-08-09,13.86,expense,Dining Out,Lunch on campus
-4fb8b000,2026-08-09,23.55,expense,Dining Out,Pizza night
-c5d41b95,2026-08-09,25.71,expense,Dining Out,Pizza night
-f5fb8dc7,2026-08-09,34.64,expense,Health,Vitamins
-2448b7ab,2026-08-10,59.47,expense,Groceries,Costco run
-e230fe11,2026-08-12,30.0,expense,Utilities,Internet (split)
-2254e977,2026-08-12,36.64,expense,Entertainment,Bowling
-40cbb498,2026-08-13,42.05,expense,Groceries,Trader Joe's
-12c44556,2026-08-13,52.25,expense,Transportation,ORCA card reload
-02433099,2026-08-15,1483.09,income,Salary,Paycheck
-cea1a3c6,2026-08-15,22.98,expense,Entertainment,Streaming subscriptions
-9179f18e,2026-08-15,12.5,expense,Dining Out,Pizza night
-ca6e08a2,2026-08-16,25.82,expense,Groceries,Costco run
-e4af7f7a,2026-08-16,13.83,expense,Groceries,Trader Joe's
-f79704bf,2026-08-18,59.09,expense,Groceries,Farmers market
-4a5193da,2026-08-18,13.7,expense,Groceries,Costco run
-725afcfa,2026-08-19,39.84,expense,Transportation,Uber
-67116c5c,2026-08-20,38.0,expense,Utilities,Electricity (split)
-954bf88d,2026-08-21,295.63,expense,Education,Textbooks & course fees
-89467615,2026-08-22,54.79,expense,Groceries,Costco run
-083d8a2a,2026-08-22,6.97,expense,Dining Out,Lunch on campus
-577089b5,2026-08-23,20.04,expense,Transportation,Parking
-ff9f974a,2026-08-23,16.12,expense,Health,Pharmacy
-c7c1de86,2026-08-24,22.4,expense,Groceries,Costco run
-2ef36210,2026-08-24,30.87,expense,Health,Vitamins
-b350b798,2026-08-25,28.89,expense,Dining Out,Coffee
-01de0a53,2026-08-25,4.81,expense,Dining Out,Lunch on campus
-77c3aaee,2026-08-25,46.51,expense,Transportation,Parking
-79f3ffcc,2026-08-25,29.34,expense,Health,Gym drop-in
-85934690,2026-08-26,50.0,expense,Groceries,QFC
-9d5c7423,2026-08-26,59.19,expense,Entertainment,Movie ticket
-0d33b5f3,2026-08-28,67.48,expense,Groceries,Farmers market
-cb60eb49,2026-08-28,16.0,expense,Dining Out,Coffee
-09686247,2026-08-28,50.7,expense,Shopping,Shoes
-d2364eff,2026-08-29,60.5,expense,Groceries,Safeway
-e6d002e2,2026-08-30,20.04,expense,Groceries,Farmers market
-a2dfc5f7,2026-08-31,13.1,expense,Dining Out,Coffee
-78237d57,2026-09-01,1535.17,income,Salary,Paycheck
-bd87ee50,2026-09-01,950.0,expense,Housing,Rent (shared apartment)
-679abe03,2026-09-01,49.72,expense,Shopping,Shoes
-fb25354b,2026-09-02,29.33,expense,Dining Out,Sushi
-a3616272,2026-09-03,27.21,expense,Groceries,Costco run
-eaa320f9,2026-09-03,54.71,expense,Transportation,Gas
-54ec634c,2026-09-04,26.69,expense,Dining Out,Sushi
-7dcb27f8,2026-09-05,45.0,expense,Utilities,Phone plan
-ac0b3f9d,2026-09-05,15.01,expense,Transportation,Parking
-8567abfe,2026-09-06,42.72,expense,Groceries,Trader Joe's
-df1d59ad,2026-09-06,53.38,expense,Transportation,Parking
-5cbd40d6,2026-09-07,23.2,expense,Dining Out,Pho
-2281b61d,2026-09-08,18.69,expense,Entertainment,Movie ticket
-26094189,2026-09-09,9.99,expense,Dining Out,Lunch on campus
-fd4c4ee9,2026-09-09,43.02,expense,Entertainment,Concert
-61698dbb,2026-09-10,25.96,expense,Groceries,QFC
-bf77c2c9,2026-09-10,53.83,expense,Groceries,Trader Joe's
-c37f933a,2026-09-10,22.13,expense,Dining Out,Lunch on campus
-a542daeb,2026-09-10,16.2,expense,Dining Out,Pizza night
-185084a3,2026-09-10,53.01,expense,Entertainment,Game purchase
-c0af00f2,2026-09-10,38.43,expense,Entertainment,Movie ticket
-621c57f0,2026-09-10,17.77,expense,Shopping,Target
-df77813b,2026-09-11,13.81,expense,Groceries,Trader Joe's
-0c6f2b73,2026-09-11,7.11,expense,Dining Out,Sushi
-dd85679d,2026-09-12,30.0,expense,Utilities,Internet (split)
-f4cd427f,2026-09-12,8.67,expense,Dining Out,Coffee
-ceffb4c4,2026-09-13,31.11,expense,Transportation,Gas
-18637504,2026-09-15,1533.07,income,Salary,Paycheck
-bd66812f,2026-09-15,22.98,expense,Entertainment,Streaming subscriptions
-70468f86,2026-09-15,61.95,expense,Groceries,Safeway
-a415667e,2026-09-16,46.98,expense,Groceries,QFC
-97e44639,2026-09-16,46.87,expense,Groceries,Trader Joe's
-421d9c28,2026-09-18,12.64,expense,Groceries,QFC
-35d44721,2026-09-18,43.93,expense,Transportation,ORCA card reload
-458c2635,2026-09-19,259.74,income,Freelance,Tutoring
-06d61e8f,2026-09-20,38.0,expense,Utilities,Electricity (split)
-c883aa2a,2026-09-20,11.36,expense,Dining Out,Coffee
-bc085cab,2026-09-20,58.01,expense,Entertainment,Movie ticket
-19ec8856,2026-09-21,26.58,expense,Dining Out,Pizza night
-35394888,2026-09-22,19.34,expense,Health,Gym drop-in
-56e0f574,2026-09-23,41.99,expense,Groceries,Costco run
-ff4349f6,2026-09-23,15.8,expense,Dining Out,Pho
-de2ceb68,2026-09-23,17.89,expense,Dining Out,Pho
-9b0d6e5e,2026-09-23,39.03,expense,Shopping,Shoes
-d671ce65,2026-09-24,18.31,expense,Dining Out,Pho
-7a54162f,2026-09-24,19.33,expense,Dining Out,Sushi
-109bb2e1,2026-09-25,21.94,expense,Dining Out,Lunch on campus
-8b2a3a65,2026-09-25,32.56,expense,Transportation,Uber
-c6f67d13,2026-09-25,20.39,expense,Entertainment,Concert
-54a15125,2026-09-26,28.28,expense,Groceries,Trader Joe's
-7ef98b42,2026-09-27,9.05,expense,Dining Out,Lunch on campus
-79908106,2026-09-28,30.45,expense,Transportation,Gas
-55d8b468,2026-09-29,49.56,expense,Groceries,Trader Joe's
+c9af18f8,2026-04-01,1513.94,income,Salary,Paycheck
+96fc734d,2026-04-01,950.0,expense,Housing,Rent (shared apartment)
+1d61fac3,2026-04-03,25.77,expense,Groceries,Farmers market
+d3016989,2026-04-03,26.24,expense,Dining Out,Coffee
+246998e8,2026-04-04,13.33,expense,Dining Out,Pho
+a9434aa0,2026-04-05,45.0,expense,Utilities,Phone plan
+801ef1da,2026-04-05,20.45,expense,Transportation,ORCA card reload
+ebd34616,2026-04-06,13.62,expense,Dining Out,Lunch on campus
+9854ce4e,2026-04-07,22.32,expense,Dining Out,Coffee
+f1533ae8,2026-04-07,38.81,expense,Transportation,Uber
+b04d3376,2026-04-08,21.8,expense,Dining Out,Coffee
+26242b40,2026-04-09,62.99,expense,Groceries,Safeway
+cae9b4a7,2026-04-10,25.56,expense,Dining Out,Sushi
+5283aac7,2026-04-10,51.96,expense,Shopping,Shoes
+44007d5a,2026-04-11,29.51,expense,Groceries,QFC
+a003cd28,2026-04-12,212.79,income,Freelance,Website project
+cdccc33a,2026-04-12,30.0,expense,Utilities,Internet (split)
+7e695d0d,2026-04-12,20.97,expense,Entertainment,Concert
+91b78d8e,2026-04-13,11.23,expense,Dining Out,Pho
+77fc9703,2026-04-13,11.02,expense,Dining Out,Sushi
+b321bf21,2026-04-13,20.58,expense,Transportation,ORCA card reload
+0a3450fc,2026-04-13,65.65,expense,Shopping,Shoes
+a5cb63a2,2026-04-14,25.89,expense,Groceries,Farmers market
+ca8f3653,2026-04-15,1452.5,income,Salary,Paycheck
+ef04e57d,2026-04-15,22.98,expense,Entertainment,Streaming subscriptions
+7010f719,2026-04-17,34.68,expense,Entertainment,Movie ticket
+e3b137fc,2026-04-17,36.37,expense,Shopping,Clothes
+6cd5e859,2026-04-19,38.58,expense,Groceries,Safeway
+32a447b2,2026-04-20,38.0,expense,Utilities,Electricity (split)
+8b6870b5,2026-04-20,13.67,expense,Groceries,QFC
+1247ea4e,2026-04-20,10.88,expense,Dining Out,Coffee
+706c5c56,2026-04-20,20.51,expense,Dining Out,Sushi
+bfbbb17f,2026-04-22,9.93,expense,Dining Out,Pho
+49e2623d,2026-04-22,10.94,expense,Dining Out,Coffee
+6e996e3e,2026-04-22,76.26,expense,Shopping,Target
+398d1ca6,2026-04-23,52.94,expense,Groceries,Farmers market
+0f44704f,2026-04-24,15.95,expense,Dining Out,Coffee
+1fd5a423,2026-04-24,10.37,expense,Dining Out,Pizza night
+8a3c3b5e,2026-04-24,39.23,expense,Entertainment,Game purchase
+9a8cfa3c,2026-04-24,45.03,expense,Health,Gym drop-in
+e88da719,2026-04-25,62.77,expense,Groceries,Costco run
+d39e198b,2026-04-25,33.21,expense,Groceries,Safeway
+bc0a6a5d,2026-04-25,69.48,expense,Shopping,Clothes
+9918ee46,2026-04-26,44.02,expense,Entertainment,Movie ticket
+4dd8eb85,2026-04-27,9.51,expense,Transportation,Parking
+1497d658,2026-04-28,15.48,expense,Entertainment,Concert
+4ebfa5c3,2026-04-29,26.4,expense,Dining Out,Sushi
+45b1ed25,2026-04-29,50.98,expense,Transportation,Uber
+2a79ea68,2026-04-30,13.84,expense,Dining Out,Sushi
+670acc5c,2026-04-30,52.32,expense,Transportation,Parking
+40181c6e,2026-05-01,1547.19,income,Salary,Paycheck
+3a9aca5e,2026-05-01,950.0,expense,Housing,Rent (shared apartment)
+7de1bdfe,2026-05-02,26.92,expense,Transportation,Parking
+5553b2fe,2026-05-02,42.61,expense,Entertainment,Movie ticket
+7ed70ed7,2026-05-02,12.01,expense,Health,Gym drop-in
+7135f221,2026-05-03,22.4,expense,Dining Out,Coffee
+5230dfbd,2026-05-03,56.32,expense,Entertainment,Concert
+7872bdeb,2026-05-04,10.45,expense,Dining Out,Coffee
+a2814044,2026-05-04,21.13,expense,Dining Out,Pho
+f63fce41,2026-05-05,45.0,expense,Utilities,Phone plan
+93403fad,2026-05-05,35.56,expense,Groceries,QFC
+785299f4,2026-05-05,27.83,expense,Transportation,Parking
+6961929e,2026-05-05,31.14,expense,Shopping,Amazon order
+f1f8343e,2026-05-05,394.73,expense,Education,Textbooks & course fees
+ab8ddeb4,2026-05-06,30.32,expense,Entertainment,Game purchase
+db946570,2026-05-06,28.95,expense,Entertainment,Game purchase
+a99f1318,2026-05-06,12.28,expense,Health,Vitamins
+ff37d19c,2026-05-07,18.02,expense,Dining Out,Sushi
+175ba98d,2026-05-07,16.94,expense,Transportation,Uber
+1ac70ec0,2026-05-07,53.23,expense,Entertainment,Movie ticket
+176132ed,2026-05-08,541.73,income,Freelance,Tutoring
+c3c75611,2026-05-08,15.65,expense,Groceries,Farmers market
+a6c9537f,2026-05-08,19.3,expense,Dining Out,Coffee
+ea83bf00,2026-05-08,5.75,expense,Dining Out,Coffee
+2e76128b,2026-05-08,11.24,expense,Dining Out,Pizza night
+546e035a,2026-05-10,50.96,expense,Shopping,Shoes
+84dad06a,2026-05-11,4.55,expense,Dining Out,Sushi
+ac9ed156,2026-05-12,30.0,expense,Utilities,Internet (split)
+d0725b5c,2026-05-14,14.69,expense,Dining Out,Coffee
+069f14f1,2026-05-15,1526.2,income,Salary,Paycheck
+d6016237,2026-05-15,22.98,expense,Entertainment,Streaming subscriptions
+2cd94cbb,2026-05-15,27.39,expense,Dining Out,Pizza night
+5913f9d3,2026-05-15,19.74,expense,Transportation,Gas
+054f92ff,2026-05-16,13.23,expense,Groceries,Trader Joe's
+49c8a43f,2026-05-17,46.78,expense,Health,Vitamins
+964db03f,2026-05-18,72.07,expense,Groceries,Farmers market
+95d82980,2026-05-19,16.29,expense,Dining Out,Pizza night
+dc4ad56b,2026-05-20,38.0,expense,Utilities,Electricity (split)
+c19ad58c,2026-05-23,12.1,expense,Dining Out,Pho
+44feacae,2026-05-25,19.92,expense,Groceries,Costco run
+c35b1c8c,2026-05-25,22.98,expense,Dining Out,Lunch on campus
+6f962882,2026-05-26,14.58,expense,Dining Out,Coffee
+f8140102,2026-05-26,48.5,expense,Transportation,ORCA card reload
+6889803e,2026-05-26,53.07,expense,Entertainment,Movie ticket
+d248a9a7,2026-05-27,16.36,expense,Groceries,Farmers market
+473544f9,2026-05-28,12.59,expense,Dining Out,Sushi
+ffe3fa49,2026-05-29,74.08,expense,Groceries,Trader Joe's
+f366bad4,2026-05-30,12.04,expense,Groceries,Trader Joe's
+292bd156,2026-05-30,81.65,expense,Shopping,Shoes
+ac1aa554,2026-05-31,16.96,expense,Groceries,Costco run
+9384ec2b,2026-05-31,46.64,expense,Groceries,Trader Joe's
+0a4c9f7f,2026-05-31,9.51,expense,Dining Out,Sushi
+b194990b,2026-05-31,19.97,expense,Shopping,Clothes
+668409e3,2026-06-01,1456.85,income,Salary,Paycheck
+c2b01cfd,2026-06-01,950.0,expense,Housing,Rent (shared apartment)
+83bc9478,2026-06-01,40.87,expense,Groceries,Farmers market
+8ae769ed,2026-06-01,21.36,expense,Dining Out,Sushi
+e17f29e1,2026-06-01,18.97,expense,Entertainment,Bowling
+a14923c2,2026-06-01,36.4,expense,Health,Gym drop-in
+7f9d3e64,2026-06-02,4.09,expense,Dining Out,Lunch on campus
+c1a6423b,2026-06-03,20.49,expense,Dining Out,Pho
+50843242,2026-06-04,71.32,expense,Groceries,Farmers market
+d32e6dcd,2026-06-04,16.62,expense,Groceries,QFC
+8cd321b0,2026-06-05,45.0,expense,Utilities,Phone plan
+300568d2,2026-06-05,11.08,expense,Dining Out,Sushi
+445dcc38,2026-06-05,9.97,expense,Transportation,Parking
+7c16128d,2026-06-06,81.93,expense,Shopping,Clothes
+f85e06a1,2026-06-07,54.19,expense,Groceries,Trader Joe's
+84b871bb,2026-06-07,22.66,expense,Dining Out,Lunch on campus
+409d3602,2026-06-08,48.47,expense,Groceries,Safeway
+c5c5b37a,2026-06-08,28.73,expense,Groceries,QFC
+0763fcd0,2026-06-08,31.96,expense,Shopping,Shoes
+a85c6e4a,2026-06-10,8.1,expense,Dining Out,Sushi
+764414fd,2026-06-10,28.23,expense,Dining Out,Coffee
+dd6ac7b8,2026-06-11,70.53,expense,Groceries,Safeway
+9bdf0377,2026-06-11,21.14,expense,Health,Pharmacy
+0964fbbf,2026-06-12,30.0,expense,Utilities,Internet (split)
+f920264c,2026-06-12,40.94,expense,Shopping,Amazon order
+1f15c7b6,2026-06-13,89.13,expense,Shopping,Shoes
+d045dd1c,2026-06-15,1456.8,income,Salary,Paycheck
+746f7891,2026-06-15,22.98,expense,Entertainment,Streaming subscriptions
+fcf56188,2026-06-17,28.71,expense,Groceries,Trader Joe's
+9f64eeed,2026-06-17,16.7,expense,Dining Out,Coffee
+c28ebd70,2026-06-18,4.25,expense,Dining Out,Coffee
+0d366dfc,2026-06-18,9.69,expense,Transportation,Parking
+1dad09b2,2026-06-19,44.94,expense,Groceries,Trader Joe's
+341c6494,2026-06-19,33.97,expense,Transportation,Uber
+168b1625,2026-06-20,38.0,expense,Utilities,Electricity (split)
+52c21221,2026-06-20,17.16,expense,Groceries,Farmers market
+a01ac992,2026-06-21,29.47,expense,Dining Out,Lunch on campus
+6778043b,2026-06-22,52.67,expense,Groceries,Costco run
+5c9d927d,2026-06-22,20.49,expense,Dining Out,Pho
+ed7bf656,2026-06-22,12.83,expense,Transportation,Uber
+de8ede0b,2026-06-23,11.87,expense,Dining Out,Sushi
+71299889,2026-06-24,15.49,expense,Dining Out,Pizza night
+70286046,2026-06-26,50.54,expense,Entertainment,Game purchase
+b2c08394,2026-06-26,56.54,expense,Entertainment,Concert
+004b6fab,2026-06-29,16.33,expense,Groceries,QFC
+69ca97d2,2026-06-29,7.49,expense,Dining Out,Coffee
+0de051a6,2026-06-29,6.78,expense,Dining Out,Sushi
+8c99a894,2026-06-29,51.86,expense,Transportation,Gas
+218a1536,2026-06-29,24.82,expense,Transportation,ORCA card reload
+49bc473f,2026-06-30,56.49,expense,Entertainment,Concert
+cc9fd334,2026-07-01,1546.69,income,Salary,Paycheck
+288b78b5,2026-07-01,950.0,expense,Housing,Rent (shared apartment)
+762172ed,2026-07-01,60.42,expense,Groceries,Farmers market
+3985fb62,2026-07-02,25.42,expense,Groceries,Costco run
+821c1336,2026-07-02,46.17,expense,Transportation,Gas
+faf14ff0,2026-07-03,34.13,expense,Dining Out,Lunch on campus
+dabac50d,2026-07-03,102.13,expense,Shopping,Amazon order
+e9b5c5cf,2026-07-04,48.96,expense,Groceries,Farmers market
+4f8d5238,2026-07-05,45.0,expense,Utilities,Phone plan
+3e652603,2026-07-05,6.26,expense,Dining Out,Lunch on campus
+bf0d073d,2026-07-05,67.6,expense,Entertainment,Bowling
+57021049,2026-07-05,25.99,expense,Health,Vitamins
+ef2ae713,2026-07-05,51.65,expense,Health,Pharmacy
+17dc8eff,2026-07-06,65.58,expense,Groceries,Trader Joe's
+1d0bc9bd,2026-07-07,37.86,expense,Groceries,Costco run
+6a39aaa6,2026-07-09,58.79,expense,Shopping,Clothes
+82456fb4,2026-07-10,12.78,expense,Dining Out,Sushi
+276aa6ce,2026-07-11,19.52,expense,Dining Out,Pho
+8d03c91e,2026-07-12,30.0,expense,Utilities,Internet (split)
+fe049059,2026-07-12,78.16,expense,Groceries,Trader Joe's
+1e1242e3,2026-07-12,52.88,expense,Groceries,Trader Joe's
+6232b17a,2026-07-13,26.28,expense,Transportation,Gas
+d7665cda,2026-07-14,67.76,expense,Groceries,Farmers market
+3d42993c,2026-07-15,1477.91,income,Salary,Paycheck
+03802b70,2026-07-15,22.98,expense,Entertainment,Streaming subscriptions
+45ff2c83,2026-07-15,20.92,expense,Dining Out,Lunch on campus
+8d1fb540,2026-07-15,37.1,expense,Transportation,ORCA card reload
+46b82659,2026-07-15,31.0,expense,Entertainment,Concert
+b5b453ca,2026-07-17,455.78,income,Freelance,Logo design
+d50755d9,2026-07-17,16.26,expense,Dining Out,Pizza night
+6a5d932b,2026-07-17,22.01,expense,Dining Out,Lunch on campus
+7f95897c,2026-07-18,9.87,expense,Dining Out,Pizza night
+4ab7706e,2026-07-18,34.66,expense,Dining Out,Pho
+8d605936,2026-07-20,38.0,expense,Utilities,Electricity (split)
+a5d04d53,2026-07-20,42.9,expense,Groceries,Safeway
+b77350ca,2026-07-20,25.38,expense,Dining Out,Pizza night
+b495db4e,2026-07-20,28.38,expense,Dining Out,Pizza night
+74eff545,2026-07-20,64.72,expense,Transportation,Gas
+22f235f2,2026-07-20,68.51,expense,Entertainment,Game purchase
+ca3dd859,2026-07-21,47.7,expense,Shopping,Shoes
+f27292b6,2026-07-22,77.39,expense,Groceries,QFC
+eec259dc,2026-07-22,38.41,expense,Dining Out,Lunch on campus
+d5b077e0,2026-07-22,8.38,expense,Dining Out,Sushi
+7b85179a,2026-07-22,27.62,expense,Dining Out,Pho
+78e3654b,2026-07-22,16.3,expense,Dining Out,Lunch on campus
+25074181,2026-07-23,54.98,expense,Transportation,Uber
+ebff8d15,2026-07-25,37.78,expense,Transportation,ORCA card reload
+c5ce099c,2026-07-25,109.49,expense,Shopping,Shoes
+9970cf60,2026-07-26,71.58,expense,Transportation,Uber
+dd30de89,2026-07-27,74.71,expense,Entertainment,Game purchase
+30cbd755,2026-07-29,58.45,expense,Transportation,Gas
+11df12d7,2026-07-29,24.24,expense,Entertainment,Game purchase
+687213f9,2026-07-31,18.55,expense,Groceries,Trader Joe's
+e11b868d,2026-07-31,64.48,expense,Entertainment,Game purchase
+c9a7d91f,2026-08-01,1491.49,income,Salary,Paycheck
+d20f87d0,2026-08-01,950.0,expense,Housing,Rent (shared apartment)
+eecf67d2,2026-08-01,23.47,expense,Dining Out,Coffee
+551ac8ea,2026-08-03,20.71,expense,Dining Out,Lunch on campus
+0b2c782a,2026-08-03,35.83,expense,Transportation,ORCA card reload
+b489d070,2026-08-03,35.3,expense,Entertainment,Bowling
+db23aa8c,2026-08-04,35.2,expense,Transportation,Parking
+517400f8,2026-08-04,40.77,expense,Transportation,Parking
+cfb87e6f,2026-08-04,51.85,expense,Shopping,Target
+00a81de9,2026-08-05,45.0,expense,Utilities,Phone plan
+b28f41de,2026-08-05,10.2,expense,Dining Out,Pizza night
+44656d6b,2026-08-06,243.08,income,Freelance,Tutoring
+620a60ac,2026-08-06,36.48,expense,Transportation,Gas
+fb140bc3,2026-08-07,25.82,expense,Dining Out,Sushi
+c34b9fbb,2026-08-09,13.86,expense,Dining Out,Lunch on campus
+6090d697,2026-08-09,23.55,expense,Dining Out,Pizza night
+749176f4,2026-08-09,25.71,expense,Dining Out,Pizza night
+fd08b32c,2026-08-09,34.64,expense,Health,Vitamins
+ffb8102d,2026-08-10,59.47,expense,Groceries,Costco run
+486822b9,2026-08-12,30.0,expense,Utilities,Internet (split)
+7914f8a8,2026-08-12,36.64,expense,Entertainment,Bowling
+9475dbc9,2026-08-13,42.05,expense,Groceries,Trader Joe's
+69288e92,2026-08-13,52.25,expense,Transportation,ORCA card reload
+81fb18b3,2026-08-15,1483.09,income,Salary,Paycheck
+b9de7a3a,2026-08-15,22.98,expense,Entertainment,Streaming subscriptions
+8b1e3b9d,2026-08-15,12.5,expense,Dining Out,Pizza night
+dd81b7f5,2026-08-16,25.82,expense,Groceries,Costco run
+260a5962,2026-08-16,13.83,expense,Groceries,Trader Joe's
+a8f1e091,2026-08-18,59.09,expense,Groceries,Farmers market
+585a0afa,2026-08-18,13.7,expense,Groceries,Costco run
+c68a152f,2026-08-19,39.84,expense,Transportation,Uber
+4c6e27ff,2026-08-20,38.0,expense,Utilities,Electricity (split)
+cada4f80,2026-08-21,295.63,expense,Education,Textbooks & course fees
+7250ee18,2026-08-22,54.79,expense,Groceries,Costco run
+3d225c30,2026-08-22,6.97,expense,Dining Out,Lunch on campus
+9261549d,2026-08-23,20.04,expense,Transportation,Parking
+61985d54,2026-08-23,16.12,expense,Health,Pharmacy
+89e06ab3,2026-08-24,22.4,expense,Groceries,Costco run
+62d60e93,2026-08-24,30.87,expense,Health,Vitamins
+de9e3757,2026-08-25,28.89,expense,Dining Out,Coffee
+304b8590,2026-08-25,4.81,expense,Dining Out,Lunch on campus
+3bcabf85,2026-08-25,46.51,expense,Transportation,Parking
+a9e782d4,2026-08-25,29.34,expense,Health,Gym drop-in
+7d5911c6,2026-08-26,50.0,expense,Groceries,QFC
+bea4ff31,2026-08-26,59.19,expense,Entertainment,Movie ticket
+96418ced,2026-08-28,67.48,expense,Groceries,Farmers market
+8d4a75b8,2026-08-28,16.0,expense,Dining Out,Coffee
+e9d68f23,2026-08-28,50.7,expense,Shopping,Shoes
+d664d264,2026-08-29,60.5,expense,Groceries,Safeway
+7bfdcc12,2026-08-30,20.04,expense,Groceries,Farmers market
+5260001e,2026-08-31,13.1,expense,Dining Out,Coffee
+d21c82f8,2026-09-01,1535.17,income,Salary,Paycheck
+26f05fcf,2026-09-01,950.0,expense,Housing,Rent (shared apartment)
+a075e927,2026-09-01,49.72,expense,Shopping,Shoes
+c8120a8e,2026-09-02,29.33,expense,Dining Out,Sushi
+19b17e80,2026-09-03,27.21,expense,Groceries,Costco run
+da0d4a5f,2026-09-03,54.71,expense,Transportation,Gas
+56abf2f1,2026-09-04,26.69,expense,Dining Out,Sushi
+7ecddbaf,2026-09-05,45.0,expense,Utilities,Phone plan
+148f8b74,2026-09-05,15.01,expense,Transportation,Parking
+f72169bb,2026-09-06,42.72,expense,Groceries,Trader Joe's
+b15516bc,2026-09-06,53.38,expense,Transportation,Parking
+def57689,2026-09-07,23.2,expense,Dining Out,Pho
+5110b492,2026-09-08,18.69,expense,Entertainment,Movie ticket
+b8f21423,2026-09-09,9.99,expense,Dining Out,Lunch on campus
+f4427e0b,2026-09-09,43.02,expense,Entertainment,Concert
+1986b4b2,2026-09-10,25.96,expense,Groceries,QFC
+86a4bae4,2026-09-10,53.83,expense,Groceries,Trader Joe's
+f81dbaa1,2026-09-10,22.13,expense,Dining Out,Lunch on campus
+9f8ded97,2026-09-10,16.2,expense,Dining Out,Pizza night
+aca2b148,2026-09-10,53.01,expense,Entertainment,Game purchase
+dbfdd97e,2026-09-10,38.43,expense,Entertainment,Movie ticket
+b7fddd71,2026-09-10,17.77,expense,Shopping,Target
+80962718,2026-09-11,13.81,expense,Groceries,Trader Joe's
+24e75e8e,2026-09-11,7.11,expense,Dining Out,Sushi
+f6febc0e,2026-09-12,30.0,expense,Utilities,Internet (split)
+1327f1bc,2026-09-12,8.67,expense,Dining Out,Coffee
+a65bb1f2,2026-09-13,31.11,expense,Transportation,Gas
+a6eab79e,2026-09-15,1533.07,income,Salary,Paycheck
+097a1e10,2026-09-15,22.98,expense,Entertainment,Streaming subscriptions
+70b7e868,2026-09-15,61.95,expense,Groceries,Safeway
+dfcaf0b7,2026-09-16,46.98,expense,Groceries,QFC
+e912b4bf,2026-09-16,46.87,expense,Groceries,Trader Joe's
+dea4ae17,2026-09-18,12.64,expense,Groceries,QFC
+541cdfcd,2026-09-18,43.93,expense,Transportation,ORCA card reload
+fb16e5db,2026-09-19,259.74,income,Freelance,Tutoring
+2051acef,2026-09-20,38.0,expense,Utilities,Electricity (split)
+f84f16b3,2026-09-20,11.36,expense,Dining Out,Coffee
+889b78d5,2026-09-20,58.01,expense,Entertainment,Movie ticket
+43d88870,2026-09-21,26.58,expense,Dining Out,Pizza night
+c268283e,2026-09-22,19.34,expense,Health,Gym drop-in
+d85480f0,2026-09-23,41.99,expense,Groceries,Costco run
+03edd1f8,2026-09-23,15.8,expense,Dining Out,Pho
+78308930,2026-09-23,17.89,expense,Dining Out,Pho
+e32f2e63,2026-09-23,39.03,expense,Shopping,Shoes
+74f93d17,2026-09-24,18.31,expense,Dining Out,Pho
+a79fbfaf,2026-09-24,19.33,expense,Dining Out,Sushi
+68f45bce,2026-09-25,21.94,expense,Dining Out,Lunch on campus
+da330aa1,2026-09-25,32.56,expense,Transportation,Uber
+61484bb3,2026-09-25,20.39,expense,Entertainment,Concert
+9716108e,2026-09-26,28.28,expense,Groceries,Trader Joe's
+2784378f,2026-09-27,9.05,expense,Dining Out,Lunch on campus
+65c17795,2026-09-28,30.45,expense,Transportation,Gas
+54fd9ad3,2026-09-29,49.56,expense,Groceries,Trader Joe's

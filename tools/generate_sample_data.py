@@ -5,8 +5,9 @@ part-time job and freelance work, plus budgets and savings goals, then writes:
     data/sample_transactions.csv  (transactions only)
     data/sample_data.json         (transactions + budgets + goals)
 
-The data is entirely fictional. A fixed random seed makes every run identical,
-so tests, screenshots and the demo video always show the same numbers.
+The data is entirely fictional. A fixed random seed makes every run produce the same
+transactions, amounts and ids, so tests, screenshots and the demo video always show
+the same numbers (only the ``saved_at`` timestamp in the JSON file changes).
 
 Usage:
     python tools/generate_sample_data.py [--seed 42] [--end 2026-09-30]
@@ -126,9 +127,21 @@ def build_tracker(seed: int = DEFAULT_SEED, end: date = DEFAULT_END) -> FinanceT
         "Housing": 1000,
     }.items():
         tracker.set_budget(category, limit)
-    tracker.add_goal("Emergency Fund", 3000, saved=1850, deadline=date(2026, 12, 31))
-    tracker.add_goal("New Laptop", 1400, saved=1050, deadline=date(2026, 11, 30))
-    tracker.add_goal("Summer Trip", 2000, saved=400, deadline=date(2027, 6, 1))
+    # Deadlines are well after the data period so the demo does not start reporting
+    # "missed deadline" a few weeks after the project is submitted.
+    tracker.add_goal("Emergency Fund", 3000, saved=1850, deadline=date(2027, 6, 30))
+    tracker.add_goal("New Laptop", 1400, saved=1050, deadline=date(2027, 3, 31))
+    tracker.add_goal("Summer Trip", 2000, saved=400, deadline=date(2027, 8, 15))
+
+    # Ids are normally random (uuid4); derive them from the seeded generator instead so
+    # that regenerating the files gives byte-identical transactions.
+    used: set[str] = set()
+    for transaction in tracker.transactions:
+        new_id = f"{rng.getrandbits(32):08x}"
+        while new_id in used:
+            new_id = f"{rng.getrandbits(32):08x}"
+        used.add(new_id)
+        transaction.id = new_id
     return tracker
 
 

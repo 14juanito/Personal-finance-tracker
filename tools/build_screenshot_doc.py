@@ -16,13 +16,12 @@ from __future__ import annotations
 
 import argparse
 import re
-from datetime import date
 from pathlib import Path
 
 from docx import Document
 from docx.enum.section import WD_SECTION
 from docx.enum.table import WD_TABLE_ALIGNMENT
-from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_BREAK
+from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Inches, Pt, RGBColor
@@ -52,6 +51,34 @@ def find_images(source: Path) -> list[Path]:
     )
 
 
+def assign_slots(images: list[Path]) -> dict[int, Path]:
+    """Map exercise numbers to screenshot files.
+
+    A file whose name starts with a number (``03_loops.png``) goes to that exercise
+    slot, so one missing screenshot does not shift all the following ones. Files
+    without a leading number fill the remaining free slots in sorted order.
+
+    Args:
+        images: Screenshot files, already sorted.
+
+    Returns:
+        Dictionary ``{exercise number: file}``.
+    """
+    slots: dict[int, Path] = {}
+    unnumbered: list[Path] = []
+    for path in images:
+        match = re.match(r"(\d+)", path.name)
+        number = int(match.group(1)) if match else 0
+        if number >= 1 and number not in slots:
+            slots[number] = path
+        else:
+            unnumbered.append(path)
+    free = (n for n in range(1, EXPECTED_COUNT + len(images) + 1) if n not in slots)
+    for path in unnumbered:
+        slots[next(free)] = path
+    return slots
+
+
 def caption_for(path: Path, number: int) -> str:
     """Build a caption from a file name such as ``03_list_sum.png``."""
     words = re.sub(r"^\d+[\s_-]*", "", path.stem).replace("_", " ").replace("-", " ").strip()
@@ -64,10 +91,6 @@ def fit_size(path: Path) -> tuple[Inches, Inches]:
         width, height = image.size
     ratio = min(MAX_WIDTH_IN / width, MAX_HEIGHT_IN / height)
     return Inches(width * ratio), Inches(height * ratio)
-
-
-def _page_break(document: Document) -> None:
-    document.add_paragraph().add_run().add_break(WD_BREAK.PAGE)
 
 
 def _placeholder_box(document: Document, number: int) -> None:
@@ -137,12 +160,13 @@ def build(source: Path = SOURCE_DIR, output: Path = OUTPUT_FILE) -> tuple[Path, 
         "Bellevue College — Prior Learning Assessment",
         "",
         "[Student Name]",
-        f"[Date]   (generated {date.today():%B %d, %Y})",
+        "[Date]",
     ):
         paragraph = document.add_paragraph()
         paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
         paragraph.add_run(line).font.size = Pt(12)
-    total_slots = max(EXPECTED_COUNT, len(images))
+    slots = assign_slots(images)
+    total_slots = max(EXPECTED_COUNT, *slots) if slots else EXPECTED_COUNT
     note = document.add_paragraph()
     note.alignment = WD_ALIGN_PARAGRAPH.CENTER
     note_run = note.add_run(
@@ -155,8 +179,8 @@ def build(source: Path = SOURCE_DIR, output: Path = OUTPUT_FILE) -> tuple[Path, 
     for number in range(1, total_slots + 1):
         document.add_section(WD_SECTION.NEW_PAGE)
         heading = document.add_paragraph()
-        if number <= len(images):
-            path = images[number - 1]
+        if number in slots:
+            path = slots[number]
             heading_run = heading.add_run(caption_for(path, number))
             picture = document.add_paragraph()
             picture.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -173,8 +197,7 @@ def build(source: Path = SOURCE_DIR, output: Path = OUTPUT_FILE) -> tuple[Path, 
 
     output.parent.mkdir(parents=True, exist_ok=True)
     document.save(output)
-    real = min(len(images), total_slots)
-    return output, real, total_slots - real
+    return output, len(slots), total_slots - len(slots)
 
 
 def main(argv: list[str] | None = None) -> int:
