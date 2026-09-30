@@ -19,3 +19,4 @@ output/
 .claude/
 .DS_Store
 *.log
+data/my_finances.json
