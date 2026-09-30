@@ -156,6 +156,7 @@ def load_json(path: Path | str, recover: bool = True) -> AppState:
 
     # Concept: exception handling — recover from a corrupted JSON file
     try:
+        # Concept: file handling — `with` closes the file even if json.load fails
         with path.open("r", encoding=ENCODING) as handle:
             payload = json.load(handle)
         if not isinstance(payload, dict):

@@ -54,6 +54,7 @@ def money(amount: float) -> str:
     return f"{'-' if amount < 0 else ''}${abs(amount):,.2f}"
 
 
+# Concept: OOP (inheritance) — the window extends ttk.Frame and adds its own behaviour
 class FinanceApp(ttk.Frame):
     """Main application window.
 

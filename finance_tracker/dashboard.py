@@ -69,6 +69,8 @@ def load_upload(name: str, content: bytes) -> tuple[FinanceTracker, list[str]]:
         FinanceTrackerError: If the file cannot be parsed.
     """
     suffix = Path(name).suffix.lower()
+    # Concept: file handling — the upload is written to a temporary folder that is
+    # deleted automatically, then parsed by the same code as local files.
     with tempfile.TemporaryDirectory() as folder:
         path = Path(folder) / f"upload{suffix}"
         path.write_bytes(content)
@@ -307,6 +309,7 @@ def main() -> None:
         st.warning("This file contains no transactions.")
         return
     start, end, categories, kind = sidebar_filters(df_all)
+    # Concept: pandas — the sidebar filters become boolean masks on the DataFrame
     df = analytics.filter_dataframe(df_all, start, end, categories)
     if kind == "Expenses":
         df = df[df["kind"] == "expense"]

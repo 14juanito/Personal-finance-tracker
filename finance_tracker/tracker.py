@@ -53,6 +53,7 @@ DEFAULT_EXPENSE_CATEGORIES: frozenset[str] = frozenset(
 DEFAULT_INCOME_CATEGORIES: frozenset[str] = frozenset({"Salary", "Freelance", "Gifts", "Other"})
 
 
+# Concept: OOP — the class hides its data structures behind well-named methods
 class FinanceTracker:
     """In-memory store of transactions, budgets and savings goals.
 

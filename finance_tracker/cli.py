@@ -138,6 +138,7 @@ class ConsoleApp:
     # ------------------------------------------------------------------ input helpers
     def ask(self, prompt: str) -> str:
         """Read one line of input, turning end-of-input into a clean quit."""
+        # Concept: user input — every keyboard read goes through this single method
         try:
             return self._input(prompt).strip()
         except (EOFError, KeyboardInterrupt) as exc:
@@ -377,6 +378,7 @@ class ConsoleApp:
         month = self.prompt_choice("Month: ", months[::-1])
         income = self.tracker.total(INCOME, month)
         expense = self.tracker.total(EXPENSE, month)
+        # Concept: user output — f-string width specifiers align the amounts in a column
         self.out(f"Income:   {format_money(income):>12}")
         self.out(f"Expenses: {format_money(expense):>12}")
         self.out(f"Net:      {format_money(income - expense):>12}")

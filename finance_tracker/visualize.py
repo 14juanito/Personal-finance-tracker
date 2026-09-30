@@ -247,6 +247,7 @@ def goals_progress(
 
 def save_figure(fig: Figure, path: Path) -> Path:
     """Save a figure as PNG, creating the folder if needed."""
+    # Concept: file handling — pathlib creates the whole folder tree on demand
     path.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(path, dpi=DPI, bbox_inches="tight")
     return path

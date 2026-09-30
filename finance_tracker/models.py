@@ -62,6 +62,7 @@ def parse_date(value: date | str) -> date:
         raise InvalidTransactionError(f"Invalid date '{value}': expected YYYY-MM-DD") from exc
 
 
+# Concept: functions — one reusable validator shared by transactions, goals and budgets
 def parse_amount(value: float | int | str) -> float:
     """Convert user input into a positive amount rounded to cents.
 
