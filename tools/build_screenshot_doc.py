@@ -4,15 +4,15 @@ Reads the images in ``codestepbystep_screenshots/`` (sorted by name, 01 → 14),
 writes ``deliverables/CodeStepByStep_Screenshots.docx`` with a title page followed by
 one captioned screenshot per page.
 
-Screenshots are never generated or simulated: if the folder is missing or holds fewer
-than 14 images, each missing slot becomes a clearly marked placeholder page so the
-student can see exactly what still has to be added.
+Screenshots are never generated or simulated. The build fails with a clear message
+when the folder is missing or any of exercises 01–14 has no screenshot, and when the
+student name in ``tools/submission_config.py`` is still a placeholder.
 
 Usage:
     python tools/build_screenshot_doc.py [--source DIR] [--output FILE]
 
 Main elements:
-    find_images, assign_slots, caption_for, build, main.
+    find_images, assign_slots, missing_slots, caption_for, build, main.
 
 Course concepts illustrated:
     File handling, dictionaries (slot → file), regular expressions, loops.
@@ -26,21 +26,23 @@ from pathlib import Path
 
 from docx import Document
 from docx.enum.section import WD_SECTION
-from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.enum.text import WD_ALIGN_PARAGRAPH
-from docx.oxml import OxmlElement
-from docx.oxml.ns import qn
 from docx.shared import Inches, Pt, RGBColor
 from PIL import Image
+from submission_config import (
+    COURSE,
+    EXPECTED_SCREENSHOTS,
+    INSTITUTION,
+    require_final_identity,
+)
 
 ROOT = Path(__file__).resolve().parent.parent
 SOURCE_DIR = ROOT / "codestepbystep_screenshots"
 OUTPUT_FILE = ROOT / "deliverables" / "CodeStepByStep_Screenshots.docx"
-EXPECTED_COUNT = 14
+EXPECTED_COUNT = EXPECTED_SCREENSHOTS
 IMAGE_SUFFIXES = {".png", ".jpg", ".jpeg", ".gif", ".bmp"}
 MAX_WIDTH_IN, MAX_HEIGHT_IN = 6.5, 7.8  # usable area on US Letter with 1" margins
 ACCENT = RGBColor(0x15, 0x65, 0xC0)
-GREY = RGBColor(0x75, 0x75, 0x75)
 
 
 def natural_key(path: Path) -> list[object]:
@@ -128,55 +130,42 @@ def fit_size(path: Path) -> tuple[Inches, Inches]:
     return Inches(width * ratio), Inches(height * ratio)
 
 
-def _placeholder_box(document: Document, number: int) -> None:
-    """Add a dashed, empty frame telling the student which screenshot is missing.
+def missing_slots(slots: dict[int, Path]) -> list[int]:
+    """List the exercise numbers that have no screenshot.
 
     Args:
-        document: Document being built.
-        number: Missing exercise number.
+        slots: Result of ``assign_slots``.
+
+    Returns:
+        Sorted missing numbers between 1 and ``EXPECTED_COUNT``.
     """
-    table = document.add_table(rows=1, cols=1)
-    table.alignment = WD_TABLE_ALIGNMENT.CENTER
-    cell = table.cell(0, 0)
-    cell.width = Inches(6.0)
-    borders = OxmlElement("w:tcBorders")
-    for side in ("top", "left", "bottom", "right"):
-        border = OxmlElement(f"w:{side}")
-        border.set(qn("w:val"), "dashed")
-        border.set(qn("w:sz"), "12")
-        border.set(qn("w:color"), "9E9E9E")
-        borders.append(border)
-    cell._tc.get_or_add_tcPr().append(borders)
-    for _ in range(8):
-        cell.add_paragraph()
-    paragraph = cell.add_paragraph()
-    paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    run = paragraph.add_run(f"[ PLACEHOLDER — insert CodeStepByStep screenshot #{number:02d} ]")
-    run.bold = True
-    run.font.color.rgb = GREY
-    hint = cell.add_paragraph()
-    hint.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    hint_run = hint.add_run(
-        f"Save it as codestepbystep_screenshots/{number:02d}_<exercise>.png "
-        "and run: python tools/build_screenshot_doc.py"
-    )
-    hint_run.font.size = Pt(9)
-    hint_run.font.color.rgb = GREY
-    for _ in range(8):
-        cell.add_paragraph()
+    return [n for n in range(1, EXPECTED_COUNT + 1) if n not in slots]
 
 
-def build(source: Path = SOURCE_DIR, output: Path = OUTPUT_FILE) -> tuple[Path, int, int]:
-    """Create the document.
+def build(source: Path = SOURCE_DIR, output: Path = OUTPUT_FILE) -> tuple[Path, int]:
+    """Create the document from the real screenshots.
 
     Args:
         source: Folder with the screenshots.
         output: Destination ``.docx``.
 
     Returns:
-        ``(output path, number of real screenshots, number of placeholders)``.
+        ``(output path, number of screenshots included)``.
+
+    Raises:
+        SystemExit: If a screenshot is missing or the student name is a placeholder;
+            nothing is written in that case.
     """
-    images = find_images(source)
+    slots = assign_slots(find_images(source))
+    missing = missing_slots(slots)
+    if missing:
+        raise SystemExit(
+            f"Error: {len(missing)} of {EXPECTED_COUNT} CodeStepByStep screenshots are missing "
+            f"(exercise {', '.join(f'{n:02d}' for n in missing)}). Save them in "
+            f"{source} as 01_<exercise>.png … {EXPECTED_COUNT:02d}_<exercise>.png, then rerun."
+        )
+    student, submitted = require_final_identity()
+
     document = Document()
     section = document.sections[0]
     section.page_width, section.page_height = Inches(8.5), Inches(11)
@@ -195,49 +184,30 @@ def build(source: Path = SOURCE_DIR, output: Path = OUTPUT_FILE) -> tuple[Path, 
     subtitle = document.add_paragraph()
     subtitle.alignment = WD_ALIGN_PARAGRAPH.CENTER
     subtitle.add_run("Completed Python exercise screenshots").font.size = Pt(16)
-    for line in (
-        "DATA 333 – Data Management & Analysis",
-        "Bellevue College — Prior Learning Assessment",
-        "",
-        "[Student Name]",
-        "[Date]",
-    ):
+    for line in (COURSE, f"{INSTITUTION} — Prior Learning Assessment", "", student, submitted):
         paragraph = document.add_paragraph()
         paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
         paragraph.add_run(line).font.size = Pt(12)
-    slots = assign_slots(images)
-    total_slots = max(EXPECTED_COUNT, *slots) if slots else EXPECTED_COUNT
-    note = document.add_paragraph()
-    note.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    note_run = note.add_run(
-        f"{len(images)} of {EXPECTED_COUNT} screenshots included"
-        + ("" if len(images) >= EXPECTED_COUNT else " — placeholders mark the missing ones")
-    )
-    note_run.italic, note_run.font.color.rgb = True, GREY
 
-    # One screenshot (or placeholder) per page
-    for number in range(1, total_slots + 1):
+    # One captioned screenshot per page
+    for number in sorted(slots):
+        path = slots[number]
         document.add_section(WD_SECTION.NEW_PAGE)
         heading = document.add_paragraph()
-        if number in slots:
-            path = slots[number]
-            heading_run = heading.add_run(caption_for(path, number))
-            picture = document.add_paragraph()
-            picture.alignment = WD_ALIGN_PARAGRAPH.CENTER
-            width, height = fit_size(path)
-            picture.add_run().add_picture(str(path), width=width, height=height)
-            source_note = document.add_paragraph()
-            source_note.alignment = WD_ALIGN_PARAGRAPH.CENTER
-            source_run = source_note.add_run(f"Figure {number}: {path.name}")
-            source_run.italic, source_run.font.size = True, Pt(9)
-        else:
-            heading_run = heading.add_run(f"Exercise {number:02d} — screenshot missing")
-            _placeholder_box(document, number)
+        heading_run = heading.add_run(caption_for(path, number))
         heading_run.bold, heading_run.font.size, heading_run.font.color.rgb = True, Pt(16), ACCENT
+        picture = document.add_paragraph()
+        picture.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        width, height = fit_size(path)
+        picture.add_run().add_picture(str(path), width=width, height=height)
+        source_note = document.add_paragraph()
+        source_note.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        source_run = source_note.add_run(f"Figure {number}: {path.name}")
+        source_run.italic, source_run.font.size = True, Pt(9)
 
     output.parent.mkdir(parents=True, exist_ok=True)
     document.save(output)
-    return output, len(slots), total_slots - len(slots)
+    return output, len(slots)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -247,16 +217,14 @@ def main(argv: list[str] | None = None) -> int:
         argv: Command-line arguments (None = ``sys.argv[1:]``).
 
     Returns:
-        Process exit code (0).
+        Process exit code (0; failures exit through ``SystemExit`` with a message).
     """
     parser = argparse.ArgumentParser(description="Build the CodeStepByStep screenshot document.")
     parser.add_argument("--source", type=Path, default=SOURCE_DIR)
     parser.add_argument("--output", type=Path, default=OUTPUT_FILE)
     args = parser.parse_args(argv)
-    output, real, missing = build(args.source, args.output)
-    print(f"✓ {output} — {real} screenshot(s), {missing} placeholder(s)")
-    if missing:
-        print(f"⚠ Add the missing screenshots to {args.source} and run this script again.")
+    output, count = build(args.source, args.output)
+    print(f"✓ {output} — {count} screenshots")
     return 0
 
 

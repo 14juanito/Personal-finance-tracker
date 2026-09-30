@@ -36,6 +36,7 @@ from docx.table import _Cell
 from docx.text.paragraph import Paragraph
 from matplotlib.figure import Figure
 from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
+from submission_config import COURSE, INSTITUTION, require_final_identity
 
 ROOT = Path(__file__).resolve().parent.parent
 SHOTS = ROOT / "docs" / "screenshots"
@@ -429,6 +430,7 @@ def build(skip_tests: bool = False, output: Path = OUTPUT) -> Path:
     Returns:
         The path written.
     """
+    student, submitted = require_final_identity()  # fail before the slow test run
     stats = test_stats(skip_tests)
     draw_architecture()
     doc = Document()
@@ -452,12 +454,12 @@ def build(skip_tests: bool = False, output: Path = OUTPUT) -> Path:
             GREY,
         ),
         ("", 12, False, None),
-        ("DATA 333 – Data Management & Analysis", 13, True, None),
-        ("Bellevue College — Prior Learning Assessment (PLA)", 12, False, None),
+        (COURSE, 13, True, None),
+        (f"{INSTITUTION} — Prior Learning Assessment (PLA)", 12, False, None),
         ("Project Report", 12, False, None),
         ("", 12, False, None),
-        ("[Student Name]", 12, False, None),
-        ("[Date]", 12, False, None),
+        (student, 12, False, None),
+        (submitted, 12, False, None),
     ]:
         paragraph = doc.add_paragraph()
         paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -477,6 +479,11 @@ def build(skip_tests: bool = False, output: Path = OUTPUT) -> Path:
         "interactive **console menu**, a **Tkinter desktop window** and an interactive "
         "**Streamlit web dashboard**, plus a non-interactive **demo mode** that runs every "
         "feature on a realistic sample dataset (311 fictional transactions over six months).",
+    )
+    para(
+        doc,
+        "**Requires Python 3.11+** (pandas 3, matplotlib 3.11). Dependencies are pinned in "
+        "`requirements.txt`.",
     )
     para(doc, "The objectives, taken from the DATA 333 project brief, were to:")
     bullets(
@@ -585,8 +592,9 @@ def build(skip_tests: bool = False, output: Path = OUTPUT) -> Path:
     para(
         doc,
         f"The project has **{stats['tests']} automated pytest tests** with "
-        f"**{stats['coverage']} % line coverage** of the `finance_tracker` package "
-        "(the Tkinter and Streamlit event code is exercised by smoke tests instead). The tests "
+        f"**{stats['coverage']} % line coverage** of the `finance_tracker` package. The coverage "
+        "scope excludes `gui_tkinter.py` (Tkinter) and `dashboard.py` (Streamlit): their event "
+        "code is exercised by smoke tests instead. The tests "
         "cover normal use, invalid input (bad amounts, dates, kinds, empty names), missing and "
         "corrupted files, CSV files with missing columns or bad rows, every pandas calculation "
         "on a hand-checked dataset, and full CLI sessions driven by scripted answers. The GUI "
