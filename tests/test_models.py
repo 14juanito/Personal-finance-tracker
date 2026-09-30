@@ -145,3 +145,28 @@ def test_exception_hierarchy() -> None:
     assert str(TransactionNotFoundError("No transaction with id 'x'")) == (
         "No transaction with id 'x'"
     )
+
+
+@pytest.mark.parametrize("tiny", ["0.004", 0.001, "0.00"])
+def test_amounts_rounding_to_zero_are_rejected(tiny: object) -> None:
+    # Regression: "0.004" used to pass the > 0 check and become a 0.00 budget/goal,
+    # which later caused a ZeroDivisionError.
+    with pytest.raises(InvalidTransactionError, match="at least 0.01"):
+        parse_amount(tiny)
+    with pytest.raises(InvalidBudgetError):
+        Budget(category="Food", monthly_limit=tiny)
+    with pytest.raises(InvalidGoalError):
+        SavingsGoal(name="Tiny", target=tiny)
+
+
+def test_category_edge_cases() -> None:
+    assert normalize_category(None) == ""
+    assert normalize_category("kid's  DVDs") == "Kid's Dvds"
+    with pytest.raises(InvalidTransactionError, match="Category"):
+        Transaction(date="2025-01-01", amount=5, kind="expense", category=None)
+
+
+@pytest.mark.parametrize("saved", [float("nan"), float("inf"), True])
+def test_goal_rejects_non_finite_or_bool_saved(saved: object) -> None:
+    with pytest.raises(InvalidGoalError):
+        SavingsGoal(name="Car", target=100, saved=saved)

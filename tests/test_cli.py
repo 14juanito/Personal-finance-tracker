@@ -68,7 +68,7 @@ def test_add_transaction_with_invalid_inputs_reprompts(
 
     assert "Please enter a number between 1 and 2" in script.text
     assert "not a number" in script.text
-    assert "greater than 0" in script.text
+    assert "at least 0.01" in script.text
     assert "Invalid date" in script.text
     assert "[EXCEEDED] Groceries" in script.text  # immediate budget feedback
     assert (tmp_path / "data.json").exists()

@@ -15,6 +15,8 @@ Course concepts illustrated:
 
 from __future__ import annotations
 
+import math
+import string
 import uuid
 from dataclasses import dataclass, field
 from datetime import date, datetime
@@ -84,31 +86,41 @@ def parse_amount(value: float | int | str) -> float:
         amount = float(cleaned)
     except ValueError as exc:
         raise InvalidTransactionError(f"Invalid amount '{value}': not a number") from exc
-    if amount != amount or amount in (float("inf"), float("-inf")):  # NaN / infinity
+    if not math.isfinite(amount):  # rejects NaN and infinity
         raise InvalidTransactionError("Amount must be a finite number")
+    # Round first: "0.004" would otherwise pass the check and be stored as 0.00.
+    amount = round(amount, 2)
     if amount <= 0:
-        raise InvalidTransactionError("Amount must be greater than 0")
+        raise InvalidTransactionError("Amount must be at least 0.01")
     if amount > MAX_AMOUNT:
         raise InvalidTransactionError(f"Amount must not exceed {MAX_AMOUNT:,.0f}")
-    return round(amount, 2)
+    return amount
 
 
-def normalize_category(name: str) -> str:
-    """Return a category name in a canonical form (trimmed, Title Case).
+def normalize_category(name: str | None) -> str:
+    """Return a category name in a canonical form (trimmed, each word capitalized).
 
     Normalizing avoids "food", "Food " and "FOOD" becoming three categories.
+    ``string.capwords`` is used instead of ``str.title`` so that "kid's" stays
+    "Kid's" (``title`` would give "Kid'S").
 
     Args:
-        name: Raw category name.
+        name: Raw category name; None is treated as empty.
 
     Returns:
-        The normalized name, e.g. ``"Dining Out"``.
+        The normalized name, e.g. ``"Dining Out"`` (empty string for blank input).
     """
-    return " ".join(str(name).split()).title()
+    if name is None:
+        return ""
+    return string.capwords(str(name).lower())
 
 
 def _new_id() -> str:
-    """Return a short unique identifier (8 hex characters)."""
+    """Create a short unique identifier.
+
+    Returns:
+        8 random hexadecimal characters, e.g. ``"3f9a0c1d"``.
+    """
     return uuid.uuid4().hex[:8]
 
 
@@ -248,10 +260,14 @@ class SavingsGoal:
             self.target = parse_amount(self.target)
         except InvalidTransactionError as exc:
             raise InvalidGoalError(f"Invalid target: {exc}") from exc
+        if isinstance(self.saved, bool):
+            raise InvalidGoalError("Saved amount must be a number")
         try:
             self.saved = round(float(self.saved), 2)
         except (TypeError, ValueError) as exc:
             raise InvalidGoalError(f"Invalid saved amount '{self.saved}'") from exc
+        if not math.isfinite(self.saved):
+            raise InvalidGoalError("Saved amount must be a finite number")
         if self.saved < 0:
             raise InvalidGoalError("Saved amount cannot be negative")
         if self.deadline is not None and self.deadline != "":

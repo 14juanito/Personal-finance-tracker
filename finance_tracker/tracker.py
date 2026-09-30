@@ -222,6 +222,7 @@ class FinanceTracker:
             Matching transactions sorted by date.
         """
         wanted = {normalize_category(c) for c in categories} if categories else None
+        kind = kind.strip().lower() if kind else None
         start_date = parse_date(start) if start else None
         end_date = parse_date(end) if end else None
         results: list[Transaction] = []

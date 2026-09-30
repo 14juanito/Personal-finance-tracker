@@ -141,3 +141,36 @@ def test_write_to_unwritable_location_raises(tmp_path: Path, sample: list[Transa
     blocker.write_text("I am a file, not a folder", encoding="utf-8")
     with pytest.raises(StorageError, match="Could not write"):
         storage.save_json(blocker / "data.json", sample)
+
+
+@pytest.mark.parametrize(
+    "content",
+    ['{"transactions": null}', '{"transactions": 5}', '{"budgets": {"a": 1}}'],
+)
+def test_wrong_structure_is_treated_as_corrupted(tmp_path: Path, content: str) -> None:
+    # Regression: valid JSON with the wrong shape used to crash every interface.
+    path = tmp_path / "data.json"
+    path.write_text(content, encoding="utf-8")
+    state = storage.load_json(path)
+    assert state.transactions == []
+    assert "corrupted" in state.warnings[0]
+    with pytest.raises(StorageError):
+        path.write_text(content, encoding="utf-8")
+        storage.load_json(path, recover=False)
+
+
+def test_duplicate_ids_are_skipped(tmp_path: Path, sample: list[Transaction]) -> None:
+    path = storage.save_json(tmp_path / "d.json", [sample[0], sample[0], sample[1]])
+    state = storage.load_json(path)
+    assert len(state.transactions) == 2
+    assert "duplicate id" in state.warnings[0]
+    csv_path = storage.save_csv(tmp_path / "d.csv", [sample[1], sample[1]])
+    csv_state = storage.load_csv(csv_path)
+    assert len(csv_state.transactions) == 1
+    assert "duplicate id" in csv_state.warnings[0]
+
+
+def test_excel_csv_with_bom_is_accepted(tmp_path: Path) -> None:
+    path = tmp_path / "excel.csv"
+    path.write_bytes("date,amount,kind,category\n2025-01-01,10,expense,Food\n".encode("utf-8-sig"))
+    assert len(storage.load_csv(path).transactions) == 1

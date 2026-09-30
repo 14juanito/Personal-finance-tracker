@@ -99,7 +99,9 @@ def check_budgets(
         level = budget_level(ratio)
         if level == LEVEL_OK and not include_ok:
             continue
-        if level == LEVEL_EXCEEDED:
+        if spent == budget.monthly_limit:
+            detail = "limit reached"
+        elif level == LEVEL_EXCEEDED:
             detail = f"over by ${spent - budget.monthly_limit:,.2f}"
         else:
             detail = f"${budget.monthly_limit - spent:,.2f} left"

@@ -134,3 +134,7 @@ def test_empty_tracker() -> None:
     assert empty.balance() == 0
     assert empty.latest_month() is None
     assert empty.spending_by_category() == {}
+
+
+def test_filter_kind_is_case_insensitive(tracker: FinanceTracker) -> None:
+    assert len(tracker.filter(kind="Expense")) == len(tracker.filter(kind="expense")) == 5

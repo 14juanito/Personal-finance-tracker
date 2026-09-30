@@ -67,3 +67,10 @@ def test_collect_alerts_and_str(tracker: FinanceTracker) -> None:
     result = alerts.collect_alerts(tracker, today=date(2025, 3, 1))
     assert len(result) == 3
     assert str(result[0]).startswith("[EXCEEDED] Groceries")
+
+
+def test_exactly_at_limit_reads_limit_reached(tracker: FinanceTracker) -> None:
+    tracker.set_budget("Housing", 1200)
+    housing = next(a for a in alerts.check_budgets(tracker) if a.subject == "Housing")
+    assert housing.level == "EXCEEDED"  # the spec treats 100 % as exceeded
+    assert housing.message.endswith("limit reached")

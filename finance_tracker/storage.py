@@ -14,7 +14,8 @@ Design notes:
 
 Course concepts illustrated:
     - File handling: ``pathlib``, ``open`` with context managers, ``json`` and ``csv``.
-    - Exceptions: ``try / except / else / finally``, re-raising as ``StorageError``.
+    - Exceptions: ``try / except / else`` (load_json) and ``try / except / finally``
+      (_atomic_write), re-raising low-level errors as ``StorageError``.
     - Lists and dictionaries: building the serialized structures.
 """
 
@@ -35,6 +36,9 @@ from finance_tracker.models import Budget, SavingsGoal, Transaction
 CSV_FIELDS: list[str] = ["id", "date", "amount", "kind", "category", "description"]
 SCHEMA_VERSION = 1
 ENCODING = "utf-8"
+# "utf-8-sig" also accepts the invisible BOM that Excel adds to "CSV UTF-8" files.
+CSV_READ_ENCODING = "utf-8-sig"
+SECTIONS: tuple[str, ...] = ("transactions", "budgets", "goals")
 
 
 @dataclass
@@ -159,8 +163,7 @@ def load_json(path: Path | str, recover: bool = True) -> AppState:
         # Concept: file handling — `with` closes the file even if json.load fails
         with path.open("r", encoding=ENCODING) as handle:
             payload = json.load(handle)
-        if not isinstance(payload, dict):
-            raise ValueError("top-level JSON value must be an object")
+        _check_structure(payload)
     except (json.JSONDecodeError, UnicodeDecodeError, ValueError) as exc:
         if not recover:
             raise StorageError(f"Corrupted JSON file '{path}': {exc}") from exc
@@ -168,16 +171,54 @@ def load_json(path: Path | str, recover: bool = True) -> AppState:
         state.warnings.append(
             f"'{path.name}' was corrupted ({exc}); a backup was saved as '{backup.name}'."
         )
-        return state
     except OSError as exc:
         raise StorageError(f"Could not read '{path}': {exc.strerror or exc}") from exc
+    else:
+        # `else` runs only when the file was read and parsed without error.
+        _fill_state(state, payload)
+    return state
 
+
+def _check_structure(payload: Any) -> None:
+    """Make sure a parsed JSON document has the shape this app writes.
+
+    Valid JSON can still be unusable, e.g. ``{"transactions": null}``; treating it
+    like a syntax error lets the normal corrupted-file recovery handle it.
+
+    Args:
+        payload: The value returned by ``json.load``.
+
+    Raises:
+        ValueError: If the top level is not an object or a section is not a list.
+    """
+    if not isinstance(payload, dict):
+        raise ValueError("top-level JSON value must be an object")
+    for section in SECTIONS:
+        if not isinstance(payload.get(section, []), list):
+            raise ValueError(f"'{section}' must be a list")
+
+
+def _fill_state(state: AppState, payload: dict[str, Any]) -> None:
+    """Convert the JSON sections into model objects, skipping invalid records.
+
+    Args:
+        state: The state to fill (modified in place).
+        payload: A JSON document already checked by ``_check_structure``.
+    """
+    # Concept: set — remembers ids already loaded so duplicates are detected in O(1)
+    seen_ids: set[str] = set()
     # Concept: loop + exception handling — one bad record must not lose all the others
     for index, raw in enumerate(payload.get("transactions", []), start=1):
         try:
-            state.transactions.append(Transaction.from_dict(raw))
+            transaction = Transaction.from_dict(raw)
         except (ValidationError, TypeError, AttributeError) as exc:
             state.warnings.append(f"Skipped transaction #{index}: {exc}")
+            continue
+        if transaction.id in seen_ids:
+            state.warnings.append(f"Skipped transaction #{index}: duplicate id '{transaction.id}'")
+            continue
+        seen_ids.add(transaction.id)
+        state.transactions.append(transaction)
     for raw in payload.get("budgets", []):
         try:
             budget = Budget.from_dict(raw)
@@ -190,7 +231,6 @@ def load_json(path: Path | str, recover: bool = True) -> AppState:
             state.goals[goal.name] = goal
         except (ValidationError, TypeError, AttributeError) as exc:
             state.warnings.append(f"Skipped goal: {exc}")
-    return state
 
 
 def save_csv(path: Path | str, transactions: list[Transaction]) -> Path:
@@ -209,6 +249,7 @@ def save_csv(path: Path | str, transactions: list[Transaction]) -> Path:
     path = Path(path)
 
     def write_rows(handle: Any) -> None:
+        """Write the header and one row per transaction to an open file."""
         writer = csv.DictWriter(handle, fieldnames=CSV_FIELDS)
         writer.writeheader()
         for transaction in transactions:
@@ -236,7 +277,7 @@ def load_csv(path: Path | str) -> AppState:
     state = AppState()
     required = {"date", "amount", "kind", "category"}
     try:
-        with path.open("r", encoding=ENCODING, newline="") as handle:
+        with path.open("r", encoding=CSV_READ_ENCODING, newline="") as handle:
             reader = csv.DictReader(handle)
             # Concept: set — set difference finds the missing columns in one expression
             missing = required - set(reader.fieldnames or [])
@@ -245,11 +286,20 @@ def load_csv(path: Path | str) -> AppState:
                     f"CSV file '{path.name}' is missing columns: {', '.join(sorted(missing))}"
                 )
             # start=2 because line 1 is the header — matches what users see in Excel
+            seen_ids: set[str] = set()
             for line_number, row in enumerate(reader, start=2):
                 try:
-                    state.transactions.append(Transaction.from_dict(row))
+                    transaction = Transaction.from_dict(row)
                 except ValidationError as exc:
                     state.warnings.append(f"Skipped CSV line {line_number}: {exc}")
+                    continue
+                if transaction.id in seen_ids:
+                    state.warnings.append(
+                        f"Skipped CSV line {line_number}: duplicate id '{transaction.id}'"
+                    )
+                    continue
+                seen_ids.add(transaction.id)
+                state.transactions.append(transaction)
     except StorageError:
         # StorageError is an OSError subclass: let it pass through unchanged
         # instead of being re-wrapped by the generic handler below.
