@@ -21,3 +21,4 @@ Every non-obvious choice made while building the project, with its rationale.
 | 15 | Streamlit screenshots taken with Playwright headless Chromium | As specified; real rendering of the running dashboard. |
 | 16 | CLI screenshots are real terminal output (demo + scripted CLI session) rendered to PNG | There is no screenshot tool for a terminal in headless mode; the text is the genuine program output, only the rendering to image is done by a script. |
 | 17 | CodeStepByStep screenshots are never fabricated | The `codestepbystep_screenshots/` folder is absent, so the DOCX contains 14 clearly labelled placeholders. |
+| 18 | Push uses SSH (`git remote set-url --push origin git@github.com:…`); fetch stays HTTPS | The stored HTTPS token was rejected by GitHub ("Invalid username or token"), while the SSH key is authorised for the `14juanito` account. The remote is still `origin`/`main`; only the push transport changed. |
