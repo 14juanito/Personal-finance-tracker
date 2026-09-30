@@ -1,6 +1,6 @@
 """Personal Finance Tracker — DATA 333 (Bellevue College).
 
-Package layout:
+Main elements (package layout):
     models       Transaction, SavingsGoal and Budget dataclasses.
     exceptions   Custom exception hierarchy.
     storage      JSON and CSV persistence with corrupted-file recovery.

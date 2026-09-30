@@ -1,4 +1,11 @@
-"""Tests for the sample data generator and the committed sample files."""
+"""Tests for the sample data generator and the committed sample files.
+
+Main elements:
+    Reproducibility of the generator and validity of the committed sample files.
+
+Course concepts exercised:
+    File handling, loops.
+"""
 
 from __future__ import annotations
 

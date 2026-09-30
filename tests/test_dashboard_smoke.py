@@ -1,4 +1,11 @@
-"""Headless smoke test of the Streamlit dashboard using Streamlit's AppTest."""
+"""Headless smoke test of the Streamlit dashboard using Streamlit's AppTest.
+
+Main elements:
+    The Streamlit page runs headlessly (AppTest) and reacts to filters.
+
+Course concepts exercised:
+    pandas, exception handling.
+"""
 
 from __future__ import annotations
 

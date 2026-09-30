@@ -10,6 +10,12 @@ student can see exactly what still has to be added.
 
 Usage:
     python tools/build_screenshot_doc.py [--source DIR] [--output FILE]
+
+Main elements:
+    find_images, assign_slots, caption_for, build, main.
+
+Course concepts illustrated:
+    File handling, dictionaries (slot → file), regular expressions, loops.
 """
 
 from __future__ import annotations
@@ -38,12 +44,26 @@ GREY = RGBColor(0x75, 0x75, 0x75)
 
 
 def natural_key(path: Path) -> list[object]:
-    """Sort key so that "2.png" comes before "10.png"."""
+    """Sort key so that "2.png" comes before "10.png".
+
+    Args:
+        path: Image file.
+
+    Returns:
+        The name split into text and integer parts.
+    """
     return [int(part) if part.isdigit() else part.lower() for part in re.split(r"(\d+)", path.name)]
 
 
 def find_images(source: Path) -> list[Path]:
-    """Return the screenshots in ``source`` sorted naturally (empty if the folder is missing)."""
+    """Find the screenshots to include.
+
+    Args:
+        source: Folder with the images.
+
+    Returns:
+        Image files sorted naturally (empty if the folder is missing).
+    """
     if not source.is_dir():
         return []
     return sorted(
@@ -80,13 +100,28 @@ def assign_slots(images: list[Path]) -> dict[int, Path]:
 
 
 def caption_for(path: Path, number: int) -> str:
-    """Build a caption from a file name such as ``03_list_sum.png``."""
+    """Build a caption from a file name such as ``03_list_sum.png``.
+
+    Args:
+        path: Image file.
+        number: Exercise number.
+
+    Returns:
+        A caption like ``"Exercise 03 — list sum"``.
+    """
     words = re.sub(r"^\d+[\s_-]*", "", path.stem).replace("_", " ").replace("-", " ").strip()
     return f"Exercise {number:02d}" + (f" — {words}" if words else "")
 
 
 def fit_size(path: Path) -> tuple[Inches, Inches]:
-    """Scale an image to fit the page while keeping its aspect ratio."""
+    """Scale an image to fit the page while keeping its aspect ratio.
+
+    Args:
+        path: Image file.
+
+    Returns:
+        ``(width, height)`` as python-docx lengths.
+    """
     with Image.open(path) as image:
         width, height = image.size
     ratio = min(MAX_WIDTH_IN / width, MAX_HEIGHT_IN / height)
@@ -94,7 +129,12 @@ def fit_size(path: Path) -> tuple[Inches, Inches]:
 
 
 def _placeholder_box(document: Document, number: int) -> None:
-    """A dashed, empty frame telling the student which screenshot is missing."""
+    """Add a dashed, empty frame telling the student which screenshot is missing.
+
+    Args:
+        document: Document being built.
+        number: Missing exercise number.
+    """
     table = document.add_table(rows=1, cols=1)
     table.alignment = WD_TABLE_ALIGNMENT.CENTER
     cell = table.cell(0, 0)
@@ -201,7 +241,14 @@ def build(source: Path = SOURCE_DIR, output: Path = OUTPUT_FILE) -> tuple[Path, 
 
 
 def main(argv: list[str] | None = None) -> int:
-    """Command-line entry point."""
+    """Command-line entry point.
+
+    Args:
+        argv: Command-line arguments (None = ``sys.argv[1:]``).
+
+    Returns:
+        Process exit code (0).
+    """
     parser = argparse.ArgumentParser(description="Build the CodeStepByStep screenshot document.")
     parser.add_argument("--source", type=Path, default=SOURCE_DIR)
     parser.add_argument("--output", type=Path, default=OUTPUT_FILE)

@@ -1,4 +1,11 @@
-"""Tests for tracker.py: CRUD, search, filter, summaries, persistence."""
+"""Tests for tracker.py: CRUD, search, filter, summaries, persistence.
+
+Main elements:
+    CRUD, search, filter, totals, budgets, goals and persistence of FinanceTracker.
+
+Course concepts exercised:
+    Lists, dictionaries, sets, loops and decisions.
+"""
 
 from __future__ import annotations
 

@@ -7,6 +7,12 @@ folders such as .claude/, deliverables/ and the user's personal data file.
 
 Usage:
     python tools/build_source_zip.py
+
+Main elements:
+    is_excluded, collect, build.
+
+Course concepts illustrated:
+    File handling (``pathlib``, ``zipfile``), sets for fast exclusion checks.
 """
 
 from __future__ import annotations
@@ -33,7 +39,14 @@ EXCLUDED_NAMES = {"my_finances.json", ".DS_Store", ".coverage"}
 
 
 def is_excluded(path: Path) -> bool:
-    """True for caches, generated files, personal data and backups."""
+    """Tell whether a file must stay out of the archive.
+
+    Args:
+        path: File inside the project.
+
+    Returns:
+        True for caches, generated output, personal data, backups and logs.
+    """
     relative = path.relative_to(ROOT)
     return (
         bool(EXCLUDED_PARTS & set(relative.parts))
@@ -44,7 +57,11 @@ def is_excluded(path: Path) -> bool:
 
 
 def collect() -> list[Path]:
-    """All files to package, sorted for a reproducible archive."""
+    """List every file to package.
+
+    Returns:
+        Sorted paths (sorting makes the archive reproducible).
+    """
     files = [ROOT / name for name in INCLUDE_FILES if (ROOT / name).is_file()]
     for folder in INCLUDE_DIRS:
         files.extend(p for p in (ROOT / folder).rglob("*") if p.is_file())
@@ -52,7 +69,14 @@ def collect() -> list[Path]:
 
 
 def build(output: Path = OUTPUT) -> tuple[Path, int]:
-    """Write the zip file and return ``(path, number of files)``."""
+    """Write the zip file.
+
+    Args:
+        output: Destination ``.zip`` file.
+
+    Returns:
+        ``(path written, number of files)``.
+    """
     files = collect()
     output.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(output, "w", compression=zipfile.ZIP_DEFLATED) as archive:

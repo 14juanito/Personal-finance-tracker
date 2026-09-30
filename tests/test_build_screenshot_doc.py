@@ -1,4 +1,11 @@
-"""Tests for tools/build_screenshot_doc.py."""
+"""Tests for tools/build_screenshot_doc.py.
+
+Main elements:
+    Placeholders, natural sorting and slot numbering of the screenshot document.
+
+Course concepts exercised:
+    File handling, dictionaries.
+"""
 
 from __future__ import annotations
 

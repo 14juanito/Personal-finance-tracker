@@ -1,4 +1,11 @@
-"""Tests for main.py: argument parsing and the non-interactive demo mode."""
+"""Tests for main.py: argument parsing and the non-interactive demo mode.
+
+Main elements:
+    Argument parsing, demo mode output and error exit codes.
+
+Course concepts exercised:
+    Decision structures, functions.
+"""
 
 from __future__ import annotations
 

@@ -14,6 +14,12 @@ images come from Playwright driving a real Streamlit server.
 
 Usage:
     python tools/capture_screenshots.py [--only cli|gui|dashboard]
+
+Main elements:
+    render_terminal, capture_cli, capture_gui, capture_dashboard, main_cli.
+
+Course concepts illustrated:
+    Functions, subprocesses, file handling (``pathlib``), exception handling (``try/finally``).
 """
 
 from __future__ import annotations
@@ -80,7 +86,11 @@ def render_terminal(lines: list[str], path: Path, title: str) -> Path:
 
 
 def capture_cli() -> list[Path]:
-    """Run demo mode and a scripted CLI session; render both outputs."""
+    """Run demo mode and a scripted CLI session; render both outputs.
+
+    Returns:
+        Paths of the images written.
+    """
     written: list[Path] = []
     with tempfile.TemporaryDirectory() as tmp:
         buffer = io.StringIO()
@@ -99,6 +109,14 @@ def capture_cli() -> list[Path]:
     lines = ["$ python main.py cli"]
 
     def scripted_input(prompt: str) -> str:
+        """Answer the next prompt and echo it, like a terminal shows typed text.
+
+        Args:
+            prompt: Prompt printed by the application.
+
+        Returns:
+            The next scripted answer.
+        """
         answer = next(answers)
         lines.append(f"{prompt}{answer}")
         return answer
@@ -129,7 +147,14 @@ def capture_cli() -> list[Path]:
 
 
 def capture_gui() -> list[Path]:
-    """Open the Tkinter window on the current display and grab each tab."""
+    """Open the Tkinter window on the current display and grab each tab.
+
+    Returns:
+        Paths of the images written.
+
+    Raises:
+        RuntimeError: If ImageMagick's ``import`` command is not installed.
+    """
     import tkinter as tk
 
     from finance_tracker import gui_tkinter
@@ -160,13 +185,22 @@ def capture_gui() -> list[Path]:
 
 
 def _free_port() -> int:
+    """Ask the operating system for an unused TCP port.
+
+    Returns:
+        A free port number for the temporary Streamlit server.
+    """
     with socket.socket() as sock:
         sock.bind(("127.0.0.1", 0))
         return sock.getsockname()[1]
 
 
 def capture_dashboard() -> list[Path]:
-    """Start Streamlit, then screenshot each tab with headless Chromium."""
+    """Start Streamlit, then screenshot each tab with headless Chromium.
+
+    Returns:
+        Paths of the images written.
+    """
     from playwright.sync_api import sync_playwright
 
     port = _free_port()
@@ -209,7 +243,14 @@ def capture_dashboard() -> list[Path]:
 
 
 def main_cli(argv: list[str] | None = None) -> int:
-    """Command-line entry point."""
+    """Command-line entry point.
+
+    Args:
+        argv: Command-line arguments (None = ``sys.argv[1:]``).
+
+    Returns:
+        Process exit code (0).
+    """
     parser = argparse.ArgumentParser(description="Capture interface screenshots.")
     parser.add_argument("--only", choices=["cli", "gui", "dashboard"])
     args = parser.parse_args(argv)

@@ -11,6 +11,12 @@ the same numbers (only the ``saved_at`` timestamp in the JSON file changes).
 
 Usage:
     python tools/generate_sample_data.py [--seed 42] [--end 2026-09-30]
+
+Main elements:
+    build_tracker: create the fictional dataset; main: write the CSV and JSON files.
+
+Course concepts illustrated:
+    Loops and randomness (seeded ``random.Random``), OOP (``FinanceTracker``), file output.
 """
 
 from __future__ import annotations
@@ -50,7 +56,15 @@ FIXED_EXPENSES: list[tuple[int, str, str, float]] = [
 
 
 def month_starts(end: date, count: int) -> list[date]:
-    """Return the first day of the ``count`` months ending with ``end``'s month."""
+    """First day of each of the ``count`` months ending with ``end``'s month.
+
+    Args:
+        end: Any day of the last month.
+        count: Number of months.
+
+    Returns:
+        Dates in chronological order.
+    """
     starts: list[date] = []
     year, month = end.year, end.month
     for _ in range(count):
@@ -62,7 +76,14 @@ def month_starts(end: date, count: int) -> list[date]:
 
 
 def days_in_month(first: date) -> int:
-    """Number of days in the month starting at ``first``."""
+    """Number of days in a month.
+
+    Args:
+        first: First day of the month.
+
+    Returns:
+        28 to 31.
+    """
     next_month = (first.replace(day=28) + timedelta(days=4)).replace(day=1)
     return (next_month - first).days
 
@@ -146,7 +167,14 @@ def build_tracker(seed: int = DEFAULT_SEED, end: date = DEFAULT_END) -> FinanceT
 
 
 def main(argv: list[str] | None = None) -> int:
-    """Command-line entry point."""
+    """Command-line entry point: generate and write the sample files.
+
+    Args:
+        argv: Command-line arguments (None = ``sys.argv[1:]``).
+
+    Returns:
+        Process exit code (0).
+    """
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--seed", type=int, default=DEFAULT_SEED)
     parser.add_argument("--end", type=date.fromisoformat, default=DEFAULT_END)

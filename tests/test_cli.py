@@ -1,4 +1,11 @@
-"""Tests for cli.py: the menu is driven with scripted answers instead of a keyboard."""
+"""Tests for cli.py: the menu is driven with scripted answers instead of a keyboard.
+
+Main elements:
+    Complete console sessions driven by scripted answers, including invalid input.
+
+Course concepts exercised:
+    User input/output, loops and decisions, exceptions.
+"""
 
 from __future__ import annotations
 

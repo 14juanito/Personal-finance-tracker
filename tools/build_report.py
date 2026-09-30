@@ -8,6 +8,12 @@ Steps:
 
 Usage:
     python tools/build_report.py [--skip-tests]
+
+Main elements:
+    draw_architecture, test_stats, docx helpers (heading, para, table, figure), build.
+
+Course concepts illustrated:
+    Functions, lists of rows, subprocess + JSON parsing for real test figures.
 """
 
 from __future__ import annotations
@@ -26,6 +32,8 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_BREAK
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Inches, Pt, RGBColor
+from docx.table import _Cell
+from docx.text.paragraph import Paragraph
 from matplotlib.figure import Figure
 from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
 
@@ -42,7 +50,14 @@ TABLE_WIDTH_IN = 6.5
 
 # --------------------------------------------------------------------------- diagram
 def draw_architecture(path: Path = ARCHITECTURE_PNG) -> Path:
-    """Draw the layered architecture diagram and save it as PNG."""
+    """Draw the layered architecture diagram and save it as PNG.
+
+    Args:
+        path: Destination image.
+
+    Returns:
+        The path written.
+    """
     fig = Figure(figsize=(10, 6.2), dpi=160)
     ax = fig.add_axes((0, 0, 1, 1))
     ax.set_xlim(0, 100)
@@ -136,9 +151,21 @@ def draw_architecture(path: Path = ARCHITECTURE_PNG) -> Path:
 
 # --------------------------------------------------------------------------- test stats
 def test_stats(skip: bool) -> dict[str, str]:
-    """Run pytest with coverage and return the numbers quoted in the report."""
+    """Run pytest with coverage and return the numbers quoted in the report.
+
+    Args:
+        skip: Do not run the tests (placeholder markers are returned instead).
+
+    Returns:
+        ``{"tests": count, "coverage": percent}`` as strings.
+
+    Raises:
+        SystemExit: If the test suite fails.
+    """
     if skip:
-        return {"tests": "100+", "coverage": "≥ 95"}
+        # Visible markers instead of invented numbers: a draft built without tests
+        # must never look like it quotes real results.
+        return {"tests": "[tests not run]", "coverage": "[coverage not measured]"}
     with tempfile.TemporaryDirectory() as tmp:
         report = Path(tmp) / "coverage.json"
         result = subprocess.run(
@@ -156,8 +183,13 @@ def test_stats(skip: bool) -> dict[str, str]:
 
 
 # --------------------------------------------------------------------------- docx helpers
-def shade(cell, fill: str) -> None:
-    """Background colour for a table cell (clear shading, never solid)."""
+def shade(cell: _Cell, fill: str) -> None:
+    """Give a table cell a background colour (clear shading, never solid).
+
+    Args:
+        cell: Table cell.
+        fill: Hex colour without ``#``.
+    """
     shading = OxmlElement("w:shd")
     shading.set(qn("w:val"), "clear")
     shading.set(qn("w:color"), "auto")
@@ -166,13 +198,29 @@ def shade(cell, fill: str) -> None:
 
 
 def heading(doc: Document, text: str, level: int = 1) -> None:
+    """Add a numbered section heading in the accent colour.
+
+    Args:
+        doc: Document being built.
+        text: Heading text.
+        level: Heading level (1 = section).
+    """
     paragraph = doc.add_heading(text, level=level)
     for run in paragraph.runs:
         run.font.color.rgb = ACCENT
 
 
-def add_rich_text(paragraph, text: str, italic: bool = False, size: int | None = None) -> None:
-    """Add text where **bold** and `code` segments are formatted (markers removed)."""
+def add_rich_text(
+    paragraph: Paragraph, text: str, italic: bool = False, size: int | None = None
+) -> None:
+    """Add text where **bold** and `code` segments are formatted (markers removed).
+
+    Args:
+        paragraph: Paragraph receiving the runs.
+        text: Text with optional ``**bold**`` and backtick-quoted code segments.
+        italic: Make every run italic.
+        size: Font size in points (None = document default).
+    """
     for chunk in re.split(r"(\*\*.+?\*\*|`.+?`)", text):
         if not chunk:
             continue
@@ -191,15 +239,37 @@ def add_rich_text(paragraph, text: str, italic: bool = False, size: int | None =
 
 
 def para(doc: Document, text: str, italic: bool = False, size: int | None = None) -> None:
+    """Add a body paragraph with inline formatting.
+
+    Args:
+        doc: Document being built.
+        text: Paragraph text (see ``add_rich_text``).
+        italic: Italic paragraph.
+        size: Font size in points.
+    """
     add_rich_text(doc.add_paragraph(), text, italic, size)
 
 
 def bullets(doc: Document, items: list[str]) -> None:
+    """Add a bulleted list using Word's built-in list style.
+
+    Args:
+        doc: Document being built.
+        items: One string per bullet.
+    """
     for item in items:
         add_rich_text(doc.add_paragraph(style="List Bullet"), item)
 
 
 def figure(doc: Document, path: Path, caption: str, width_in: float = 6.0) -> None:
+    """Add a centred image followed by an italic caption.
+
+    Args:
+        doc: Document being built.
+        path: Image file.
+        caption: Caption text.
+        width_in: Image width in inches.
+    """
     picture = doc.add_paragraph()
     picture.alignment = WD_ALIGN_PARAGRAPH.CENTER
     picture.paragraph_format.keep_with_next = True
@@ -211,7 +281,14 @@ def figure(doc: Document, path: Path, caption: str, width_in: float = 6.0) -> No
 
 
 def table(doc: Document, headers: list[str], rows: list[list[str]], widths: list[float]) -> None:
-    """Table with explicit column widths (in inches) summing to the text width."""
+    """Add a table with explicit column widths summing to the text width.
+
+    Args:
+        doc: Document being built.
+        headers: Column titles.
+        rows: Cell texts (backtick-quoted parts are set in a code font).
+        widths: Column widths in inches.
+    """
     assert abs(sum(widths) - TABLE_WIDTH_IN) < 0.01
     t = doc.add_table(rows=1, cols=len(headers))
     t.alignment = WD_TABLE_ALIGNMENT.CENTER
@@ -336,7 +413,15 @@ CHALLENGES: list[list[str]] = [
 
 
 def build(skip_tests: bool = False, output: Path = OUTPUT) -> Path:
-    """Write the report and return its path."""
+    """Write the report.
+
+    Args:
+        skip_tests: Do not run pytest (the test figures then show "not run" markers).
+        output: Destination ``.docx`` file.
+
+    Returns:
+        The path written.
+    """
     stats = test_stats(skip_tests)
     draw_architecture()
     doc = Document()
@@ -535,7 +620,14 @@ def build(skip_tests: bool = False, output: Path = OUTPUT) -> Path:
 
 
 def main(argv: list[str] | None = None) -> int:
-    """Command-line entry point."""
+    """Command-line entry point.
+
+    Args:
+        argv: Command-line arguments (None = ``sys.argv[1:]``).
+
+    Returns:
+        Process exit code (0).
+    """
     parser = argparse.ArgumentParser(description="Build the project report.")
     parser.add_argument("--skip-tests", action="store_true", help="do not run pytest")
     args = parser.parse_args(argv)

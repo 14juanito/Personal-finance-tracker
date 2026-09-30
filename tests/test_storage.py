@@ -1,4 +1,11 @@
-"""Tests for storage.py: JSON/CSV round-trips, missing and corrupted files."""
+"""Tests for storage.py: JSON/CSV round-trips, missing and corrupted files.
+
+Main elements:
+    JSON/CSV round-trips, missing files, corrupted and malformed files, duplicate ids.
+
+Course concepts exercised:
+    File handling and exception handling.
+"""
 
 from __future__ import annotations
 

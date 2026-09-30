@@ -1,4 +1,11 @@
-"""Tests for models.py and exceptions.py."""
+"""Tests for models.py and exceptions.py.
+
+Main elements:
+    Validation of Transaction, SavingsGoal and Budget; parse helpers; exception hierarchy.
+
+Course concepts exercised:
+    OOP, exceptions, dictionaries (to_dict/from_dict).
+"""
 
 from __future__ import annotations
 

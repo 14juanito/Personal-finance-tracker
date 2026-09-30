@@ -1,4 +1,11 @@
-"""Tests for alerts.py: budget thresholds and goal milestones."""
+"""Tests for alerts.py: budget thresholds and goal milestones.
+
+Main elements:
+    Budget thresholds (80 % / 100 %), goal milestones and deadlines.
+
+Course concepts exercised:
+    Decision structures.
+"""
 
 from __future__ import annotations
 

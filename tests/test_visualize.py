@@ -1,4 +1,11 @@
-"""Tests for visualize.py: charts render headless and are saved as PNG."""
+"""Tests for visualize.py: charts render headless and are saved as PNG.
+
+Main elements:
+    Charts render headless, are saved as PNG and label amounts correctly.
+
+Course concepts exercised:
+    Functions, file handling.
+"""
 
 from __future__ import annotations
 

@@ -1,4 +1,11 @@
-"""Smoke tests for the Tkinter GUI (skipped automatically when no display is available)."""
+"""Smoke tests for the Tkinter GUI (skipped automatically when no display is available).
+
+Main elements:
+    The Tkinter window is built and its main actions are exercised on a real display.
+
+Course concepts exercised:
+    OOP, exception handling.
+"""
 
 from __future__ import annotations
 

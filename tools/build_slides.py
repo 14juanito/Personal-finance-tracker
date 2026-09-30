@@ -7,6 +7,12 @@ the talking points.
 
 Usage:
     python tools/build_slides.py
+
+Main elements:
+    layout helpers (text, rich, card, badge, picture, title) and build.
+
+Course concepts illustrated:
+    Functions with keyword arguments, loops over lists of tuples.
 """
 
 from __future__ import annotations
@@ -19,6 +25,9 @@ from pptx import Presentation
 from pptx.dml.color import RGBColor
 from pptx.enum.shapes import MSO_SHAPE
 from pptx.enum.text import MSO_ANCHOR, PP_ALIGN
+from pptx.shapes.autoshape import Shape
+from pptx.shapes.picture import Picture
+from pptx.slide import Slide
 from pptx.util import Emu, Inches, Pt
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -41,18 +50,20 @@ SLIDE_W, SLIDE_H = 13.333, 7.5
 MARGIN = 0.6
 
 
-def rgb_hex(color: RGBColor) -> str:
-    return str(color)
+def background(slide: Slide, color: RGBColor) -> None:
+    """Fill the slide background with a solid colour.
 
-
-def background(slide, color: RGBColor) -> None:
+    Args:
+        slide: Slide to modify.
+        color: Background colour.
+    """
     fill = slide.background.fill
     fill.solid()
     fill.fore_color.rgb = color
 
 
 def text(
-    slide,
+    slide: Slide,
     x: float,
     y: float,
     w: float,
@@ -66,8 +77,28 @@ def text(
     anchor: MSO_ANCHOR = MSO_ANCHOR.TOP,
     italic: bool = False,
     spacing: int = 6,
-):
-    """Add a text box; a list becomes one paragraph per item."""
+) -> Shape:
+    """Add a text box; a list becomes one paragraph per item.
+
+    Args:
+        slide: Slide to modify.
+        x: Left position in inches.
+        y: Top position in inches.
+        w: Width in inches.
+        h: Height in inches.
+        content: One string or a list of paragraphs.
+        size: Font size in points.
+        color: Text colour.
+        bold: Bold text.
+        font: Font name.
+        align: Horizontal alignment.
+        anchor: Vertical alignment inside the box.
+        italic: Italic text.
+        spacing: Space after each paragraph, in points.
+
+    Returns:
+        The text box shape.
+    """
     box = slide.shapes.add_textbox(Inches(x), Inches(y), Inches(w), Inches(h))
     frame = box.text_frame
     frame.word_wrap = True
@@ -86,8 +117,33 @@ def text(
     return box
 
 
-def rich(slide, x, y, w, h, items: list[tuple[str, str]], size=15, color=INK, spacing=10):
-    """Paragraphs made of a bold lead-in followed by normal text."""
+def rich(
+    slide: Slide,
+    x: float,
+    y: float,
+    w: float,
+    h: float,
+    items: list[tuple[str, str]],
+    size: int = 15,
+    color: RGBColor = INK,
+    spacing: int = 10,
+) -> Shape:
+    """Add paragraphs made of a bold lead-in followed by normal text.
+
+    Args:
+        slide: Slide to modify.
+        x: Left position in inches.
+        y: Top position in inches.
+        w: Width in inches.
+        h: Height in inches.
+        items: ``(bold lead-in, rest of the sentence)`` pairs.
+        size: Font size in points.
+        color: Text colour.
+        spacing: Space after each paragraph, in points.
+
+    Returns:
+        The text box shape.
+    """
     box = slide.shapes.add_textbox(Inches(x), Inches(y), Inches(w), Inches(h))
     frame = box.text_frame
     frame.word_wrap = True
@@ -103,7 +159,20 @@ def rich(slide, x, y, w, h, items: list[tuple[str, str]], size=15, color=INK, sp
     return box
 
 
-def card(slide, x, y, w, h, fill: RGBColor = TINT):
+def card(slide: Slide, x: float, y: float, w: float, h: float, fill: RGBColor = TINT) -> Shape:
+    """Add a rounded, tinted rectangle used as a content card.
+
+    Args:
+        slide: Slide to modify.
+        x: Left position in inches.
+        y: Top position in inches.
+        w: Width in inches.
+        h: Height in inches.
+        fill: Card colour.
+
+    Returns:
+        The rectangle shape.
+    """
     shape = slide.shapes.add_shape(
         MSO_SHAPE.ROUNDED_RECTANGLE, Inches(x), Inches(y), Inches(w), Inches(h)
     )
@@ -115,8 +184,22 @@ def card(slide, x, y, w, h, fill: RGBColor = TINT):
     return shape
 
 
-def badge(slide, x, y, glyph: str, fill: RGBColor = GREEN, size: float = 0.62):
-    """The deck's motif: a glyph in a filled circle."""
+def badge(
+    slide: Slide, x: float, y: float, glyph: str, fill: RGBColor = GREEN, size: float = 0.62
+) -> Shape:
+    """Add the deck's motif: a glyph in a filled circle.
+
+    Args:
+        slide: Slide to modify.
+        x: Left position in inches.
+        y: Top position in inches.
+        glyph: One or two characters shown in the circle.
+        fill: Circle colour.
+        size: Diameter in inches.
+
+    Returns:
+        The circle shape.
+    """
     circle = slide.shapes.add_shape(
         MSO_SHAPE.OVAL, Inches(x), Inches(y), Inches(size), Inches(size)
     )
@@ -136,8 +219,23 @@ def badge(slide, x, y, glyph: str, fill: RGBColor = GREEN, size: float = 0.62):
     return circle
 
 
-def picture(slide, path: Path, x: float, y: float, max_w: float, max_h: float, border=True):
-    """Insert an image scaled to fit the box, centred inside it."""
+def picture(
+    slide: Slide, path: Path, x: float, y: float, max_w: float, max_h: float, border: bool = True
+) -> Picture:
+    """Insert an image scaled to fit a box, centred inside it.
+
+    Args:
+        slide: Slide to modify.
+        path: Image file.
+        x: Left of the box in inches.
+        y: Top of the box in inches.
+        max_w: Box width in inches.
+        max_h: Box height in inches.
+        border: Draw a thin border around the image.
+
+    Returns:
+        The picture shape.
+    """
     with Image.open(path) as image:
         width, height = image.size
     scale = min(max_w / width, max_h / height)
@@ -150,11 +248,27 @@ def picture(slide, path: Path, x: float, y: float, max_w: float, max_h: float, b
     return pic
 
 
-def title(slide, content: str, color: RGBColor = DARK) -> None:
+def title(slide: Slide, content: str, color: RGBColor = DARK) -> None:
+    """Add the slide title in the heading font.
+
+    Args:
+        slide: Slide to modify.
+        content: Title text.
+        color: Title colour.
+    """
     text(slide, MARGIN, 0.45, SLIDE_W - 2 * MARGIN, 0.9, content, 36, color, True, TITLE_FONT)
 
 
 def build(output: Path = OUTPUT, skip_tests: bool = False) -> Path:
+    """Create the eight slides and save the deck.
+
+    Args:
+        output: Destination ``.pptx`` file.
+        skip_tests: Do not run pytest (the test figures then show "not run" markers).
+
+    Returns:
+        The path written.
+    """
     stats = test_stats(skip_tests)
     tests, coverage = stats["tests"], f"{stats['coverage']} %"
     prs = Presentation()

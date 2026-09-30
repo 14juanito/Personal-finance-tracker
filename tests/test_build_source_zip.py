@@ -1,4 +1,11 @@
-"""Tests for tools/build_source_zip.py."""
+"""Tests for tools/build_source_zip.py.
+
+Main elements:
+    The source archive contains code and data but no caches or personal files.
+
+Course concepts exercised:
+    File handling, sets.
+"""
 
 from __future__ import annotations
 

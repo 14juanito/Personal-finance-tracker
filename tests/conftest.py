@@ -1,4 +1,11 @@
-"""Shared pytest fixtures."""
+"""Shared pytest fixtures.
+
+Main elements:
+    ``tracker`` fixture: two months of hand-checked data with budgets and a goal.
+
+Course concepts exercised:
+    OOP (FinanceTracker), functions (pytest fixtures).
+"""
 
 from __future__ import annotations
 

@@ -1,4 +1,11 @@
-"""Tests for analytics.py: pandas calculations."""
+"""Tests for analytics.py: pandas calculations.
+
+Main elements:
+    Every pandas calculation against numbers computed by hand.
+
+Course concepts exercised:
+    pandas.
+"""
 
 from __future__ import annotations
 
