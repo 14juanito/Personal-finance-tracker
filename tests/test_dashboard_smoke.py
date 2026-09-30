@@ -1,0 +1,44 @@
+"""Headless smoke test of the Streamlit dashboard using Streamlit's AppTest."""
+
+from __future__ import annotations
+
+from pathlib import Path
+
+import pytest
+
+from finance_tracker.config import PROJECT_ROOT
+
+AppTest = pytest.importorskip("streamlit.testing.v1").AppTest
+DASHBOARD = str(PROJECT_ROOT / "finance_tracker" / "dashboard.py")
+
+
+@pytest.fixture
+def no_user_data(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
+    # Make sure the test only ever sees the sample data, never a real user file.
+    monkeypatch.setattr("finance_tracker.config.USER_DATA_FILE", tmp_path / "none.json")
+
+
+def test_dashboard_renders_without_errors(no_user_data: None) -> None:
+    app = AppTest.from_file(DASHBOARD, default_timeout=60).run()
+    assert not app.exception
+    assert app.title[0].value.endswith("Personal Finance Dashboard")
+    labels = [m.label for m in app.metric]
+    assert labels[:5] == ["Income", "Expenses", "Net savings", "Savings rate", "Avg. spend / month"]
+    assert len(app.tabs) == 5
+
+
+def test_dashboard_filters_update_kpis(no_user_data: None) -> None:
+    app = AppTest.from_file(DASHBOARD, default_timeout=60).run()
+    all_expenses = app.metric[1].value
+    app.sidebar.multiselect[0].set_value(["Groceries", "Salary"]).run()
+    assert not app.exception
+    assert app.metric[1].value != all_expenses
+    app.sidebar.radio[1].set_value("Income").run()
+    assert app.metric[1].value == "$0"
+
+
+def test_budget_messages_escape_dollar_signs(no_user_data: None) -> None:
+    app = AppTest.from_file(DASHBOARD, default_timeout=60).run()
+    texts = [m.value for m in app.markdown if "EXCEEDED" in m.value]
+    assert texts
+    assert all("\\$" in text for text in texts)
