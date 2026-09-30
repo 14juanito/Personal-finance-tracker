@@ -128,7 +128,14 @@ def choose_data() -> tuple[FinanceTracker, str] | None:
 
 
 def sidebar_filters(df: pd.DataFrame) -> tuple[date, date, list[str], str]:
-    """Sidebar: date range, categories and kind."""
+    """Sidebar: date range, categories and kind.
+
+    Args:
+        df: The full DataFrame, used for the available dates and categories.
+
+    Returns:
+        ``(start, end, categories, kind)`` where kind is "All", "Expenses" or "Income".
+    """
     st.sidebar.header("Filters")
     first, last = df["date"].min().date(), df["date"].max().date()
     picked = st.sidebar.date_input("Date range", (first, last), min_value=first, max_value=last)
@@ -141,17 +148,35 @@ def sidebar_filters(df: pd.DataFrame) -> tuple[date, date, list[str], str]:
 
 
 def md_escape(text: str) -> str:
-    """Escape "$" so Markdown does not render the text between two amounts as LaTeX math."""
+    """Escape "$" so Markdown does not render the text between two amounts as math.
+
+    Args:
+        text: Plain text that may contain dollar amounts.
+
+    Returns:
+        The text with every ``$`` written as ``\\$``.
+    """
     return text.replace("$", "\\$")
 
 
 def signed_money(amount: float) -> str:
-    """Format a change as ``+$1,234`` or ``-$56``."""
+    """Format a change as ``+$1,234`` or ``-$56``.
+
+    Args:
+        amount: The change to format.
+
+    Returns:
+        The signed, rounded dollar amount.
+    """
     return f"{'-' if amount < 0 else '+'}${abs(amount):,.0f}"
 
 
 def kpi_row(df: pd.DataFrame) -> None:
-    """Headline metrics with the change versus the previous month."""
+    """Headline metrics with the change versus the previous month.
+
+    Args:
+        df: Filtered DataFrame.
+    """
     k = analytics.kpis(df)
     summary = analytics.monthly_summary(df)
     delta_expense = delta_net = None
@@ -170,7 +195,11 @@ def kpi_row(df: pd.DataFrame) -> None:
 
 
 def overview_tab(df: pd.DataFrame) -> None:
-    """Monthly income vs. expenses and category breakdown."""
+    """Monthly income vs. expenses and category breakdown.
+
+    Args:
+        df: Filtered DataFrame.
+    """
     summary = analytics.monthly_summary(df).reset_index()
     left, right = st.columns([3, 2])
     with left:
@@ -219,7 +248,11 @@ def overview_tab(df: pd.DataFrame) -> None:
 
 
 def trends_tab(df: pd.DataFrame) -> None:
-    """Rolling-average trend line and a month x category heatmap."""
+    """Rolling-average trend line, month x category heatmap and top expenses.
+
+    Args:
+        df: Filtered DataFrame.
+    """
     trend = analytics.spending_trend(df).reset_index()
     if trend.empty:
         st.info("No expenses in the selection.")
@@ -265,7 +298,11 @@ def trends_tab(df: pd.DataFrame) -> None:
 
 
 def budgets_tab(tracker: FinanceTracker) -> None:
-    """Budget usage for a chosen month, with alert levels."""
+    """Budget usage for a chosen month, with alert levels.
+
+    Args:
+        tracker: The loaded data (budgets are monthly, so filters do not apply).
+    """
     months = tracker.months()
     if not tracker.budgets or not months:
         st.info("No budgets defined for this data.")
@@ -278,7 +315,11 @@ def budgets_tab(tracker: FinanceTracker) -> None:
 
 
 def goals_tab(tracker: FinanceTracker) -> None:
-    """Savings goal progress and milestones."""
+    """Savings goal progress and milestones.
+
+    Args:
+        tracker: The loaded data.
+    """
     if not tracker.goals:
         st.info("No savings goals in this data.")
         return
@@ -297,7 +338,11 @@ def goals_tab(tracker: FinanceTracker) -> None:
 
 
 def transactions_tab(df: pd.DataFrame) -> None:
-    """Filtered transaction table with a CSV download button."""
+    """Filtered transaction table with a CSV download button.
+
+    Args:
+        df: Filtered DataFrame.
+    """
     shown = df.sort_values("date", ascending=False)[
         ["date", "kind", "category", "amount", "description"]
     ].copy()

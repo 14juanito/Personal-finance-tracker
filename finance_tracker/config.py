@@ -1,5 +1,10 @@
 """Project-wide paths and settings.
 
+Main elements:
+    PROJECT_ROOT, DATA_DIR, OUTPUT_DIR, CHARTS_DIR: folders used by the application.
+    SAMPLE_JSON, SAMPLE_CSV: the fictional sample dataset.
+    USER_DATA_FILE: where the CLI and GUI save the user's own data (git-ignored).
+
 All paths are computed relative to this file with ``pathlib`` so the project works
 from any working directory and on any operating system — no absolute paths are
 hard-coded.

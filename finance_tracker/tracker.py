@@ -89,7 +89,14 @@ class FinanceTracker:
 
     # ------------------------------------------------------------------ transactions
     def _store(self, transaction: Transaction) -> Transaction:
-        """Append a transaction and register its category."""
+        """Append a transaction and register its category.
+
+        Args:
+            transaction: An already validated transaction.
+
+        Returns:
+            The same transaction, for convenient chaining.
+        """
         self.transactions.append(transaction)
         self.categories.add(transaction.category)
         return transaction
@@ -128,6 +135,12 @@ class FinanceTracker:
 
     def get_transaction(self, transaction_id: str) -> Transaction:
         """Return the transaction with the given id.
+
+        Args:
+            transaction_id: The 8-character id shown in the interfaces.
+
+        Returns:
+            The matching transaction.
 
         Raises:
             TransactionNotFoundError: If no transaction has this id.
@@ -170,6 +183,9 @@ class FinanceTracker:
 
     def delete_transaction(self, transaction_id: str) -> Transaction:
         """Remove a transaction.
+
+        Args:
+            transaction_id: Id of the transaction to remove.
 
         Returns:
             The removed transaction.
@@ -244,7 +260,14 @@ class FinanceTracker:
         return sorted(results, key=lambda t: t.date)
 
     def sorted_transactions(self, newest_first: bool = True) -> list[Transaction]:
-        """Return all transactions sorted by date."""
+        """Return all transactions sorted by date.
+
+        Args:
+            newest_first: Sort from the most recent to the oldest (default).
+
+        Returns:
+            A new sorted list; the stored order is not changed.
+        """
         return sorted(self.transactions, key=lambda t: t.date, reverse=newest_first)
 
     # ------------------------------------------------------------------ summaries
@@ -268,7 +291,14 @@ class FinanceTracker:
         )
 
     def balance(self, month: str | None = None) -> float:
-        """Income minus expenses (all time, or for one ``YYYY-MM`` month)."""
+        """Income minus expenses.
+
+        Args:
+            month: ``YYYY-MM`` to restrict the balance, or None for all time.
+
+        Returns:
+            The balance rounded to cents (negative when spending exceeds income).
+        """
         return round(self.total(INCOME, month) - self.total(EXPENSE, month), 2)
 
     def spending_by_category(self, month: str | None = None) -> dict[str, float]:
@@ -291,27 +321,50 @@ class FinanceTracker:
         }
 
     def months(self) -> list[str]:
-        """Sorted list of distinct ``YYYY-MM`` months that have transactions."""
+        """List the months that have at least one transaction.
+
+        Returns:
+            Sorted, distinct ``YYYY-MM`` strings.
+        """
         return sorted({t.month for t in self.transactions})
 
     def latest_month(self) -> str | None:
-        """Most recent month with data, or None when the tracker is empty."""
+        """Return the most recent month with data.
+
+        Returns:
+            A ``YYYY-MM`` string, or None when the tracker is empty.
+        """
         months = self.months()
         return months[-1] if months else None
 
     def expense_categories(self) -> list[str]:
-        """Sorted expense categories: defaults plus any category used by an expense."""
+        """List the categories offered for expenses.
+
+        Returns:
+            Sorted default expense categories plus any category used by an expense.
+        """
         used = {t.category for t in self.transactions if t.is_expense}
         return sorted(DEFAULT_EXPENSE_CATEGORIES | used)
 
     def income_categories(self) -> list[str]:
-        """Sorted income categories: defaults plus any category used by an income."""
+        """List the categories offered for income.
+
+        Returns:
+            Sorted default income categories plus any category used by an income.
+        """
         used = {t.category for t in self.transactions if t.kind == INCOME}
         return sorted(DEFAULT_INCOME_CATEGORIES | used)
 
     # ------------------------------------------------------------------ budgets & goals
     def set_budget(self, category: str, monthly_limit: float | str) -> Budget:
         """Create or replace the monthly budget for a category.
+
+        Args:
+            category: Expense category (normalized, e.g. ``"groceries"`` → ``"Groceries"``).
+            monthly_limit: Maximum amount per month.
+
+        Returns:
+            The stored budget.
 
         Raises:
             InvalidBudgetError: If the category or limit is invalid.
@@ -322,7 +375,14 @@ class FinanceTracker:
         return budget
 
     def remove_budget(self, category: str) -> bool:
-        """Delete a budget. Returns True if one existed."""
+        """Delete the budget of a category.
+
+        Args:
+            category: Category name (any capitalization).
+
+        Returns:
+            True if a budget existed and was removed, False otherwise.
+        """
         return self.budgets.pop(normalize_category(category), None) is not None
 
     def add_goal(
@@ -333,6 +393,15 @@ class FinanceTracker:
         deadline: date | str | None = None,
     ) -> SavingsGoal:
         """Create a new savings goal.
+
+        Args:
+            name: Unique goal name.
+            target: Amount to reach.
+            saved: Amount already saved.
+            deadline: Optional target date.
+
+        Returns:
+            The stored goal.
 
         Raises:
             InvalidGoalError: If the name already exists or a value is invalid.
@@ -346,6 +415,13 @@ class FinanceTracker:
     def contribute_to_goal(self, name: str, amount: float | str) -> SavingsGoal:
         """Add money to an existing goal.
 
+        Args:
+            name: Goal name (extra spaces are ignored).
+            amount: Positive amount to add.
+
+        Returns:
+            The updated goal.
+
         Raises:
             InvalidGoalError: If the goal does not exist or the amount is invalid.
         """
@@ -356,23 +432,56 @@ class FinanceTracker:
         return goal
 
     def remove_goal(self, name: str) -> bool:
-        """Delete a goal. Returns True if one existed."""
+        """Delete a savings goal.
+
+        Args:
+            name: Goal name (extra spaces are ignored).
+
+        Returns:
+            True if a goal existed and was removed, False otherwise.
+        """
         return self.goals.pop(" ".join(name.split()), None) is not None
 
     # ------------------------------------------------------------------ persistence
     def save_json(self, path: Path | str) -> Path:
-        """Save transactions, budgets and goals to a JSON file."""
+        """Save transactions, budgets and goals to a JSON file.
+
+        Args:
+            path: Destination file.
+
+        Returns:
+            The path written.
+
+        Raises:
+            StorageError: If the file cannot be written.
+        """
         return storage.save_json(path, self.transactions, self.budgets, self.goals)
 
     def export_csv(self, path: Path | str) -> Path:
-        """Export transactions to a CSV file."""
+        """Export transactions (oldest first) to a CSV file.
+
+        Args:
+            path: Destination file.
+
+        Returns:
+            The path written.
+
+        Raises:
+            StorageError: If the file cannot be written.
+        """
         return storage.save_csv(path, self.sorted_transactions(newest_first=False))
 
     def import_csv(self, path: Path | str) -> list[str]:
         """Append transactions from a CSV file, skipping ids already present.
 
+        Args:
+            path: CSV file to import.
+
         Returns:
-            Warnings about skipped rows or duplicates.
+            Warnings about skipped rows or duplicates (empty when everything was imported).
+
+        Raises:
+            StorageError: If the file is missing, unreadable or lacks required columns.
         """
         state = storage.load_csv(path)
         known_ids = {t.id for t in self.transactions}
@@ -414,6 +523,12 @@ class FinanceTracker:
     @classmethod
     def from_csv(cls, path: Path | str) -> tuple[FinanceTracker, list[str]]:
         """Create a tracker from a CSV file of transactions.
+
+        Args:
+            path: CSV file to read.
+
+        Returns:
+            A tuple ``(tracker, warnings)``.
 
         Raises:
             StorageError: If the file is missing or unreadable.

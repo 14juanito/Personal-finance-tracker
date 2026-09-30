@@ -49,13 +49,27 @@ class QuitRequested(Exception):
 
 
 def format_money(amount: float) -> str:
-    """Format a number as dollars, e.g. ``-$1,234.50``."""
+    """Format a number as dollars.
+
+    Args:
+        amount: Value to format (negative values get a leading minus sign).
+
+    Returns:
+        A string such as ``-$1,234.50``.
+    """
     sign = "-" if amount < 0 else ""
     return f"{sign}${abs(amount):,.2f}"
 
 
 def _is_numeric(cell: str) -> bool:
-    """True for cells such as ``12``, ``$1,200.00``, ``-$5.00``, ``+13.3%`` or ``-``."""
+    """Tell whether a table cell holds a number-like value.
+
+    Args:
+        cell: Cell text such as ``12``, ``$1,200.00``, ``-$5.00``, ``+13.3%`` or ``-``.
+
+    Returns:
+        True if the cell should be right-aligned.
+    """
     stripped = cell.strip().lstrip("+-").lstrip("$").rstrip("%").replace(",", "")
     return cell.strip() == "-" or stripped.replace(".", "", 1).isdigit()
 
@@ -86,6 +100,14 @@ def format_table(headers: Sequence[str], rows: Sequence[Sequence[object]]) -> st
     numeric = [bool(body) and all(_is_numeric(row[i]) for row in body) for i in range(len(headers))]
 
     def render(row: Sequence[str]) -> str:
+        """Render one row with each cell padded to its column width.
+
+        Args:
+            row: Cell texts of the row.
+
+        Returns:
+            The formatted line without trailing spaces.
+        """
         parts = [
             cell.rjust(w) if is_num else cell.ljust(w)
             for cell, w, is_num in zip(row, widths, numeric, strict=True)
@@ -116,6 +138,15 @@ class ConsoleApp:
         output_func: OutputFunc | None = None,
         charts_dir: Path = CHARTS_DIR,
     ) -> None:
+        """Store the tracker and build the menu dispatch table.
+
+        Args:
+            tracker: The data to work on.
+            data_path: JSON file used by "save".
+            input_func: Function used to read user input (None = built-in ``input``).
+            output_func: Function used to display text (None = built-in ``print``).
+            charts_dir: Where "generate charts" writes PNG files.
+        """
         self.tracker = tracker
         self.data_path = Path(data_path)
         # Resolved at call time, not as default arguments: defaults are evaluated once
@@ -144,7 +175,17 @@ class ConsoleApp:
 
     # ------------------------------------------------------------------ input helpers
     def ask(self, prompt: str) -> str:
-        """Read one line of input, turning end-of-input into a clean quit."""
+        """Read one line of input, turning end-of-input into a clean quit.
+
+        Args:
+            prompt: Text shown before the cursor.
+
+        Returns:
+            The answer without surrounding spaces.
+
+        Raises:
+            QuitRequested: If the input stream ends (Ctrl+D) or the user presses Ctrl+C.
+        """
         # Concept: user input — every keyboard read goes through this single method
         try:
             return self._input(prompt).strip()
@@ -152,7 +193,14 @@ class ConsoleApp:
             raise QuitRequested from exc
 
     def prompt_amount(self, prompt: str) -> float:
-        """Ask for a positive amount until the answer is valid."""
+        """Ask for a positive amount until the answer is valid.
+
+        Args:
+            prompt: Text shown to the user.
+
+        Returns:
+            The amount rounded to cents.
+        """
         # Concept: loop + decision — re-prompt until the user enters a valid amount
         while True:
             raw = self.ask(prompt)
@@ -162,7 +210,15 @@ class ConsoleApp:
                 self.out(f"  ✗ {exc}. Please try again.")
 
     def prompt_date(self, prompt: str, default: date | None = None) -> date:
-        """Ask for a ``YYYY-MM-DD`` date; an empty answer returns ``default``."""
+        """Ask for a ``YYYY-MM-DD`` date until the answer is valid.
+
+        Args:
+            prompt: Text shown to the user (the default is appended in brackets).
+            default: Date used when the answer is empty (default: today).
+
+        Returns:
+            The chosen date.
+        """
         default = default or date.today()
         while True:
             raw = self.ask(f"{prompt} [{default.isoformat()}]: ")
@@ -228,6 +284,13 @@ class ConsoleApp:
         """Show numbered options and return the chosen one.
 
         The user may type the number or the option text (case-insensitive).
+
+        Args:
+            prompt: Text shown after the list.
+            options: Choices to display.
+
+        Returns:
+            The selected option, exactly as written in ``options``.
         """
         for number, option in enumerate(options, start=1):
             self.out(f"   {number:>2}. {option}")
@@ -241,7 +304,14 @@ class ConsoleApp:
             self.out(f"  ✗ Please enter a number between 1 and {len(options)}.")
 
     def prompt_category(self, kind: str) -> str:
-        """Pick an existing category or type a new one."""
+        """Pick an existing category or type a new one.
+
+        Args:
+            kind: ``"expense"`` or ``"income"`` — selects which categories are offered.
+
+        Returns:
+            The category name as typed or chosen (normalized later by the model).
+        """
         known = (
             self.tracker.expense_categories()
             if kind == EXPENSE
@@ -257,7 +327,14 @@ class ConsoleApp:
         return choice
 
     def prompt_yes_no(self, prompt: str) -> bool:
-        """Return True for y/yes, False for n/no; re-ask otherwise."""
+        """Ask a yes/no question until the answer is y/yes or n/no.
+
+        Args:
+            prompt: The question (`` (y/n): `` is appended).
+
+        Returns:
+            True for yes, False for no.
+        """
         while True:
             raw = self.ask(f"{prompt} (y/n): ").lower()
             if raw in {"y", "yes"}:
@@ -267,7 +344,11 @@ class ConsoleApp:
             self.out("  ✗ Please answer y or n.")
 
     def pick_transaction(self) -> Transaction | None:
-        """Ask for a transaction id (showing the most recent ones first)."""
+        """Show recent transactions and ask for an id.
+
+        Returns:
+            The chosen transaction, or None if the user cancelled or the id is unknown.
+        """
         recent = self.tracker.sorted_transactions()[:10]
         if not recent:
             self.out("No transactions yet.")
@@ -284,12 +365,24 @@ class ConsoleApp:
 
     # ------------------------------------------------------------------ display helpers
     def heading(self, title: str) -> None:
-        """Print a section title."""
+        """Print a section title padded with ``=`` signs.
+
+        Args:
+            title: Section name.
+        """
         self.out("")
         self.out(f"=== {title} ".ljust(LINE_WIDTH, "="))
 
     @staticmethod
     def _transaction_table(transactions: Sequence[Transaction]) -> str:
+        """Format transactions as a text table.
+
+        Args:
+            transactions: Transactions to display.
+
+        Returns:
+            The table with id, date, kind, category, signed amount and description.
+        """
         rows = [
             [
                 t.id,

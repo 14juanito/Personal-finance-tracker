@@ -49,6 +49,11 @@ class Alert:
     ratio: float = 0.0
 
     def __str__(self) -> str:
+        """Format the alert for console output.
+
+        Returns:
+            The message prefixed by its level, e.g. ``"[WARNING] Groceries ..."``.
+        """
         return f"[{self.level}] {self.message}"
 
 
@@ -120,7 +125,13 @@ def check_budgets(
 
 
 def reached_milestone(progress: float) -> float | None:
-    """Return the highest milestone reached for a progress ratio, if any.
+    """Return the highest milestone reached for a progress ratio.
+
+    Args:
+        progress: Saved amount divided by the target (0.0 to 1.0).
+
+    Returns:
+        One of ``GOAL_MILESTONES`` (e.g. 0.5), or None below the first milestone.
 
     Example:
         >>> reached_milestone(0.6)
@@ -174,5 +185,14 @@ def check_goals(tracker: FinanceTracker, today: date | None = None) -> list[Aler
 def collect_alerts(
     tracker: FinanceTracker, month: str | None = None, today: date | None = None
 ) -> list[Alert]:
-    """Budget alerts followed by goal alerts, each group sorted by severity."""
+    """Budget alerts followed by goal alerts, each group sorted by severity.
+
+    Args:
+        tracker: The tracker holding budgets, goals and transactions.
+        month: ``YYYY-MM`` for the budget check (default: latest month with data).
+        today: Reference date for goal deadlines (default: today).
+
+    Returns:
+        All alerts, most severe first within each group.
+    """
     return check_budgets(tracker, month) + check_goals(tracker, today)

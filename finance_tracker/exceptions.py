@@ -43,7 +43,13 @@ class TransactionNotFoundError(FinanceTrackerError, KeyError):
     """Raised when no transaction matches the requested id."""
 
     def __str__(self) -> str:
-        # KeyError wraps its message in quotes; a plain message is friendlier in the UI.
+        """Return the plain message.
+
+        KeyError wraps its message in quotes; a plain message is friendlier in the UI.
+
+        Returns:
+            The error message without surrounding quotes.
+        """
         return str(self.args[0]) if self.args else "Transaction not found"
 
 

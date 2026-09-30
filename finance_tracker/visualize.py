@@ -54,7 +54,16 @@ _money = FuncFormatter(lambda value, _pos: f"${value:,.0f}")
 
 
 def _empty_figure(title: str, message: str = "No data to display", dpi: float = DPI) -> Figure:
-    """Return a figure that shows a message instead of an empty plot."""
+    """Return a figure that shows a message instead of an empty plot.
+
+    Args:
+        title: Chart title.
+        message: Text displayed in the middle of the figure.
+        dpi: Resolution of the figure.
+
+    Returns:
+        The matplotlib Figure.
+    """
     fig = Figure(figsize=FIGSIZE, dpi=dpi)
     ax = fig.add_subplot()
     ax.set_title(title)
@@ -250,7 +259,15 @@ def goals_progress(
 
 
 def save_figure(fig: Figure, path: Path) -> Path:
-    """Save a figure as PNG, creating the folder if needed."""
+    """Save a figure as PNG, creating the folder if needed.
+
+    Args:
+        fig: Figure to save.
+        path: Destination ``.png`` file.
+
+    Returns:
+        The path written.
+    """
     # Concept: file handling — pathlib creates the whole folder tree on demand
     path.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(path, dpi=DPI, bbox_inches="tight")

@@ -50,7 +50,14 @@ ALERT_COLORS = {"EXCEEDED": "#C62828", "WARNING": "#EF6C00", "INFO": "#1565C0", 
 
 
 def money(amount: float) -> str:
-    """Format a number as dollars (``-$12.50``)."""
+    """Format a number as dollars.
+
+    Args:
+        amount: Value to format.
+
+    Returns:
+        A string such as ``-$12.50``.
+    """
     return f"{'-' if amount < 0 else ''}${abs(amount):,.2f}"
 
 
@@ -65,6 +72,13 @@ class FinanceApp(ttk.Frame):
     """
 
     def __init__(self, master: tk.Tk, tracker: FinanceTracker, data_path: Path) -> None:
+        """Build the window, its menu, the four tabs and the status bar.
+
+        Args:
+            master: The Tk root window.
+            tracker: Data to display and edit.
+            data_path: JSON file used by File ▸ Save.
+        """
         super().__init__(master, padding=PAD)
         self.master = master
         self.tracker = tracker
@@ -110,10 +124,18 @@ class FinanceApp(ttk.Frame):
         return scale
 
     def px(self, pixels: int) -> int:
-        """Convert a size designed for a 96-dpi screen into real pixels."""
+        """Convert a size designed for a 96-dpi screen into real pixels.
+
+        Args:
+            pixels: Size on a standard screen.
+
+        Returns:
+            The size multiplied by the HiDPI scale factor.
+        """
         return int(pixels * self.scale)
 
     def _build_menu(self) -> None:
+        """Create the File menu and the Ctrl+S shortcut."""
         menubar = tk.Menu(self.master)
         file_menu = tk.Menu(menubar, tearoff=False)
         file_menu.add_command(label="Save", accelerator="Ctrl+S", command=self.save)
@@ -129,6 +151,7 @@ class FinanceApp(ttk.Frame):
         self.master.bind("<Control-s>", lambda _e: self.save())
 
     def _build_transactions_tab(self) -> None:
+        """Create the entry form, the search/filter bar and the transaction Treeview."""
         tab = ttk.Frame(self.notebook, padding=PAD)
         self.notebook.add(tab, text="Transactions")
 
@@ -216,6 +239,7 @@ class FinanceApp(ttk.Frame):
         self.sort_column, self.sort_reverse = "date", True
 
     def _build_summary_tab(self) -> None:
+        """Create the KPI boxes, the monthly table and the alert list."""
         tab = ttk.Frame(self.notebook, padding=PAD)
         self.notebook.add(tab, text="Summary")
         kpi_frame = ttk.Frame(tab)
@@ -245,6 +269,7 @@ class FinanceApp(ttk.Frame):
         self.alert_list.pack(fill="both", expand=True)
 
     def _build_charts_tab(self) -> None:
+        """Create the chart selector, the save button and the canvas area."""
         tab = ttk.Frame(self.notebook, padding=PAD)
         self.notebook.add(tab, text="Charts")
         bar = ttk.Frame(tab)
@@ -261,6 +286,7 @@ class FinanceApp(ttk.Frame):
         self.chart_frame.pack(fill="both", expand=True, pady=(PAD, 0))
 
     def _build_budgets_tab(self) -> None:
+        """Create the budget table and form, and the savings-goal table and form."""
         tab = ttk.Frame(self.notebook, padding=PAD)
         self.notebook.add(tab, text="Budgets & Goals")
         left = ttk.LabelFrame(tab, text="Monthly budgets (latest month)", padding=PAD)
@@ -324,6 +350,7 @@ class FinanceApp(ttk.Frame):
         )
 
     def _update_category_choices(self) -> None:
+        """Offer expense or income categories depending on the selected type."""
         kind = self.kind_var.get()
         values = (
             self.tracker.expense_categories()
@@ -373,7 +400,11 @@ class FinanceApp(ttk.Frame):
         self.count_label.configure(text=f"{len(rows)} shown  •  net {money(net)}")
 
     def sort_by(self, column: str) -> None:
-        """Sort the table by a column; clicking the same header again reverses it."""
+        """Sort the table by a column; clicking the same header again reverses it.
+
+        Args:
+            column: Treeview column name, e.g. ``"amount"``.
+        """
         if self.sort_column == column:
             self.sort_reverse = not self.sort_reverse
         else:
@@ -463,9 +494,19 @@ class FinanceApp(ttk.Frame):
 
     # ------------------------------------------------------------------ actions
     def _error(self, exc: Exception) -> None:
+        """Show an error dialog.
+
+        Args:
+            exc: The exception whose message is displayed.
+        """
         messagebox.showerror(WINDOW_TITLE, str(exc), parent=self.master)
 
     def _changed(self, message: str) -> None:
+        """Mark the data as modified, refresh every tab and show a status message.
+
+        Args:
+            message: Short description of the change.
+        """
         self.unsaved = True
         self.refresh()
         self.status.set(f"{message}  •  {self.status.get()}")
@@ -550,7 +591,11 @@ class FinanceApp(ttk.Frame):
             )
 
     def save(self) -> bool:
-        """Save to the JSON data file. Returns True on success."""
+        """Save to the JSON data file.
+
+        Returns:
+            True on success, False if an error dialog was shown.
+        """
         try:
             self.tracker.save_json(self.data_path)
         except FinanceTrackerError as exc:

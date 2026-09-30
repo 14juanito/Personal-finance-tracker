@@ -249,7 +249,11 @@ def save_csv(path: Path | str, transactions: list[Transaction]) -> Path:
     path = Path(path)
 
     def write_rows(handle: Any) -> None:
-        """Write the header and one row per transaction to an open file."""
+        """Write the header and one row per transaction.
+
+        Args:
+            handle: Text file opened by ``_atomic_write``.
+        """
         writer = csv.DictWriter(handle, fieldnames=CSV_FIELDS)
         writer.writeheader()
         for transaction in transactions:

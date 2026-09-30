@@ -11,6 +11,9 @@ Package layout:
     cli          Interactive console menu.
     gui_tkinter  Tkinter desktop interface.
     dashboard    Streamlit interactive dashboard.
+
+Course concepts illustrated:
+    - Functions and OOP: the package is split into small modules, each with one job.
 """
 
 __version__ = "1.0.0"

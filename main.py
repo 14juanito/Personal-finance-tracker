@@ -8,6 +8,10 @@ Usage:
 
     streamlit run finance_tracker/dashboard.py    Interactive web dashboard.
 
+Main elements:
+    run_demo: the non-interactive walkthrough used by ``demo`` mode.
+    build_parser / main: command-line parsing and dispatch to the three modes.
+
 Options:
     --data PATH     JSON data file (cli/gui: your data; demo: the dataset to analyse).
     --output DIR    Folder for demo charts and exports (default: output/).
@@ -51,6 +55,11 @@ def run_demo(
     out = output_func
 
     def section(title: str) -> None:
+        """Print a numbered section title.
+
+        Args:
+            title: Section name.
+        """
         out("")
         out(f"── {title} ".ljust(72, "─"))
 
@@ -162,7 +171,11 @@ def run_demo(
 
 
 def build_parser() -> argparse.ArgumentParser:
-    """Create the command-line argument parser."""
+    """Create the command-line argument parser.
+
+    Returns:
+        Parser accepting a mode (cli, gui, demo) and the ``--data``/``--output`` options.
+    """
     parser = argparse.ArgumentParser(
         prog="python main.py",
         description="Personal Finance Tracker — DATA 333, Bellevue College",
@@ -177,8 +190,11 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     """Parse arguments and launch the requested mode.
 
+    Args:
+        argv: Command-line arguments (None = ``sys.argv[1:]``).
+
     Returns:
-        Process exit code (0 = success).
+        Process exit code: 0 on success, 1 if the demo data file is missing.
     """
     args = build_parser().parse_args(argv)
     # Symbols such as "✓" or "█" cannot be encoded by some Windows consoles; replace

@@ -195,7 +195,7 @@ class Transaction:
         """Serialize the transaction to a JSON/CSV friendly dictionary.
 
         Returns:
-            A dict with string/float values only.
+            A dict with string/float values only (the date as ``YYYY-MM-DD``).
         """
         return {
             "id": self.id,
@@ -211,7 +211,8 @@ class Transaction:
         """Build a transaction from a dictionary (e.g. one JSON object or CSV row).
 
         Args:
-            data: Mapping with at least ``date``, ``amount``, ``kind`` and ``category``.
+            data: Mapping with at least ``date``, ``amount``, ``kind`` and ``category``;
+                ``description`` and ``id`` are optional.
 
         Returns:
             A validated ``Transaction``.
@@ -313,7 +314,11 @@ class SavingsGoal:
         return self.saved
 
     def to_dict(self) -> dict[str, Any]:
-        """Serialize the goal to a JSON friendly dictionary."""
+        """Serialize the goal to a JSON friendly dictionary.
+
+        Returns:
+            A dict with ``name``, ``target``, ``saved`` and ``deadline`` (ISO string or None).
+        """
         return {
             "name": self.name,
             "target": self.target,
@@ -324,6 +329,12 @@ class SavingsGoal:
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> SavingsGoal:
         """Build a goal from a dictionary.
+
+        Args:
+            data: Mapping with at least ``name`` and ``target``.
+
+        Returns:
+            A validated ``SavingsGoal``.
 
         Raises:
             InvalidGoalError: If a required key is missing or a value is invalid.
@@ -376,12 +387,22 @@ class Budget:
         return spent / self.monthly_limit
 
     def to_dict(self) -> dict[str, Any]:
-        """Serialize the budget to a JSON friendly dictionary."""
+        """Serialize the budget to a JSON friendly dictionary.
+
+        Returns:
+            A dict with ``category`` and ``monthly_limit``.
+        """
         return {"category": self.category, "monthly_limit": self.monthly_limit}
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> Budget:
         """Build a budget from a dictionary.
+
+        Args:
+            data: Mapping with ``category`` and ``monthly_limit``.
+
+        Returns:
+            A validated ``Budget``.
 
         Raises:
             InvalidBudgetError: If a required key is missing or a value is invalid.

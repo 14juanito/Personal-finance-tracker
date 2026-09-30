@@ -165,7 +165,15 @@ def spending_trend(df: pd.DataFrame, window: int = DEFAULT_TREND_WINDOW) -> pd.D
 
 
 def category_by_month(df: pd.DataFrame) -> pd.DataFrame:
-    """Expense totals as a month x category table (missing combinations = 0)."""
+    """Expense totals as a month x category table.
+
+    Args:
+        df: DataFrame from ``to_dataframe``.
+
+    Returns:
+        Pivot table indexed by month, one column per category, missing
+        combinations filled with 0 (empty DataFrame when there are no expenses).
+    """
     expenses = df[df["kind"] == EXPENSE]
     if expenses.empty:
         return pd.DataFrame()
@@ -179,6 +187,10 @@ def category_by_month(df: pd.DataFrame) -> pd.DataFrame:
 def top_expenses(df: pd.DataFrame, n: int = 5) -> pd.DataFrame:
     """The ``n`` largest single expenses.
 
+    Args:
+        df: DataFrame from ``to_dataframe``.
+        n: Number of rows to return.
+
     Returns:
         DataFrame with ``date``, ``category``, ``description`` and ``amount``.
     """
@@ -188,6 +200,9 @@ def top_expenses(df: pd.DataFrame, n: int = 5) -> pd.DataFrame:
 
 def savings_rate(df: pd.DataFrame) -> float:
     """Overall savings rate in % ((income - expenses) / income).
+
+    Args:
+        df: DataFrame from ``to_dataframe``.
 
     Returns:
         The rate rounded to 1 decimal, or 0.0 when there is no income.
@@ -202,9 +217,12 @@ def savings_rate(df: pd.DataFrame) -> float:
 def kpis(df: pd.DataFrame) -> dict[str, float]:
     """Headline numbers for dashboards.
 
+    Args:
+        df: DataFrame from ``to_dataframe``.
+
     Returns:
         Dict with ``income``, ``expense``, ``net``, ``savings_rate``,
-        ``avg_monthly_expense`` and ``transactions``.
+        ``avg_monthly_expense`` and ``transactions`` (all as floats).
     """
     income = float(df.loc[df["kind"] == INCOME, "amount"].sum())
     expense = float(df.loc[df["kind"] == EXPENSE, "amount"].sum())
