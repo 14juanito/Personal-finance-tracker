@@ -360,7 +360,7 @@ def build(output: Path = OUTPUT, skip_tests: bool = False) -> Path:
                      "models and a single storage module."),
         ("Reuse. ", "The same analytics and chart functions feed the CLI, GUI, dashboard "
                     "and demo."),
-        ("Testable. ", "No logic lives in the UI, so it is unit tested without a screen."),
+        ("Testable. ", "Business rules live outside the UI, so they are unit tested without a screen."),
         ("Portable. ", "All paths come from pathlib in config.py — nothing hard-coded."),
     ], size=15, spacing=14)  # fmt: skip
     s.notes_slide.notes_text_frame.text = (

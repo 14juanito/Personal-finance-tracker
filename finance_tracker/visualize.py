@@ -53,6 +53,18 @@ DPI = 120
 _money = FuncFormatter(lambda value, _pos: f"${value:,.0f}")
 
 
+def escape_dollars(text: str) -> str:
+    """Escape "$" in user-supplied text so matplotlib never renders it as math.
+
+    Args:
+        text: A category or goal name typed by the user.
+
+    Returns:
+        The text with every ``$`` written as ``\\$``.
+    """
+    return text.replace("$", r"\$")
+
+
 def _empty_figure(title: str, message: str = "No data to display", dpi: float = DPI) -> Figure:
     """Return a figure that shows a message instead of an empty plot.
 
@@ -109,7 +121,7 @@ def category_pie(df: pd.DataFrame, title: str = "Expenses by Category", dpi: flo
     )
     ax.legend(
         wedges,
-        [f"{name}  ${value:,.0f}" for name, value in totals.items()],
+        [f"{escape_dollars(name)}  ${value:,.0f}" for name, value in totals.items()],
         loc="center left",
         bbox_to_anchor=(1.0, 0.5),
         frameon=False,
@@ -231,7 +243,7 @@ def goals_progress(
         return _empty_figure(title, "No savings goals yet", dpi)
     fig = Figure(figsize=FIGSIZE, dpi=dpi)
     ax = fig.add_subplot()
-    names = [g.name for g in goals]
+    names = [escape_dollars(g.name) for g in goals]
     progress = [g.progress * 100 for g in goals]
     ax.barh(names, [100] * len(goals), color="#E0E0E0")
     ax.barh(

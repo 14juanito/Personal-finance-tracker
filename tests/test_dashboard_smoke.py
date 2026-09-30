@@ -63,3 +63,9 @@ def test_corrupted_user_file_is_reported_not_renamed(
     assert not app.exception
     assert "Could not load the file" in app.error[0].value
     assert user_file.exists()  # viewing must never move the user's data
+
+
+def test_negative_net_is_formatted_with_leading_minus(no_user_data: None) -> None:
+    app = AppTest.from_file(DASHBOARD, default_timeout=60).run()
+    app.sidebar.radio[1].set_value("Expenses").run()
+    assert app.metric[2].value.startswith("-$")

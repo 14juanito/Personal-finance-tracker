@@ -50,3 +50,11 @@ def test_goal_labels_escape_dollar_signs(tracker: FinanceTracker) -> None:
     fig = visualize.goals_progress(tracker.goals.values())
     labels = [t.get_text() for t in fig.axes[0].texts]
     assert labels == [r"55%  (\$1,100 / \$2,000)"]
+
+
+def test_user_names_with_dollar_signs_are_escaped() -> None:
+    tracker = FinanceTracker()
+    tracker.add_goal("Save $5 then $10", 100, saved=10)
+    fig = visualize.goals_progress(tracker.goals.values())
+    labels = [t.get_text() for t in fig.axes[0].get_yticklabels()]
+    assert labels == [r"Save \$5 then \$10"]

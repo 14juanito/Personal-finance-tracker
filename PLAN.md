@@ -52,5 +52,5 @@ Commit and a push to `origin/main`.
 ## Phase 8 — Quality gate
 - [x] `pytest --cov` green, coverage ≥ 80 % on business logic
 - [x] `ruff check .` / `ruff format --check .` clean
-- [ ] Independent sub-agent audit against the specification; fix findings
-- [ ] Tag `v1.0.0` and push tags
+- [x] Independent sub-agent audit against the specification; fix findings (2 passes)
+- [x] Tag `v1.0.0` and push tags

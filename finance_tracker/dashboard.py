@@ -187,7 +187,7 @@ def kpi_row(df: pd.DataFrame) -> None:
     cols = st.columns(5)
     cols[0].metric("Income", f"${k['income']:,.0f}")
     cols[1].metric("Expenses", f"${k['expense']:,.0f}", delta_expense, delta_color="inverse")
-    cols[2].metric("Net savings", f"${k['net']:,.0f}", delta_net)
+    cols[2].metric("Net savings", signed_money(k["net"]).lstrip("+"), delta_net)
     # Without income in the selection (e.g. "Expenses" only) a rate is meaningless.
     has_income = k["income"] > 0
     cols[3].metric("Savings rate", f"{k['savings_rate']:.1f}%" if has_income else "n/a")
