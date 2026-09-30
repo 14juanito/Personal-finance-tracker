@@ -36,6 +36,7 @@ import streamlit as st  # noqa: E402
 from finance_tracker import alerts, analytics  # noqa: E402
 from finance_tracker.config import SAMPLE_JSON, USER_DATA_FILE  # noqa: E402
 from finance_tracker.exceptions import FinanceTrackerError  # noqa: E402
+from finance_tracker.models import EXPENSE, INCOME  # noqa: E402
 from finance_tracker.tracker import FinanceTracker  # noqa: E402
 
 PAGE_TITLE = "Personal Finance Dashboard"
@@ -58,12 +59,23 @@ def load_from_path(path: str, _mtime: float) -> tuple[FinanceTracker, list[str]]
 
     Returns:
         ``(tracker, warnings)``.
+
+    Raises:
+        StorageError: If the file is corrupted. The dashboard only *views* data, so it
+            reports the problem instead of renaming the user's file.
     """
-    return FinanceTracker.load_json(path)
+    return FinanceTracker.load_json(path, recover=False)
 
 
 def load_upload(name: str, content: bytes) -> tuple[FinanceTracker, list[str]]:
     """Load an uploaded CSV or JSON file through the normal storage code.
+
+    Args:
+        name: Original file name (its extension selects the parser).
+        content: Raw bytes of the uploaded file.
+
+    Returns:
+        ``(tracker, warnings)`` — invalid rows are skipped and listed in ``warnings``.
 
     Raises:
         FinanceTrackerError: If the file cannot be parsed.
@@ -76,15 +88,17 @@ def load_upload(name: str, content: bytes) -> tuple[FinanceTracker, list[str]]:
         path.write_bytes(content)
         if suffix == ".csv":
             return FinanceTracker.from_csv(path)
-        # recover=False semantics: a broken upload must be reported, not silently emptied.
-        tracker, warnings = FinanceTracker.load_json(path)
-        if any("corrupted" in w for w in warnings):
-            raise FinanceTrackerError(warnings[0])
-        return tracker, warnings
+        # A broken upload must be reported, not silently replaced by empty data.
+        return FinanceTracker.load_json(path, recover=False)
 
 
 def choose_data() -> tuple[FinanceTracker, str] | None:
-    """Sidebar: pick the data source and load it."""
+    """Sidebar: pick the data source and load it.
+
+    Returns:
+        ``(tracker, label)`` for the chosen source, or None when nothing could be
+        loaded (an explanation is already shown on the page).
+    """
     st.sidebar.header("Data")
     options = [SOURCE_SAMPLE, SOURCE_UPLOAD]
     if USER_DATA_FILE.exists():
@@ -100,6 +114,9 @@ def choose_data() -> tuple[FinanceTracker, str] | None:
             label = upload.name
         else:
             path = USER_DATA_FILE if source == SOURCE_SAVED else SAMPLE_JSON
+            if not path.exists():
+                st.error(f"Data file not found: {path.name}")
+                return None
             tracker, warnings = load_from_path(str(path), path.stat().st_mtime)
             label = path.name
     except FinanceTrackerError as exc:
@@ -146,7 +163,9 @@ def kpi_row(df: pd.DataFrame) -> None:
     cols[0].metric("Income", f"${k['income']:,.0f}")
     cols[1].metric("Expenses", f"${k['expense']:,.0f}", delta_expense, delta_color="inverse")
     cols[2].metric("Net savings", f"${k['net']:,.0f}", delta_net)
-    cols[3].metric("Savings rate", f"{k['savings_rate']:.1f}%")
+    # Without income in the selection (e.g. "Expenses" only) a rate is meaningless.
+    has_income = k["income"] > 0
+    cols[3].metric("Savings rate", f"{k['savings_rate']:.1f}%" if has_income else "n/a")
     cols[4].metric("Avg. spend / month", f"${k['avg_monthly_expense']:,.0f}")
 
 
@@ -251,6 +270,7 @@ def budgets_tab(tracker: FinanceTracker) -> None:
     if not tracker.budgets or not months:
         st.info("No budgets defined for this data.")
         return
+    st.caption("Budgets are monthly, so this tab uses the whole dataset, not the sidebar filters.")
     month = st.selectbox("Month", months[::-1])
     for alert in alerts.check_budgets(tracker, month, include_ok=True):
         st.markdown(f"{LEVEL_ICONS[alert.level]} **{alert.level}** — {md_escape(alert.message)}")
@@ -262,6 +282,7 @@ def goals_tab(tracker: FinanceTracker) -> None:
     if not tracker.goals:
         st.info("No savings goals in this data.")
         return
+    st.caption("Goals track saved money, not transactions: the sidebar filters do not apply.")
     cols = st.columns(len(tracker.goals))
     for col, goal in zip(cols, tracker.goals.values(), strict=True):
         with col:
@@ -312,9 +333,9 @@ def main() -> None:
     # Concept: pandas — the sidebar filters become boolean masks on the DataFrame
     df = analytics.filter_dataframe(df_all, start, end, categories)
     if kind == "Expenses":
-        df = df[df["kind"] == "expense"]
+        df = df[df["kind"] == EXPENSE]
     elif kind == "Income":
-        df = df[df["kind"] == "income"]
+        df = df[df["kind"] == INCOME]
     st.caption(f"{label} · {start} → {end} · {len(df)} of {len(df_all)} transactions")
     if df.empty:
         st.warning("No transactions match the filters.")

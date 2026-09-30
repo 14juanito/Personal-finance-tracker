@@ -27,7 +27,14 @@ import pandas as pd
 from finance_tracker import alerts, analytics, visualize
 from finance_tracker.config import CHARTS_DIR, OUTPUT_DIR, SAMPLE_JSON, USER_DATA_FILE
 from finance_tracker.exceptions import FinanceTrackerError, ValidationError
-from finance_tracker.models import EXPENSE, INCOME, Transaction, parse_amount, parse_date
+from finance_tracker.models import (
+    EXPENSE,
+    INCOME,
+    MAX_DESCRIPTION_LENGTH,
+    Transaction,
+    parse_amount,
+    parse_date,
+)
 from finance_tracker.tracker import FinanceTracker
 
 InputFunc = Callable[[str], str]
@@ -166,6 +173,57 @@ class ConsoleApp:
             except ValidationError as exc:
                 self.out(f"  ✗ {exc}.")
 
+    def prompt_optional_date(self, prompt: str) -> date | None:
+        """Ask for an optional ``YYYY-MM-DD`` date, re-asking while it is invalid.
+
+        Args:
+            prompt: Text shown to the user.
+
+        Returns:
+            The date, or None when the answer is blank.
+        """
+        while True:
+            raw = self.ask(prompt)
+            if not raw:
+                return None
+            try:
+                return parse_date(raw)
+            except ValidationError as exc:
+                self.out(f"  ✗ {exc}.")
+
+    def prompt_optional_amount(self, prompt: str) -> float | None:
+        """Ask for an optional positive amount, re-asking while it is invalid.
+
+        Args:
+            prompt: Text shown to the user.
+
+        Returns:
+            The amount, or None when the answer is blank.
+        """
+        while True:
+            raw = self.ask(prompt)
+            if not raw:
+                return None
+            try:
+                return parse_amount(raw)
+            except ValidationError as exc:
+                self.out(f"  ✗ {exc}.")
+
+    def prompt_description(self) -> str:
+        """Ask for an optional description, re-asking while it is too long.
+
+        Checking the length here (not only in the model) means the user does not lose
+        everything typed so far because of one over-long answer.
+
+        Returns:
+            The description (possibly empty).
+        """
+        while True:
+            text = self.ask("Description (optional): ")
+            if len(text) <= MAX_DESCRIPTION_LENGTH:
+                return text
+            self.out(f"  ✗ At most {MAX_DESCRIPTION_LENGTH} characters, please shorten it.")
+
     def prompt_choice(self, prompt: str, options: Sequence[str]) -> str:
         """Show numbered options and return the chosen one.
 
@@ -286,7 +344,7 @@ class ConsoleApp:
         amount = self.prompt_amount("Amount ($): ")
         when = self.prompt_date("Date (YYYY-MM-DD)")
         category = self.prompt_category(kind)
-        description = self.ask("Description (optional): ")
+        description = self.prompt_description()
         transaction = self.tracker.add_transaction(when, amount, kind, category, description)
         self.unsaved_changes = True
         self.out(
@@ -316,7 +374,7 @@ class ConsoleApp:
                 break
 
     def search_transactions(self) -> None:
-        """Menu 3 — text search or filter by kind, category and dates."""
+        """Menu 3 — text search, or filter by kind, category, dates and amount."""
         self.heading("Search / filter")
         mode = self.prompt_choice("Search by: ", ["Text", "Filters"])
         if mode == "Text":
@@ -324,13 +382,17 @@ class ConsoleApp:
         else:
             kind = self.prompt_choice("Kind: ", ["any", EXPENSE, INCOME])
             category = self.ask("Category (blank = all): ")
-            start = self.ask("From date YYYY-MM-DD (blank = no limit): ")
-            end = self.ask("To date YYYY-MM-DD (blank = no limit): ")
+            start = self.prompt_optional_date("From date YYYY-MM-DD (blank = no limit): ")
+            end = self.prompt_optional_date("To date YYYY-MM-DD (blank = no limit): ")
+            low = self.prompt_optional_amount("Minimum amount (blank = none): ")
+            high = self.prompt_optional_amount("Maximum amount (blank = none): ")
             results = self.tracker.filter(
                 kind=None if kind == "any" else kind,
                 categories=[category] if category else None,
-                start=start or None,
-                end=end or None,
+                start=start,
+                end=end,
+                min_amount=low,
+                max_amount=high,
             )
         if not results:
             self.out("No matching transactions.")
@@ -442,6 +504,10 @@ class ConsoleApp:
             self.out(f"Budget status for {month}:")
             for alert in status:
                 self.out(f"  {alert}")
+        elif self.tracker.budgets:
+            # Budgets exist but there is no spending yet to compare them with.
+            for budget in sorted(self.tracker.budgets.values(), key=lambda b: b.category):
+                self.out(f"  {budget.category}: {format_money(budget.monthly_limit)} per month")
         else:
             self.out("No budgets defined yet.")
         for alert in alerts.check_goals(self.tracker):
@@ -554,12 +620,21 @@ class ConsoleApp:
         self.out(f"  ✓ Saved to {path}")
 
     def quit(self) -> None:
-        """Menu 0 — save if needed, then stop the loop."""
+        """Menu 0 — save if needed, then stop the loop.
+
+        If saving fails, the user decides whether to quit anyway, so changes are never
+        lost silently. When the input stream has ended, nobody can answer: quit.
+        """
         if self.unsaved_changes:
             try:
                 self.save()
             except FinanceTrackerError as exc:
                 self.out(f"  ✗ Could not save: {exc}")
+                try:
+                    if not self.prompt_yes_no("Quit without saving?"):
+                        return
+                except QuitRequested:
+                    pass
         self.out("Goodbye!")
         self.running = False
 

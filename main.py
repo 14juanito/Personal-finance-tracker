@@ -21,6 +21,7 @@ Course concepts illustrated:
 from __future__ import annotations
 
 import argparse
+import sys
 from collections.abc import Callable
 from pathlib import Path
 
@@ -62,7 +63,8 @@ def run_demo(
     out("PERSONAL FINANCE TRACKER — DEMO")
     out(f"Dataset: {Path(data_file).name}  |  {len(tracker.transactions)} transactions")
     if months:
-        out(f"Period:  {months[0]} → {months[-1]}  |  {len(tracker.categories)} categories")
+        used = {t.category for t in tracker.transactions}
+        out(f"Period:  {months[0]} → {months[-1]}  |  {len(used)} categories used")
 
     section("1. Overall summary")
     k = analytics.kpis(df)
@@ -179,6 +181,10 @@ def main(argv: list[str] | None = None) -> int:
         Process exit code (0 = success).
     """
     args = build_parser().parse_args(argv)
+    # Symbols such as "✓" or "█" cannot be encoded by some Windows consoles; replace
+    # them with "?" instead of crashing with UnicodeEncodeError.
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(errors="replace")
     # Concept: decision structure — one branch per execution mode
     if args.mode == "cli":
         from finance_tracker import cli
@@ -190,7 +196,11 @@ def main(argv: list[str] | None = None) -> int:
 
         gui_tkinter.run(args.data or USER_DATA_FILE)
     else:
-        run_demo(args.data or SAMPLE_JSON, args.output)
+        data_file = args.data or SAMPLE_JSON
+        if not data_file.exists():
+            print(f"Error: data file not found: {data_file}", file=sys.stderr)
+            return 1
+        run_demo(data_file, args.output)
     return 0
 
 

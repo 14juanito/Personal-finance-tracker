@@ -388,14 +388,23 @@ class FinanceTracker:
         return state.warnings
 
     @classmethod
-    def load_json(cls, path: Path | str) -> tuple[FinanceTracker, list[str]]:
+    def load_json(cls, path: Path | str, recover: bool = True) -> tuple[FinanceTracker, list[str]]:
         """Create a tracker from a JSON file.
 
+        Args:
+            path: JSON data file.
+            recover: When True (default) a corrupted file is backed up and an empty
+                tracker is returned; when False a ``StorageError`` is raised and the
+                file is left untouched (used by read-only viewers such as the dashboard).
+
         Returns:
-            A tuple ``(tracker, warnings)``; a missing or corrupted file yields an
-            empty tracker and a warning instead of an exception.
+            A tuple ``(tracker, warnings)``; a missing file yields an empty tracker
+            and a warning instead of an exception.
+
+        Raises:
+            StorageError: If the file is unreadable, or corrupted and ``recover`` is False.
         """
-        state = storage.load_json(path)
+        state = storage.load_json(path, recover=recover)
         tracker = cls(state.transactions)
         tracker.budgets = state.budgets
         tracker.goals = state.goals

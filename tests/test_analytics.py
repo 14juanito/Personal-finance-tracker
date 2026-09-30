@@ -94,3 +94,15 @@ def test_empty_dataframe_is_handled() -> None:
     assert analytics.top_expenses(empty).empty
     assert analytics.savings_rate(empty) == 0.0
     assert analytics.kpis(empty)["avg_monthly_expense"] == 0.0
+
+
+def test_trend_includes_months_without_expenses() -> None:
+    tracker = FinanceTracker()
+    tracker.add_transaction("2025-01-10", 100, "expense", "Food")
+    tracker.add_transaction("2025-02-01", 900, "income", "Salary")  # no expense in Feb
+    tracker.add_transaction("2025-04-10", 200, "expense", "Food")
+    trend = analytics.spending_trend(analytics.to_dataframe(tracker.transactions))
+    assert list(trend.index) == ["2025-01", "2025-02", "2025-03", "2025-04"]
+    assert list(trend["expense"]) == [100, 0, 0, 200]
+    assert trend.loc["2025-02", "mom_change_pct"] == -100
+    assert math.isnan(trend.loc["2025-04", "mom_change_pct"])  # growth from $0

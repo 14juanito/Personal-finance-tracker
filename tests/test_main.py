@@ -47,3 +47,10 @@ def test_cli_and_gui_modes_dispatch(monkeypatch: pytest.MonkeyPatch, tmp_path: P
     main.main(["cli", "--data", str(tmp_path / "a.json")])
     main.main(["gui", "--data", str(tmp_path / "b.json")])
     assert calls == [("cli", tmp_path / "a.json"), ("gui", tmp_path / "b.json")]
+
+
+def test_demo_with_missing_file_exits_with_error(
+    tmp_path: Path, capsys: pytest.CaptureFixture
+) -> None:
+    assert main.main(["demo", "--data", str(tmp_path / "typo.json")]) == 1
+    assert "data file not found" in capsys.readouterr().err

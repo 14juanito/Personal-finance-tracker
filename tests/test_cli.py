@@ -90,13 +90,14 @@ def test_list_search_and_filter(tracker: FinanceTracker, tmp_path: Path) -> None
     answers = [
         "2",
         "3", "Text", "rent",
-        "3", "Filters", "expense", "Groceries", "2025-02-01", "",
+        "3", "Filters", "expense", "Groceries", "2025-02-31", "2025-02-01", "", "", "",
         "3", "Text", "zzz",
         "0",
     ]  # fmt: skip
     app, script = make_app(tracker, answers, tmp_path)
     app.run()
     assert "Weekly shop" in script.text
+    assert "Invalid date '2025-02-31'" in script.text
     assert "2 result(s), net total -$2,400.00" in script.text
     assert "1 result(s), net total -$420.00" in script.text
     assert "No matching transactions." in script.text
@@ -207,3 +208,37 @@ def test_format_helpers() -> None:
     assert cli.format_money(-1234.5) == "-$1,234.50"
     table = cli.format_table(["Name", "Amount"], [["a", "$1.00"], ["bb", "$10.00"]])
     assert table.splitlines()[2] == "a      $1.00"
+
+
+def test_amount_filter_and_long_description(tracker: FinanceTracker, tmp_path: Path) -> None:
+    answers = [
+        "3", "Filters", "any", "", "", "", "abc", "400", "",
+        "1", "expense", "12", "2025-02-02", "Groceries", "x" * 130, "short note",
+        "0",
+    ]  # fmt: skip
+    app, script = make_app(tracker, answers, tmp_path)
+    app.run()
+    # Amounts >= 400 in the fixture: 3000, 1200, 3000, 1200, 420, 500.
+    assert "6 result(s)" in script.text
+    assert "not a number" in script.text
+    assert "At most 120 characters" in script.text
+    assert tracker.search("short note")[0].amount == 12
+
+
+def test_budgets_listed_without_transactions(tmp_path: Path) -> None:
+    tracker = FinanceTracker()
+    tracker.set_budget("Groceries", 300)
+    app, script = make_app(tracker, ["8", "Back", "0"], tmp_path)
+    app.run()
+    assert "Groceries: $300.00 per month" in script.text
+
+
+def test_quit_when_save_fails_asks_first(tracker: FinanceTracker, tmp_path: Path) -> None:
+    blocker = tmp_path / "file.txt"
+    blocker.write_text("not a folder", encoding="utf-8")
+    script = Script(["0", "n", "0", "y"])
+    app = cli.ConsoleApp(tracker, blocker / "data.json", script.input, script.print)
+    app.unsaved_changes = True
+    app.run()
+    assert script.text.count("Could not save") == 2
+    assert script.text.count("Goodbye!") == 1

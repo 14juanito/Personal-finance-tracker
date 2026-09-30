@@ -138,8 +138,10 @@ def spending_trend(df: pd.DataFrame, window: int = DEFAULT_TREND_WINDOW) -> pd.D
         window: Number of months in the rolling average.
 
     Returns:
-        DataFrame indexed by month with ``expense``, ``rolling_avg`` and
-        ``mom_change_pct`` (NaN for the first month, which has no predecessor).
+        DataFrame indexed by every calendar month between the first and last
+        transaction, with ``expense``, ``rolling_avg`` (average of up to ``window``
+        months — the first months use the ones available) and ``mom_change_pct``
+        (NaN for the first month, which has no predecessor).
     """
     expenses = df[df["kind"] == EXPENSE]
     if expenses.empty:
@@ -149,9 +151,16 @@ def spending_trend(df: pd.DataFrame, window: int = DEFAULT_TREND_WINDOW) -> pd.D
             dtype=float,
         )
     trend = expenses.groupby("month")["amount"].sum().to_frame("expense")
+    # A month with no expenses must still count as a month (with 0 spent); otherwise
+    # "month over month" could silently compare January with April.
+    all_months = pd.period_range(df["month"].min(), df["month"].max(), freq="M")
+    trend = trend.reindex(all_months.strftime("%Y-%m"), fill_value=0.0)
+    trend.index.name = "month"
     # Concept: pandas — rolling window smooths out one-off spikes in spending
     trend["rolling_avg"] = trend["expense"].rolling(window=window, min_periods=1).mean()
-    trend["mom_change_pct"] = trend["expense"].pct_change() * 100
+    change = trend["expense"].pct_change() * 100
+    # Growth from a $0 month is infinite, which is meaningless to display.
+    trend["mom_change_pct"] = change.replace([float("inf"), float("-inf")], float("nan"))
     return trend.round(2)
 
 

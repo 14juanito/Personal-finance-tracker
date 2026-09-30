@@ -35,6 +35,8 @@ def test_dashboard_filters_update_kpis(no_user_data: None) -> None:
     assert app.metric[1].value != all_expenses
     app.sidebar.radio[1].set_value("Income").run()
     assert app.metric[1].value == "$0"
+    app.sidebar.radio[1].set_value("Expenses").run()
+    assert app.metric[3].value == "n/a"  # no savings rate without income
 
 
 def test_budget_messages_escape_dollar_signs(no_user_data: None) -> None:
@@ -42,3 +44,15 @@ def test_budget_messages_escape_dollar_signs(no_user_data: None) -> None:
     texts = [m.value for m in app.markdown if "EXCEEDED" in m.value]
     assert texts
     assert all("\\$" in text for text in texts)
+
+
+def test_corrupted_user_file_is_reported_not_renamed(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    user_file = tmp_path / "my_finances.json"
+    user_file.write_text("{broken", encoding="utf-8")
+    monkeypatch.setattr("finance_tracker.config.USER_DATA_FILE", user_file)
+    app = AppTest.from_file(DASHBOARD, default_timeout=60).run()
+    assert not app.exception
+    assert "Could not load the file" in app.error[0].value
+    assert user_file.exists()  # viewing must never move the user's data
