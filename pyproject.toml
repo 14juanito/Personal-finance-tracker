@@ -21,3 +21,7 @@ pythonpath = ["."]
 source = ["finance_tracker"]
 # UI event code is exercised by smoke tests; see DECISIONS.md #14.
 omit = ["finance_tracker/gui_tkinter.py", "finance_tracker/dashboard.py"]
+
+[tool.ruff.lint.per-file-ignores]
+# Document builders hold long prose strings; wrapping them hurts readability.
+"tools/build_*.py" = ["E501"]
