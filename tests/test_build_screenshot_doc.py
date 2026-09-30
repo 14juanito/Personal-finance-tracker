@@ -57,7 +57,7 @@ def test_placeholder_name_blocks_the_build(tmp_path: Path, monkeypatch: pytest.M
 
 @pytest.mark.parametrize(
     ("value", "expected"),
-    [("Juan <NOM COMPLET>", True), ("[Student Name]", True), ("", True), ("Juan Pérez", False)],
+    [("Juan <NOM COMPLET>", True), ("[Student Name]", True), ("", False), ("Juan Pérez", False)],
 )
 def test_is_placeholder(value: str, expected: bool) -> None:
     assert submission_config.is_placeholder(value) is expected
@@ -91,3 +91,21 @@ def test_images_sorted_naturally_and_slots_keep_numbers(tmp_path: Path) -> None:
     }  # fmt: skip
     assert build_screenshot_doc.missing_slots(slots)[:2] == [4, 5]
     assert build_screenshot_doc.caption_for(images[0], 1) == "Exercise 01 — first loop"
+
+
+def test_empty_name_prints_fill_in_field(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(submission_config, "STUDENT_NAME", "")
+    assert submission_config.identity_lines() == (
+        "Student Name: ______________________",
+        submission_config.SUBMISSION_DATE,
+    )
+    _make_images(tmp_path / "shots", [f"{n:02d}_ex.png" for n in range(1, 15)])
+    out, _count = build_screenshot_doc.build(tmp_path / "shots", tmp_path / "doc.docx")
+    text = "\n".join(p.text for p in Document(out).paragraphs)
+    assert "Student Name: ______________________" in text
+
+
+def test_placeholder_date_blocks_the_build(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(submission_config, "SUBMISSION_DATE", "[Date]")
+    with pytest.raises(SystemExit, match="SUBMISSION_DATE"):
+        submission_config.identity_lines()

@@ -5,8 +5,9 @@ writes ``deliverables/CodeStepByStep_Screenshots.docx`` with a title page follow
 one captioned screenshot per page.
 
 Screenshots are never generated or simulated. The build fails with a clear message
-when the folder is missing or any of exercises 01–14 has no screenshot, and when the
-student name in ``tools/submission_config.py`` is still a placeholder.
+when the folder is missing or any of exercises 01–14 has no screenshot, and when a
+value in ``tools/submission_config.py`` contains a template marker. An empty student
+name prints a fill-in field ("Student Name: ____") to complete by hand.
 
 Usage:
     python tools/build_screenshot_doc.py [--source DIR] [--output FILE]
@@ -33,7 +34,7 @@ from submission_config import (
     COURSE,
     EXPECTED_SCREENSHOTS,
     INSTITUTION,
-    require_final_identity,
+    identity_lines,
 )
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -153,7 +154,7 @@ def build(source: Path = SOURCE_DIR, output: Path = OUTPUT_FILE) -> tuple[Path, 
         ``(output path, number of screenshots included)``.
 
     Raises:
-        SystemExit: If a screenshot is missing or the student name is a placeholder;
+        SystemExit: If a screenshot is missing or a configured value is a placeholder;
             nothing is written in that case.
     """
     slots = assign_slots(find_images(source))
@@ -164,7 +165,7 @@ def build(source: Path = SOURCE_DIR, output: Path = OUTPUT_FILE) -> tuple[Path, 
             f"(exercise {', '.join(f'{n:02d}' for n in missing)}). Save them in "
             f"{source} as 01_<exercise>.png … {EXPECTED_COUNT:02d}_<exercise>.png, then rerun."
         )
-    student, submitted = require_final_identity()
+    student, submitted = identity_lines()
 
     document = Document()
     section = document.sections[0]

@@ -29,7 +29,7 @@ from pptx.shapes.autoshape import Shape
 from pptx.shapes.picture import Picture
 from pptx.slide import Slide
 from pptx.util import Emu, Inches, Pt
-from submission_config import COURSE, INSTITUTION, require_final_identity
+from submission_config import COURSE, INSTITUTION, identity_lines
 
 ROOT = Path(__file__).resolve().parent.parent
 SHOTS = ROOT / "docs" / "screenshots"
@@ -270,7 +270,7 @@ def build(output: Path = OUTPUT, skip_tests: bool = False) -> Path:
     Returns:
         The path written.
     """
-    student, submitted = require_final_identity()  # fail before the slow test run
+    student, submitted = identity_lines()  # fail before the slow test run
     stats = test_stats(skip_tests)
     tests, coverage = stats["tests"], f"{stats['coverage']} %"
     prs = Presentation()
