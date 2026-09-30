@@ -443,7 +443,7 @@ def build(output: Path = OUTPUT, skip_tests: bool = False) -> Path:
         ("▤", "pandas replaces loops",
          "One groupby or pivot_table does what dozens of lines used to — but handle empty data."),
         ("◉", "Look at the real output",
-         f"Screenshots found bugs that {tests} passing unit tests did not."),
+         "Screenshots found bugs that the passing unit tests did not."),
     ]  # fmt: skip
     for index, (glyph, head, body) in enumerate(lessons):
         y = 1.6 + index * 1.35

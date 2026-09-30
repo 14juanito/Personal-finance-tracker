@@ -19,7 +19,7 @@ Un même « cœur » testé alimente trois interfaces :
 | `python main.py demo` | une démonstration automatique sur les données d'exemple |
 | `streamlit run finance_tracker/dashboard.py` | le tableau de bord web interactif |
 
-Chiffres clés : 311 transactions fictives sur 6 mois, plus de 100 tests, environ 97 % de
+Chiffres clés : 311 transactions fictives sur 6 mois, plus de 150 tests, environ 98 % de
 couverture, `ruff` sans erreur.
 
 ---
@@ -27,13 +27,14 @@ couverture, `ruff` sans erreur.
 ## 2. Chaque module expliqué simplement
 
 L'architecture est en couches : **interfaces → logique → domaine et stockage → fichiers**.
-Chaque couche n'utilise que celle du dessous.
+Les interfaces ne contiennent aucune règle métier : elles appellent la logique et se
+contentent d'afficher les résultats (le dashboard applique aussi ses filtres avec pandas).
 
 | Fichier | En une phrase | À retenir pour l'oral |
 |---|---|---|
 | `models.py` | Les « fiches » de base : `Transaction`, `SavingsGoal`, `Budget`. | Ce sont des *dataclasses*. `__post_init__` vérifie chaque valeur dès la création : un montant négatif ou une date invalide lève une exception, donc un objet mal formé ne peut jamais exister. |
 | `exceptions.py` | Nos propres types d'erreurs. | Hiérarchie avec une classe de base `FinanceTrackerError` : l'interface peut attraper *toutes* les erreurs de l'application d'un seul coup. |
-| `storage.py` | Lire et écrire les fichiers JSON et CSV. | Écriture **atomique** (fichier temporaire puis `replace`). Un JSON corrompu est renommé en `.corrupted-<date>` et l'application redémarre à vide. Une ligne invalide est ignorée et signalée, sans tout faire échouer. |
+| `storage.py` | Lire et écrire les fichiers JSON et CSV. | Écriture **atomique** (fichier temporaire puis `replace`). Un JSON corrompu, ou valide mais mal structuré (`{"transactions": null}`), est renommé en `.corrupted-<date>` et l'application redémarre à vide. Une ligne invalide ou un identifiant en double est ignoré et signalé, sans tout faire échouer. |
 | `tracker.py` | La classe `FinanceTracker`, le « classeur » qui contient tout. | Une **liste** de transactions, deux **dictionnaires** (budgets et objectifs indexés par nom), un **set** de catégories. Méthodes : ajouter, modifier, supprimer, rechercher, filtrer, totaux, sauvegarder et charger. |
 | `analytics.py` | Les calculs avec pandas. | `pivot_table` pour le résumé mensuel, `groupby().agg()` pour les catégories, `rolling(3).mean()` pour la moyenne glissante, `pct_change()` pour la variation d'un mois sur l'autre. Chaque fonction gère le cas « aucune donnée ». |
 | `alerts.py` | Les alertes de budget et les jalons d'épargne. | Seuils en constantes (`WARNING_THRESHOLD = 0.80`, `EXCEEDED_THRESHOLD = 1.00`). Une chaîne `if / elif / else` classe l'utilisation du budget. |
@@ -56,7 +57,7 @@ Chaque couche n'utilise que celle du dessous.
 | **Boucles** | menu `while` dans `ConsoleApp.run()`, validation dans `prompt_amount()` | Un distributeur qui redemande le code PIN tant qu'il est faux. |
 | **Fonctions** | `parse_amount()`, les fonctions de `analytics` | Une recette de cuisine : on l'écrit une fois et on la réutilise à chaque repas. |
 | **Gestion de fichiers** | `storage.py` (`json`, `csv`, `pathlib`, `with open`) | Un classeur de bureau : on range les feuilles et on les retrouve le lendemain. |
-| **Exceptions** | `exceptions.py`, `load_json()` avec `try / except / finally` | L'airbag d'une voiture : quand un problème survient, il amortit le choc au lieu de laisser tout s'écraser. |
+| **Exceptions** | `exceptions.py`, `load_json()` avec `try / except / else`, `_atomic_write()` avec `try / except / finally` | L'airbag d'une voiture : quand un problème survient, il amortit le choc au lieu de laisser tout s'écraser. |
 | **Listes** | `FinanceTracker.transactions` | Un relevé bancaire : les opérations dans l'ordre, et deux cafés identiques peuvent s'y trouver. |
 | **Dictionnaires** | `budgets`, `goals`, `ConsoleApp.menu` | Un répertoire téléphonique : on cherche par nom et on trouve tout de suite. |
 | **Sets** | `categories`, `VALID_KINDS`, colonnes manquantes d'un CSV | Une liste d'invités sans doublons : ajouter deux fois « Alice » ne change rien. |
@@ -153,7 +154,7 @@ linéaire sur les totaux mensuels).
 
 ```bash
 python main.py demo                           # tout en une commande
-pytest -q                                     # plus de 100 tests verts
+pytest -q                                     # plus de 150 tests verts
 grep -rn "# Concept:" finance_tracker | head  # les concepts étiquetés
 python main.py cli                            # taper "abc" comme montant → message + nouvelle demande
 ```

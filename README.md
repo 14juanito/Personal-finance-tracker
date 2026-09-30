@@ -42,7 +42,14 @@ tested core powers **a console menu, a Tkinter desktop app and a Streamlit web d
 |---|---|
 | ![Trends](docs/screenshots/dashboard_trends.png) | ![Budgets](docs/screenshots/dashboard_budgets.png) |
 
-All screenshots are real captures, regenerated with `python tools/capture_screenshots.py`.
+| Tkinter — Charts tab | Dashboard — Savings goals |
+|---|---|
+| ![GUI charts](docs/screenshots/gui_charts.png) | ![Goals](docs/screenshots/dashboard_goals.png) |
+
+The GUI and dashboard images are real screen captures. The CLI images are the program's
+unmodified console output, rendered to PNG. To regenerate them all, run
+`python tools/capture_screenshots.py`. It needs a display, ImageMagick, and
+`python -m playwright install chromium`.
 
 ## 🚀 Installation
 
@@ -140,14 +147,15 @@ pytest --cov              # with coverage of the finance_tracker package
 ruff check . && ruff format --check .
 ```
 
-The suite has more than 100 tests and about 97 % coverage of the business logic. It covers:
+The suite has more than 150 tests and about 98 % coverage of the business logic. It covers:
 - nominal use;
 - invalid input (amounts, dates, kinds, empty names);
 - missing and corrupted files, and CSV files with missing columns or bad rows;
 - every pandas calculation, checked against a hand-computed dataset;
 - full scripted CLI sessions;
 - a Tkinter smoke test on a real display, skipped automatically when there is none;
-- a headless Streamlit `AppTest`.
+- a headless Streamlit `AppTest`;
+- a code-standards test that enforces module headers, Google-style docstrings, type hints and `# Concept:` tags.
 
 ## 📚 Course concepts
 

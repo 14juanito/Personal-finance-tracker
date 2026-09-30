@@ -35,9 +35,9 @@ Open in advance: a terminal (font size 16+), VS Code on `finance_tracker/storage
 
 ### 1:05 – 1:50 · Console mode
 **Screen:** terminal.
-**Type:** `python main.py cli` → `1` → `expense` → `abc` → `64.20` → Enter (today) → `Groceries` → `Farmers market` → `6` → `1` → `0`
+**Type:** `python main.py cli` → `1` → `expense` → `abc` → `64.20` → `2026-09-28` → `Groceries` → `Farmers market` → `6` → `1` (2026-09) → `0`
 
-> "Now the interactive console. I'll add an expense. If I type letters instead of an amount, the program explains the problem and asks again: that's a validation loop, so bad input never crashes the app. I enter sixty-four twenty, accept today's date, and pick Groceries. Right away it warns me that this pushed my grocery budget over its limit. Option six shows the monthly summary, with each category's share of spending. When I quit, my data is saved to a JSON file."
+> "Now the interactive console. I'll add an expense. If I type letters instead of an amount, the program explains the problem and asks again: that's a validation loop, so bad input never crashes the app. I enter sixty-four twenty, date it September twenty-eighth, and pick Groceries. Right away it warns me that this pushed my grocery budget over its limit. Option six shows the monthly summary, with each category's share of spending. When I quit, my data is saved to a JSON file."
 
 ### 1:50 – 2:30 · Tkinter GUI
 **Screen:** terminal, then the GUI window.
@@ -56,7 +56,7 @@ Open in advance: a terminal (font size 16+), VS Code on `finance_tracker/storage
 **Screen:** VS Code: `finance_tracker/storage.py` (the `load_json` function), then `tests/` and the terminal.
 **Type:** `pytest -q` then `ruff check .`
 
-> "Under the hood, one tested core powers all three interfaces. Every course concept is labelled in the code. Here, for example, exception handling: if the JSON file is corrupted, it's backed up and the app starts cleanly instead of crashing. The project has over one hundred automated tests, about ninety-seven percent coverage, and passes the ruff linter."
+> "Under the hood, one tested core powers all three interfaces. Every course concept is labelled in the code. Here, for example, exception handling: if the JSON file is corrupted, it's backed up and the app starts cleanly instead of crashing. The project has over one hundred and fifty automated tests, about ninety-eight percent coverage, and passes the ruff linter."
 
 ### 3:50 – 4:15 · Conclusion
 **Screen:** Slide 8 (conclusion).

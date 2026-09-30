@@ -301,6 +301,11 @@ def table(doc: Document, headers: list[str], rows: list[list[str]], widths: list
         run.bold, run.font.size = True, Pt(9.5)
         run.font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
         shade(cell, HEADER_FILL)
+    # Repeat the header row when a table continues on the next page.
+    header_props = t.rows[0]._tr.get_or_add_trPr()
+    repeat = OxmlElement("w:tblHeader")
+    repeat.set(qn("w:val"), "true")
+    header_props.append(repeat)
     for row_index, row in enumerate(rows):
         cells = t.add_row().cells
         for index, text in enumerate(row):
@@ -349,7 +354,7 @@ CONCEPTS: list[list[str]] = [
     [
         "Exceptions",
         "`exceptions.py`, `storage.load_json`, `models.parse_date`",
-        "Custom hierarchy; `try/except/else/finally`; corrupted JSON is backed up and recovered.",
+        "Custom hierarchy; `try/except/else` in `load_json`, `try/except/finally` in `_atomic_write`; corrupted JSON is backed up and recovered.",
     ],
     [
         "Lists",
@@ -406,8 +411,10 @@ CHALLENGES: list[list[str]] = [
         "Re-tuned the generator (fixed seed 42) to Apr–Sep 2026 and added a test on the balance.",
     ],
     [
-        "Streamlit 1.64 deprecated `use_container_width`, flooding the log with warnings.",
-        'Switched to the current `width="stretch"` API and verified a clean server log.',
+        'An independent review found that "0.004" passed the `> 0` check before rounding, '
+        "creating a $0.00 budget that later crashed with `ZeroDivisionError`.",
+        "Round first, then validate (at least 0.01); regression tests for budgets, goals and "
+        "transactions.",
     ],
 ]
 
@@ -507,21 +514,22 @@ def build(skip_tests: bool = False, output: Path = OUTPUT) -> Path:
     )
     figure(
         doc,
-        SHOTS / "cli_session.png",
-        "Figure 1 — CLI mode: an invalid amount is re-prompted, then a budget alert is raised.",
-        3.4,
-    )
-    figure(
-        doc,
         SHOTS / "gui_summary.png",
-        "Figure 2 — Tkinter GUI, Summary tab: KPIs, monthly table and colour-coded alerts.",
-        5.6,
+        "Figure 1 — Tkinter GUI, Summary tab: KPIs, monthly table and colour-coded alerts.",
+        5.4,
     )
     figure(
         doc,
         SHOTS / "dashboard_overview.png",
-        "Figure 3 — Streamlit dashboard (captured with Playwright): filters, KPIs, Plotly charts.",
-        6.0,
+        "Figure 2 — Streamlit dashboard (captured with Playwright): filters, KPIs, Plotly charts.",
+        5.6,
+    )
+    figure(
+        doc,
+        SHOTS / "cli_session.png",
+        "Figure 3 — CLI mode (rendered console output): an invalid amount is re-prompted, "
+        "then a budget alert is raised.",
+        4.1,
     )
 
     # ---------------------------------------------------------------- 3. concepts
@@ -537,16 +545,17 @@ def build(skip_tests: bool = False, output: Path = OUTPUT) -> Path:
     heading(doc, "4. Architecture")
     para(
         doc,
-        "The code is organised in layers. The three interfaces never touch files or pandas "
-        "directly: they call `FinanceTracker` and the `analytics`, `alerts` and `visualize` "
-        "modules, which rely on validated model objects and on `storage.py` for all disk "
-        "access. Because the logic is independent of the interface, the same functions power "
-        "the CLI, the GUI, the dashboard and the demo — and can be unit tested without a screen.",
+        "The code is organised in layers. The interfaces contain no business rules: they "
+        "call `FinanceTracker` and the `analytics`, `alerts` and `visualize` modules, and only "
+        "format the results (the dashboard also applies its sidebar filters with pandas). "
+        "Validation lives in the model classes and every file format lives in `storage.py`. "
+        "Because the logic does not depend on the interface, the same functions power the CLI, "
+        "the GUI, the dashboard and the demo — and can be unit tested without a screen.",
     )
     figure(
         doc,
         ARCHITECTURE_PNG,
-        "Figure 4 — Layered architecture: each layer only uses the layer below it.",
+        "Figure 4 — Layered architecture: interfaces → application logic → domain & persistence → files.",
         6.2,
     )
 
@@ -582,7 +591,9 @@ def build(skip_tests: bool = False, output: Path = OUTPUT) -> Path:
         "corrupted files, CSV files with missing columns or bad rows, every pandas calculation "
         "on a hand-checked dataset, and full CLI sessions driven by scripted answers. The GUI "
         "is built and clicked through on a real display, and the dashboard is rendered "
-        "headlessly with Streamlit's `AppTest`. `ruff` enforces a consistent code style.",
+        "headlessly with Streamlit's `AppTest`. A standards test checks that every function "
+        "has a Google-style docstring and type hints and that every course concept is tagged, "
+        "and `ruff` enforces a consistent code style.",
     )
 
     # ---------------------------------------------------------------- 8. lessons
