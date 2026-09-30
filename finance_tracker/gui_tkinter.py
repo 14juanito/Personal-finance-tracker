@@ -18,6 +18,7 @@ Course concepts illustrated:
 from __future__ import annotations
 
 import tkinter as tk
+import tkinter.font as tkfont
 from datetime import date
 from pathlib import Path
 from tkinter import filedialog, messagebox, ttk
@@ -32,15 +33,18 @@ from finance_tracker.models import EXPENSE, INCOME
 from finance_tracker.tracker import FinanceTracker
 
 WINDOW_TITLE = "Personal Finance Tracker"
-WINDOW_SIZE = "1180x720"
+WINDOW_SIZE = (1180, 720)
+MIN_SIZE = (900, 560)
+# Line height of the default font on a standard 96-dpi screen; used to detect HiDPI.
+BASE_LINESPACE = 18
 PAD = 6
 ALL = "All"
 # Concept: dictionary — chart name shown in the UI → function that draws it
 CHARTS = {
-    "Expenses by category": lambda df, goals: visualize.category_pie(df),
-    "Monthly income vs. expenses": lambda df, goals: visualize.monthly_bars(df),
-    "Spending trend": lambda df, goals: visualize.trend_line(df),
-    "Savings goals": lambda df, goals: visualize.goals_progress(goals),
+    "Expenses by category": lambda df, goals, dpi: visualize.category_pie(df, dpi=dpi),
+    "Monthly income vs. expenses": lambda df, goals, dpi: visualize.monthly_bars(df, dpi=dpi),
+    "Spending trend": lambda df, goals, dpi: visualize.trend_line(df, dpi=dpi),
+    "Savings goals": lambda df, goals, dpi: visualize.goals_progress(goals, dpi=dpi),
 }
 ALERT_COLORS = {"EXCEEDED": "#C62828", "WARNING": "#EF6C00", "INFO": "#1565C0", "OK": "#2E7D32"}
 
@@ -68,8 +72,11 @@ class FinanceApp(ttk.Frame):
         self.canvas: FigureCanvasTkAgg | None = None
 
         master.title(WINDOW_TITLE)
-        master.geometry(WINDOW_SIZE)
-        master.minsize(900, 560)
+        self.scale = self._configure_scaling()
+        width = min(self.px(WINDOW_SIZE[0]), master.winfo_screenwidth() - 80)
+        height = min(self.px(WINDOW_SIZE[1]), master.winfo_screenheight() - 120)
+        master.geometry(f"{width}x{height}")
+        master.minsize(min(self.px(MIN_SIZE[0]), width), min(self.px(MIN_SIZE[1]), height))
         master.protocol("WM_DELETE_WINDOW", self.on_close)
         self.pack(fill="both", expand=True)
 
@@ -86,6 +93,25 @@ class FinanceApp(ttk.Frame):
         self.refresh()
 
     # ------------------------------------------------------------------ layout
+    def _configure_scaling(self) -> float:
+        """Adapt pixel sizes to the screen's real font size (HiDPI support).
+
+        Tk measures widget sizes in pixels but fonts in points. On a HiDPI screen the
+        fonts grow while pixel sizes do not, so Treeview rows overlap. We measure the
+        actual font height and scale row heights, column widths and the window with it.
+
+        Returns:
+            The scale factor (1.0 on a standard screen).
+        """
+        linespace = tkfont.nametofont("TkDefaultFont").metrics("linespace")
+        scale = max(1.0, linespace / BASE_LINESPACE)
+        ttk.Style(self.master).configure("Treeview", rowheight=int(linespace * 1.25))
+        return scale
+
+    def px(self, pixels: int) -> int:
+        """Convert a size designed for a 96-dpi screen into real pixels."""
+        return int(pixels * self.scale)
+
     def _build_menu(self) -> None:
         menubar = tk.Menu(self.master)
         file_menu = tk.Menu(menubar, tearoff=False)
@@ -176,7 +202,7 @@ class FinanceApp(ttk.Frame):
         for column in columns[:-1]:
             self.tree.heading(column, text=column.title(), command=lambda c=column: self.sort_by(c))
             self.tree.column(
-                column, width=widths[column], anchor="e" if column == "amount" else "w"
+                column, width=self.px(widths[column]), anchor="e" if column == "amount" else "w"
             )
         # The id column stays hidden: it is only used to find the selected transaction.
         self.tree.configure(displaycolumns=columns[:-1])
@@ -206,7 +232,9 @@ class FinanceApp(ttk.Frame):
         titles = ["Month", "Income", "Expenses", "Net", "Savings rate", "MoM spending"]
         for column, title in zip(columns, titles, strict=True):
             self.month_tree.heading(column, text=title)
-            self.month_tree.column(column, anchor="e" if column != "month" else "w", width=120)
+            self.month_tree.column(
+                column, anchor="e" if column != "month" else "w", width=self.px(120)
+            )
         self.month_tree.pack(fill="x")
 
         ttk.Label(tab, text="Alerts", font=("TkDefaultFont", 11, "bold")).pack(
@@ -241,7 +269,9 @@ class FinanceApp(ttk.Frame):
         )
         for column in ("category", "limit", "spent", "used", "status"):
             self.budget_tree.heading(column, text=column.title())
-            self.budget_tree.column(column, width=95, anchor="w" if column == "category" else "e")
+            self.budget_tree.column(
+                column, width=self.px(95), anchor="w" if column == "category" else "e"
+            )
         for level, color in ALERT_COLORS.items():
             self.budget_tree.tag_configure(level, foreground=color)
         self.budget_tree.pack(fill="both", expand=True)
@@ -249,8 +279,10 @@ class FinanceApp(ttk.Frame):
         form.pack(fill="x", pady=(PAD, 0))
         self.budget_category = tk.StringVar()
         self.budget_limit = tk.StringVar()
+        ttk.Label(form, text="Category").pack(side="left")
         self.budget_category_box = ttk.Combobox(form, textvariable=self.budget_category, width=16)
-        self.budget_category_box.pack(side="left")
+        self.budget_category_box.pack(side="left", padx=(2, PAD))
+        ttk.Label(form, text="Limit $").pack(side="left")
         ttk.Entry(form, textvariable=self.budget_limit, width=10).pack(side="left", padx=PAD)
         ttk.Button(form, text="Set budget", command=self.set_budget).pack(side="left")
 
@@ -261,7 +293,9 @@ class FinanceApp(ttk.Frame):
         )
         for column in ("name", "saved", "target", "progress", "deadline"):
             self.goal_tree.heading(column, text=column.title())
-            self.goal_tree.column(column, width=95, anchor="w" if column == "name" else "e")
+            self.goal_tree.column(
+                column, width=self.px(95), anchor="w" if column == "name" else "e"
+            )
         self.goal_tree.pack(fill="both", expand=True)
         goal_form = ttk.Frame(right)
         goal_form.pack(fill="x", pady=(PAD, 0))
@@ -417,7 +451,9 @@ class FinanceApp(ttk.Frame):
     def draw_chart(self) -> None:
         """Render the selected chart inside the Charts tab."""
         df = analytics.to_dataframe(self.tracker.transactions)
-        figure = CHARTS[self.chart_var.get()](df, self.tracker.goals.values())
+        # Charts are sized in inches: using the screen's real dpi keeps the text readable
+        # on HiDPI displays, like the rest of the interface.
+        figure = CHARTS[self.chart_var.get()](df, self.tracker.goals.values(), 96 * self.scale)
         if self.canvas is not None:
             self.canvas.get_tk_widget().destroy()
         self.canvas = FigureCanvasTkAgg(figure, master=self.chart_frame)

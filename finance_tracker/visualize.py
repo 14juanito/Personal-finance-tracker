@@ -51,9 +51,9 @@ DPI = 120
 _money = FuncFormatter(lambda value, _pos: f"${value:,.0f}")
 
 
-def _empty_figure(title: str, message: str = "No data to display") -> Figure:
+def _empty_figure(title: str, message: str = "No data to display", dpi: float = DPI) -> Figure:
     """Return a figure that shows a message instead of an empty plot."""
-    fig = Figure(figsize=FIGSIZE, dpi=DPI)
+    fig = Figure(figsize=FIGSIZE, dpi=dpi)
     ax = fig.add_subplot()
     ax.set_title(title)
     ax.text(0.5, 0.5, message, ha="center", va="center", fontsize=13, color=MUTED_COLOR)
@@ -61,7 +61,7 @@ def _empty_figure(title: str, message: str = "No data to display") -> Figure:
     return fig
 
 
-def category_pie(df: pd.DataFrame, title: str = "Expenses by Category") -> Figure:
+def category_pie(df: pd.DataFrame, title: str = "Expenses by Category", dpi: float = DPI) -> Figure:
     """Pie chart of expenses per category.
 
     Small categories beyond ``MAX_PIE_SLICES - 1`` are merged into one slice so the
@@ -70,20 +70,21 @@ def category_pie(df: pd.DataFrame, title: str = "Expenses by Category") -> Figur
     Args:
         df: DataFrame from ``analytics.to_dataframe``.
         title: Chart title.
+        dpi: Resolution; the GUI passes the screen's dpi so text stays readable.
 
     Returns:
         The matplotlib Figure.
     """
     breakdown = analytics.category_breakdown(df)
     if breakdown.empty:
-        return _empty_figure(title)
+        return _empty_figure(title, dpi=dpi)
     totals = breakdown.set_index("category")["total"]
     if len(totals) > MAX_PIE_SLICES:
         head = totals.iloc[: MAX_PIE_SLICES - 1]
         rest = pd.Series({"All others": totals.iloc[MAX_PIE_SLICES - 1 :].sum()})
         totals = pd.concat([head, rest])
 
-    fig = Figure(figsize=FIGSIZE, dpi=DPI)
+    fig = Figure(figsize=FIGSIZE, dpi=dpi)
     ax = fig.add_subplot()
     wedges, _texts, _autotexts = ax.pie(
         totals.values,
@@ -109,22 +110,25 @@ def category_pie(df: pd.DataFrame, title: str = "Expenses by Category") -> Figur
     return fig
 
 
-def monthly_bars(df: pd.DataFrame, title: str = "Monthly Income vs. Expenses") -> Figure:
+def monthly_bars(
+    df: pd.DataFrame, title: str = "Monthly Income vs. Expenses", dpi: float = DPI
+) -> Figure:
     """Grouped bar chart of income and expenses per month.
 
     Args:
         df: DataFrame from ``analytics.to_dataframe``.
         title: Chart title.
+        dpi: Resolution; the GUI passes the screen's dpi so text stays readable.
 
     Returns:
         The matplotlib Figure.
     """
     summary = analytics.monthly_summary(df)
     if summary.empty:
-        return _empty_figure(title)
+        return _empty_figure(title, dpi=dpi)
     positions = range(len(summary))
     width = 0.38
-    fig = Figure(figsize=FIGSIZE, dpi=DPI)
+    fig = Figure(figsize=FIGSIZE, dpi=dpi)
     ax = fig.add_subplot()
     ax.bar(
         [p - width / 2 for p in positions],
@@ -150,20 +154,21 @@ def monthly_bars(df: pd.DataFrame, title: str = "Monthly Income vs. Expenses") -
     return fig
 
 
-def trend_line(df: pd.DataFrame, title: str = "Spending Trend") -> Figure:
+def trend_line(df: pd.DataFrame, title: str = "Spending Trend", dpi: float = DPI) -> Figure:
     """Line chart of monthly expenses with a rolling average.
 
     Args:
         df: DataFrame from ``analytics.to_dataframe``.
         title: Chart title.
+        dpi: Resolution; the GUI passes the screen's dpi so text stays readable.
 
     Returns:
         The matplotlib Figure.
     """
     trend = analytics.spending_trend(df)
     if trend.empty:
-        return _empty_figure(title)
-    fig = Figure(figsize=FIGSIZE, dpi=DPI)
+        return _empty_figure(title, dpi=dpi)
+    fig = Figure(figsize=FIGSIZE, dpi=dpi)
     ax = fig.add_subplot()
     ax.plot(trend.index, trend["expense"], marker="o", color=EXPENSE_COLOR, label="Expenses")
     ax.plot(
@@ -195,20 +200,23 @@ def trend_line(df: pd.DataFrame, title: str = "Spending Trend") -> Figure:
     return fig
 
 
-def goals_progress(goals: Iterable[SavingsGoal], title: str = "Savings Goals") -> Figure:
+def goals_progress(
+    goals: Iterable[SavingsGoal], title: str = "Savings Goals", dpi: float = DPI
+) -> Figure:
     """Horizontal bars showing how far each savings goal has progressed.
 
     Args:
         goals: Savings goals to display.
         title: Chart title.
+        dpi: Resolution; the GUI passes the screen's dpi so text stays readable.
 
     Returns:
         The matplotlib Figure.
     """
     goals = list(goals)
     if not goals:
-        return _empty_figure(title, "No savings goals yet")
-    fig = Figure(figsize=FIGSIZE, dpi=DPI)
+        return _empty_figure(title, "No savings goals yet", dpi)
+    fig = Figure(figsize=FIGSIZE, dpi=dpi)
     ax = fig.add_subplot()
     names = [g.name for g in goals]
     progress = [g.progress * 100 for g in goals]
