@@ -1,0 +1,16 @@
+# Runtime
+pandas==3.0.6
+matplotlib==3.11.2
+streamlit==1.64.0
+plotly==7.1.0
+openpyxl==3.1.5
+
+# Deliverable generation (report, slides, screenshots)
+python-docx==1.2.0
+python-pptx==1.0.2
+playwright==1.63.0
+
+# Development & testing
+pytest==9.1.1
+pytest-cov==7.1.0
+ruff==0.16.9

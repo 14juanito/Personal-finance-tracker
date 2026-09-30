@@ -1,0 +1,21 @@
+# Virtual environments
+.venv/
+.env
+
+# Python caches
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# Coverage
+.coverage
+htmlcov/
+
+# Generated output (charts, exports)
+output/
+
+# Tooling / OS
+.claude/
+.DS_Store
+*.log
