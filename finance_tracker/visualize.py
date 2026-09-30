@@ -180,7 +180,8 @@ def trend_line(df: pd.DataFrame, title: str = "Spending Trend") -> Figure:
                 f"{row['mom_change_pct']:+.0f}%",
                 (month, row["expense"]),
                 textcoords="offset points",
-                xytext=(0, 8),
+                # Rises are labelled above the point, drops below, to keep clear of the line.
+                xytext=(0, 8 if row["mom_change_pct"] >= 0 else -14),
                 ha="center",
                 fontsize=8,
                 color=MUTED_COLOR,
@@ -221,7 +222,8 @@ def goals_progress(goals: Iterable[SavingsGoal], title: str = "Savings Goals") -
         ax.text(
             101,
             index,
-            f"{goal.progress:.0%}  (${goal.saved:,.0f} / ${goal.target:,.0f})",
+            # Escaped "$": two bare "$" signs would switch matplotlib into math-text mode.
+            f"{goal.progress:.0%}  (\\${goal.saved:,.0f} / \\${goal.target:,.0f})",
             va="center",
             fontsize=9,
         )

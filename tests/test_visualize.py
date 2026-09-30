@@ -36,3 +36,10 @@ def test_pie_merges_small_categories() -> None:
     legend_labels = [t.get_text() for t in fig.axes[0].get_legend().get_texts()]
     assert len(legend_labels) == visualize.MAX_PIE_SLICES
     assert legend_labels[-1].startswith("All others")
+
+
+def test_goal_labels_escape_dollar_signs(tracker: FinanceTracker) -> None:
+    # Two bare "$" in one label would be rendered as matplotlib math-text.
+    fig = visualize.goals_progress(tracker.goals.values())
+    labels = [t.get_text() for t in fig.axes[0].texts]
+    assert labels == [r"55%  (\$1,100 / \$2,000)"]
