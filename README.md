@@ -53,7 +53,7 @@ unmodified console output, rendered to PNG. To regenerate them all, run
 
 ## 🚀 Installation
 
-Requires **Python 3.11+** (pandas 3 needs it) (Tkinter is included with python.org installers; on Debian/Ubuntu
+**Requires Python 3.11+** (pandas 3 needs it) (Tkinter is included with python.org installers; on Debian/Ubuntu
 run `sudo apt install python3-tk`).
 
 ```bash
@@ -147,7 +147,9 @@ pytest --cov              # with coverage of the finance_tracker package
 ruff check . && ruff format --check .
 ```
 
-The suite has more than 150 tests and about 98 % coverage of the business logic. It covers:
+The suite has more than 150 tests. Coverage is about 98 % of the lines in the `finance_tracker`
+package, **excluding** `gui_tkinter.py` (Tkinter) and `dashboard.py` (Streamlit): their event
+code is exercised by smoke tests instead (see `[tool.coverage.run]` in `pyproject.toml`). The tests cover:
 - nominal use;
 - invalid input (amounts, dates, kinds, empty names);
 - missing and corrupted files, and CSV files with missing columns or bad rows;

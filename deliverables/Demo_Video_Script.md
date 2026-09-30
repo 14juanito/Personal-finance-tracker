@@ -24,7 +24,7 @@ Open in advance: a terminal (font size 16+), VS Code on `finance_tracker/storage
 ### 0:00 – 0:25 · Introduction
 **Screen:** Slide 1 (title), then slide 2 (overview).
 
-> "Hi, my name is [Student Name]. This is my Personal Finance Tracker, built in Python for DATA 333 at Bellevue College. It records income and expenses, sorts them into categories, and turns them into summaries, trends, budget alerts and savings-goal progress. You can use it from a console menu, a Tkinter desktop app, or a Streamlit web dashboard."
+> "Hi, my name is Juan. This is my Personal Finance Tracker, built in Python for DATA 333 at Bellevue College. It records income and expenses, sorts them into categories, and turns them into summaries, trends, budget alerts and savings-goal progress. You can use it from a console menu, a Tkinter desktop app, or a Streamlit web dashboard."
 
 ### 0:25 – 1:05 · Demo mode
 **Screen:** terminal.
