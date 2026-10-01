@@ -15,7 +15,7 @@ tested core powers **a console menu, a Tkinter desktop app and a Streamlit web d
 > Developed for **DATA 333 – Data Management & Analysis – Bellevue College**
 > (Prior Learning Assessment).
 
-![Streamlit dashboard](docs/screenshots/dashboard_overview.png)
+![Streamlit dashboard](docs/figures/dashboard_overview.png)
 
 ---
 
@@ -33,23 +33,25 @@ tested core powers **a console menu, a Tkinter desktop app and a Streamlit web d
 
 ## 📸 Screenshots
 
-| Console (CLI) | Tkinter GUI |
+| Console (CLI) — actual console output | Tkinter GUI |
 |---|---|
-| ![CLI session](docs/screenshots/cli_session.png) | ![GUI transactions](docs/screenshots/gui_transactions.png) |
-| ![CLI summary](docs/screenshots/cli_summary.png) | ![GUI summary](docs/screenshots/gui_summary.png) |
+| ![CLI session](docs/figures/cli_session_add.png) | ![GUI transactions](docs/figures/gui_transactions.png) |
+| ![CLI summary](docs/figures/cli_session_summary.png) | ![GUI summary](docs/figures/gui_summary.png) |
 
-| Dashboard — Trends | Dashboard — Budgets & alerts |
+| Tkinter — validation error | Tkinter — budgets & alerts |
 |---|---|
-| ![Trends](docs/screenshots/dashboard_trends.png) | ![Budgets](docs/screenshots/dashboard_budgets.png) |
+| ![Validation](docs/figures/gui_validation_error.png) | ![Budgets](docs/figures/gui_budgets_alerts.png) |
 
-| Tkinter — Charts tab | Dashboard — Savings goals |
+| Dashboard — filters applied | Dashboard — interactive chart |
 |---|---|
-| ![GUI charts](docs/screenshots/gui_charts.png) | ![Goals](docs/screenshots/dashboard_goals.png) |
+| ![Filters](docs/figures/dashboard_filters.png) | ![Tooltip](docs/figures/dashboard_interactive.png) |
 
-The GUI and dashboard images are real screen captures. The CLI images are the program's
-unmodified console output, rendered to PNG. To regenerate them all, run
-`python tools/capture_screenshots.py`. It needs a display, ImageMagick, and
-`python -m playwright install chromium`.
+All images are produced by `python tools/capture_screenshots.py` from the running
+application, on the sample data. The GUI runs on a private Xvfb display and is grabbed
+with ImageMagick. The dashboard is a real Streamlit server driven by headless Chromium.
+The console images are the real output of `python main.py demo` and of a scripted
+`python main.py cli` session, recorded with `rich`. The tool needs Xvfb (Linux),
+ImageMagick and `python -m playwright install chromium`.
 
 ## 🚀 Installation
 
@@ -132,12 +134,12 @@ Personal-finance-tracker/
 ├── data/                       # sample_data.json, sample_transactions.csv
 ├── tests/                      # pytest suite
 ├── tools/                      # sample data, screenshots, report/slides builders
-├── docs/                       # screenshots and architecture diagram
+├── docs/                       # figures/ (screenshots), report/ and memo/ (LaTeX sources)
 ├── deliverables/               # report, slides, video script, defence guide, source zip
 └── PLAN.md · DECISIONS.md · DEV_LOG.md
 ```
 
-![Architecture](docs/architecture.png)
+![Architecture](docs/figures/architecture.png)
 
 ## 🧪 Tests
 
@@ -169,20 +171,21 @@ grep -rn "# Concept:" finance_tracker main.py
 
 The concepts covered are user input and output, decision structures, loops, functions, file
 handling, exceptions, lists, dictionaries, sets, OOP and pandas. The mapping table is in the
-[project report](deliverables/Project_Report.docx).
+[project report](deliverables/Project_Report.pdf).
 
 ## 📦 Deliverables
 
 | File | Description |
 |---|---|
-| `deliverables/Project_Report.docx` | 7-page report: overview, features, concepts table, architecture, challenges, testing, lessons |
+| `deliverables/Project_Report.pdf` | Project report (LaTeX, English), see *Report & documentation* below |
+| `deliverables/Memo_Technique.pdf` | Technical memo for the oral defence (LaTeX, French) |
 | `deliverables/Demo_Slides.pptx` | 8-slide presentation |
 | `deliverables/Demo_Video_Script.md` | 4-minute narration with timestamps and an OBS checklist |
 | `deliverables/Code_Defense_Guide.md` | Oral defence preparation guide (in French) |
 | `deliverables/CodeStepByStep_Screenshots.docx` | CodeStepByStep exercise screenshots (from `codestepbystep_screenshots/`) |
 | `deliverables/finance_tracker_source.zip` | Source code and data |
 
-Rebuild them with `python tools/build_report.py`, `python tools/build_slides.py`,
+Rebuild them with `python tools/build_latex.py`, `python tools/build_slides.py`,
 `python tools/build_screenshot_doc.py` and `python tools/build_source_zip.py`.
 
 ---

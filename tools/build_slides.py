@@ -1,8 +1,8 @@
 """Build the demo slide deck (deliverables/Demo_Slides.pptx) with python-pptx.
 
 Eight 16:9 slides: title, overview, features, architecture, course concepts,
-challenges, lessons learned, conclusion. Real screenshots from docs/screenshots/ and
-the architecture diagram from docs/architecture.png are embedded; speaker notes hold
+challenges, lessons learned, conclusion. Real screenshots from docs/figures/ and
+the architecture diagram (docs/figures/architecture.png) are embedded; speaker notes hold
 the talking points.
 
 Usage:
@@ -19,7 +19,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from build_report import test_stats
+from doc_assets import ARCHITECTURE_PNG, draw_architecture, test_stats
 from PIL import Image
 from pptx import Presentation
 from pptx.dml.color import RGBColor
@@ -32,8 +32,8 @@ from pptx.util import Emu, Inches, Pt
 from submission_config import COURSE, INSTITUTION, identity_lines
 
 ROOT = Path(__file__).resolve().parent.parent
-SHOTS = ROOT / "docs" / "screenshots"
-ARCHITECTURE = ROOT / "docs" / "architecture.png"
+SHOTS = ROOT / "docs" / "figures"
+ARCHITECTURE = ARCHITECTURE_PNG
 OUTPUT = ROOT / "deliverables" / "Demo_Slides.pptx"
 
 # "Money green" palette: deep green dominates, mint supports, gold is the accent.
@@ -272,6 +272,7 @@ def build(output: Path = OUTPUT, skip_tests: bool = False) -> Path:
     """
     student, submitted = identity_lines()  # fail before the slow test run
     stats = test_stats(skip_tests)
+    draw_architecture()
     tests, coverage = stats["tests"], f"{stats['coverage']} %"
     prs = Presentation()
     prs.slide_width, prs.slide_height = Inches(SLIDE_W), Inches(SLIDE_H)
@@ -452,7 +453,7 @@ def build(output: Path = OUTPUT, skip_tests: bool = False) -> Path:
         badge(s, MARGIN, y + 0.05, glyph, GREEN if index % 2 == 0 else GOLD)
         text(s, MARGIN + 0.9, y, 5.6, 0.4, head, 17, DARK, True)
         text(s, MARGIN + 0.9, y + 0.45, 5.6, 0.8, body, 13, MUTED)
-    picture(s, SHOTS / "cli_summary.png", 7.5, 1.6, 5.25, 4.2)
+    picture(s, SHOTS / "cli_session_summary.png", 7.5, 1.6, 5.25, 4.2)
     text(s, 7.5, 5.95, 5.25, 0.4, "CLI mode — monthly summary with category shares", 11,
          MUTED, italic=True, align=PP_ALIGN.CENTER)  # fmt: skip
     s.notes_slide.notes_text_frame.text = (

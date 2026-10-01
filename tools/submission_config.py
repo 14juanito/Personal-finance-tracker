@@ -2,7 +2,7 @@
 
 Edit the values here, then rebuild the deliverables:
     python tools/build_screenshot_doc.py
-    python tools/build_report.py
+    python tools/build_latex.py
     python tools/build_slides.py
     python tools/build_source_zip.py
 
@@ -22,7 +22,7 @@ import re
 
 # Leave empty to print a fill-in field that the student completes by hand.
 STUDENT_NAME = ""
-SUBMISSION_DATE = "September 30, 2026"
+SUBMISSION_DATE = "October 1, 2026"
 COURSE = "DATA 333 – Data Management & Analysis"
 INSTITUTION = "Bellevue College"
 EXPECTED_SCREENSHOTS = 14
