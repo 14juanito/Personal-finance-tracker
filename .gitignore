@@ -20,3 +20,13 @@ output/
 .DS_Store
 *.log
 data/my_finances.json
+
+# LaTeX auxiliary files
+*.aux
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.lof
+*.lot
