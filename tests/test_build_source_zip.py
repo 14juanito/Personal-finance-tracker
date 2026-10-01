@@ -31,5 +31,6 @@ def test_zip_contains_code_and_data_but_no_junk(tmp_path: Path) -> None:
         "tests/test_models.py",
     ):
         assert prefix + required in names
-    forbidden = (".venv/", "__pycache__", "output/", ".claude/", "my_finances.json", ".pyc")
+    forbidden = (".venv/", "__pycache__", "output/", ".claude/", "my_finances.json", ".pyc",
+                 "/build/", ".aux", ".fdb_latexmk")  # fmt: skip
     assert not [n for n in names if any(f in n for f in forbidden)]

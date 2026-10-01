@@ -134,7 +134,7 @@ Personal-finance-tracker/
 ├── data/                       # sample_data.json, sample_transactions.csv
 ├── tests/                      # pytest suite
 ├── tools/                      # sample data, screenshots, report/slides builders
-├── docs/                       # figures/ (screenshots), report/ and memo/ (LaTeX sources)
+├── docs/                       # figures/ (real captures), report/ + memo/ (LaTeX), shared/
 ├── deliverables/               # report, slides, video script, defence guide, source zip
 └── PLAN.md · DECISIONS.md · DEV_LOG.md
 ```
@@ -173,11 +173,38 @@ The concepts covered are user input and output, decision structures, loops, func
 handling, exceptions, lists, dictionaries, sets, OOP and pandas. The mapping table is in the
 [project report](deliverables/Project_Report.pdf).
 
+## 📄 Report & documentation
+
+| Document | Source | PDF | Content |
+|---|---|---|---|
+| Project report (English) | `docs/report/Project_Report.tex` | `deliverables/Project_Report.pdf` (7 pages) | Overview and objectives, key features with real captures, concepts table with code excerpts, TikZ architecture diagram, libraries and versions, challenges (from `DEV_LOG.md`), enhancements, testing, lessons |
+| Technical memo (French) | `docs/memo/Memo_Technique.tex` | `deliverables/Memo_Technique.pdf` (27 pages) | Oral-defence preparation, from simple to advanced: concepts with definitions and analogies, every library, module-by-module walkthrough, data formats, tests, commands, 15 evaluator questions, glossary |
+
+Both documents are built by one command:
+
+```bash
+python tools/build_latex.py      # captures → generated excerpts/figures → latexmk → deliverables/*.pdf
+python tools/build_latex.py --skip-capture   # reuse docs/figures/
+```
+
+The build is reproducible and checks itself:
+- `tools/capture_screenshots.py` takes real screenshots into `docs/figures/` (Tkinter on Xvfb,
+  Streamlit through headless Chromium, console output recorded with `rich`);
+- code excerpts are extracted from the source with `ast`, never copied by hand
+  (`docs/shared/generated/`);
+- `meta.tex` holds the real test count, coverage, library versions, date and the name field;
+- the build fails on LaTeX errors, undefined references, overfull boxes above 10 pt, or a
+  report outside 5–8 pages.
+
+It needs a TeX Live distribution with `latexmk`, `babel-french`, TikZ, `listings` and
+`tcolorbox` (Debian/Ubuntu: `texlive-latex-extra texlive-lang-french texlive-pictures latexmk`),
+plus Xvfb and ImageMagick for the GUI captures.
+
 ## 📦 Deliverables
 
 | File | Description |
 |---|---|
-| `deliverables/Project_Report.pdf` | Project report (LaTeX, English), see *Report & documentation* below |
+| `deliverables/Project_Report.pdf` | Project report (LaTeX, English), see *Report & documentation* above |
 | `deliverables/Memo_Technique.pdf` | Technical memo for the oral defence (LaTeX, French) |
 | `deliverables/Demo_Slides.pptx` | 8-slide presentation |
 | `deliverables/Demo_Video_Script.md` | 4-minute narration with timestamps and an OBS checklist |

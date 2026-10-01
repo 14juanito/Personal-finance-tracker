@@ -54,3 +54,11 @@ Commit and a push to `origin/main`.
 - [x] `ruff check .` / `ruff format --check .` clean
 - [x] Independent sub-agent audit against the specification; fix findings (2 passes)
 - [x] Tag `v1.0.0` and push tags
+
+## Phase 9 — LaTeX report and technical memo
+- [x] Tool-chain without root: babel-french (tlmgr user mode), latexmk script; Xvfb, ImageMagick, rich
+- [x] `tools/capture_screenshots.py` → real captures in `docs/figures/` (GUI on Xvfb, Streamlit via Playwright, console via rich)
+- [x] `docs/report/Project_Report.tex` (English, 5–8 pages) → `deliverables/Project_Report.pdf`
+- [x] `docs/memo/Memo_Technique.tex` (French) → `deliverables/Memo_Technique.pdf`
+- [x] `tools/build_latex.py`: captures, generated excerpts/meta, latexmk, log and page-count checks
+- [x] Remove `Project_Report.docx`; README "Report & documentation"

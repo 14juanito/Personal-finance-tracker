@@ -34,7 +34,11 @@ INCLUDE_FILES = (
     "DECISIONS.md",
     "DEV_LOG.md",
 )
-EXCLUDED_PARTS = {".venv", "__pycache__", ".pytest_cache", ".ruff_cache", "output", ".claude"}
+# "build" holds LaTeX intermediate files (docs/report/build, docs/memo/build).
+EXCLUDED_PARTS = {
+    ".venv", "__pycache__", ".pytest_cache", ".ruff_cache", "output", ".claude", "build",
+}  # fmt: skip
+LATEX_AUX_SUFFIXES = {".aux", ".out", ".toc", ".fls", ".fdb_latexmk", ".lof", ".lot"}
 EXCLUDED_NAMES = {"my_finances.json", ".DS_Store", ".coverage"}
 
 
@@ -52,7 +56,8 @@ def is_excluded(path: Path) -> bool:
         bool(EXCLUDED_PARTS & set(relative.parts))
         or path.name in EXCLUDED_NAMES
         or ".corrupted-" in path.name
-        or path.suffix in {".pyc", ".log"}
+        or path.suffix in {".pyc", ".log", *LATEX_AUX_SUFFIXES}
+        or path.name.endswith(".synctex.gz")
     )
 
 
