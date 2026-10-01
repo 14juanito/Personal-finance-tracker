@@ -64,6 +64,15 @@ SNIPPETS: dict[str, tuple[str, str]] = {
     "console_run": ("finance_tracker/cli.py", "ConsoleApp.run"),
     "main_dispatch": ("main.py", "main"),
     "dashboard_main": ("finance_tracker/dashboard.py", "main"),
+    "check_structure": ("finance_tracker/storage.py", "_check_structure"),
+    "gui_add_transaction": ("finance_tracker/gui_tkinter.py", "FinanceApp.add_transaction"),
+    "kpis": ("finance_tracker/analytics.py", "kpis"),
+    "to_dataframe": ("finance_tracker/analytics.py", "to_dataframe"),
+    "add_transaction": ("finance_tracker/tracker.py", "FinanceTracker.add_transaction"),
+    "exceptions_all": ("finance_tracker/exceptions.py", "*"),
+    "category_pie": ("finance_tracker/visualize.py", "category_pie"),
+    "md_escape": ("finance_tracker/dashboard.py", "md_escape"),
+    "test_corrupted_json": ("tests/test_storage.py", "test_corrupted_json_is_backed_up"),
 }
 LATEX_SPECIAL = {
     "\\": r"\textbackslash{}", "&": r"\&", "%": r"\%", "$": r"\$", "#": r"\#",
@@ -84,20 +93,27 @@ def latex_escape(text: str) -> str:
 
 
 def extract_function(path: Path, qualified_name: str) -> str:
-    """Return the source of one function, without its docstring.
+    """Return the source of one function (without its docstring) or of classes.
 
     Args:
         path: Python source file.
-        qualified_name: ``"function"`` or ``"Class.method"``.
+        qualified_name: ``"function"``, ``"Class.method"`` or ``"*"`` for every
+            top-level class of the module. Classes keep their docstring: without it
+            a small class would look empty.
 
     Returns:
-        The dedented source code, exactly as in the file minus the docstring.
+        The dedented source code, exactly as in the file (minus function docstrings).
 
     Raises:
         KeyError: If the function does not exist (the excerpt list is out of date).
     """
     source = path.read_text(encoding="utf-8")
     lines = source.splitlines()
+    if qualified_name == "*":
+        classes = [n for n in ast.parse(source).body if isinstance(n, ast.ClassDef)]
+        start = min([classes[0].lineno, *(d.lineno for d in classes[0].decorator_list)]) - 1
+        excerpt = "\n".join(lines[start : classes[-1].end_lineno])
+        return textwrap.dedent(excerpt) + "\n"
     nodes: list[ast.AST] = [ast.parse(source)]
     for part in qualified_name.split("."):
         parent = nodes[-1]
@@ -117,7 +133,8 @@ def extract_function(path: Path, qualified_name: str) -> str:
     body_lines = lines[start : func.end_lineno]
     first = func.body[0]
     if (
-        isinstance(first, ast.Expr)
+        not isinstance(func, ast.ClassDef)
+        and isinstance(first, ast.Expr)
         and isinstance(first.value, ast.Constant)
         and isinstance(first.value.value, str)
     ):

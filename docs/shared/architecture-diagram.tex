@@ -1,0 +1,54 @@
+% Architecture diagram shared by the report and the memo (TikZ).
+% Requires: tikz with positioning, arrows.meta, fit, backgrounds, calc; \code macro.
+\begin{tikzpicture}[
+  font=\small,
+  mod/.style={draw=black!55, rounded corners=2pt, fill=white, align=center,
+              minimum height=9mm, text width=2.85cm, inner sep=2pt},
+  file/.style={mod, fill=black!3, dashed, text width=2.85cm, font=\footnotesize},
+  flow/.style={-{Stealth[length=2mm]}, thick, color=black!65},
+  lbl/.style={font=\scriptsize\itshape, color=black!70, fill=white, inner sep=1pt},
+  layer/.style={rounded corners=4pt, inner sep=5pt},
+  x=3.75cm, y=1.9cm,
+]
+  % Row 1 - user interfaces
+  \node[mod] (main) at (0,0)  {\code{main.py}\\cli | gui | demo};
+  \node[mod] (cli)  at (1,0)  {\code{cli.py}\\console menu};
+  \node[mod] (gui)  at (2,0)  {\code{gui\_tkinter.py}\\Tkinter window};
+  \node[mod] (dash) at (3,0)  {\code{dashboard.py}\\Streamlit + Plotly};
+  % Row 2 - application logic
+  \node[mod] (alerts)    at (0,-1) {\code{alerts.py}\\80\,\% / 100\,\% rules};
+  \node[mod] (tracker)   at (1,-1) {\code{tracker.py}\\FinanceTracker};
+  \node[mod] (analytics) at (2,-1) {\code{analytics.py}\\pandas};
+  \node[mod] (visualize) at (3,-1) {\code{visualize.py}\\matplotlib};
+  % Row 3 - domain and persistence
+  \node[mod] (models)     at (0,-2) {\code{models.py}\\validated dataclasses};
+  \node[mod] (storage)    at (1,-2) {\code{storage.py}\\JSON + CSV};
+  \node[mod] (exceptions) at (2,-2) {\code{exceptions.py}\\error classes};
+  \node[mod] (config)     at (3,-2) {\code{config.py}\\pathlib paths};
+  % Row 4 - files
+  \node[file] (json) at (0.45,-3) {\code{data/*.json}};
+  \node[file] (csv)  at (1.55,-3) {\code{data/*.csv}};
+  \node[file, text width=3.3cm] (png) at (3,-3) {\code{output/charts/*.png}};
+
+  \begin{scope}[on background layer]
+    \node[layer, fill=blue!6,   fit=(main)(dash)] (L1) {};
+    \node[layer, fill=green!7,  fit=(alerts)(visualize)] (L2) {};
+    \node[layer, fill=orange!8, fit=(models)(config)] (L3) {};
+    \node[layer, fill=violet!6, fit=(json)(png)] (L4) {};
+  \end{scope}
+  \foreach \l/\t in {L1/Interfaces, L2/Logic, L3/Domain, L4/Files}
+    \node[font=\scriptsize\bfseries, rotate=90, anchor=south] at (\l.west) {\t};
+
+  \draw[flow] (main) -- (cli);
+  \draw[flow] (cli) -- node[lbl, right] {commands} (tracker);
+  \draw[flow] (gui) -- node[lbl, left] {summaries} (analytics);
+  \draw[flow] (dash) -- node[lbl, above, sloped] {filters} (analytics);
+  \draw[flow] (tracker) -- (alerts);
+  \draw[flow] (tracker) -- (analytics);
+  \draw[flow] (analytics) -- (visualize);
+  \draw[flow] (tracker) -- node[lbl, right] {save / load} (storage);
+  \draw[flow] (tracker) -- (models);
+  \draw[flow, {Stealth[length=2mm]}-{Stealth[length=2mm]}] (storage) -- (json);
+  \draw[flow, {Stealth[length=2mm]}-{Stealth[length=2mm]}] (storage) -- (csv);
+  \draw[flow] (visualize.east) -- ++(0.32,0) |- node[lbl, pos=0.25, right] {PNG} (png.east);
+\end{tikzpicture}
