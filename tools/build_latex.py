@@ -237,6 +237,9 @@ def compile_tex(tex: Path) -> Path:
         cwd=tex.parent,
         capture_output=True,
         text=True,
+        # TeX tools print messages in the system locale (Latin-1 here): never crash on them.
+        encoding="utf-8",
+        errors="replace",
         check=False,
     )  # fmt: skip
     if result.returncode != 0:

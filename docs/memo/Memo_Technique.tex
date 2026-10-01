@@ -45,6 +45,8 @@
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
 \setlength{\parskip}{4pt}
 \setlength{\parindent}{0pt}
+% Lets TeX stretch spaces a little on lines full of unbreakable \texttt identifiers.
+\setlength{\emergencystretch}{3em}
 \setlist{itemsep=2pt,topsep=3pt,leftmargin=1.3em}
 
 \newtcolorbox{definition}[1][]{colback=defbg, colframe=accent, boxrule=0.5pt, arc=2pt,
