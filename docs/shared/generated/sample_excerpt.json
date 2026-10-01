@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "saved_at": "2026-09-30T15:06:44",
+  "transactions": [
+    {
+      "id": "c9af18f8",
+      "date": "2026-04-01",
+      "amount": 1513.94,
+      "kind": "income",
+      "category": "Salary",
+      "description": "Paycheck"
+    },
+    {
+      "id": "ca8f3653",
+      "date": "2026-04-15",
+      "amount": 1452.5,
+      "kind": "income",
+      "category": "Salary",
+      "description": "Paycheck"
+    }
+  ],
+  "budgets": [
+    {
+      "category": "Groceries",
+      "monthly_limit": 500.0
+    }
+  ],
+  "goals": [
+    {
+      "name": "Emergency Fund",
+      "target": 3000.0,
+      "saved": 1850.0,
+      "deadline": "2027-06-30"
+    }
+  ]
+}

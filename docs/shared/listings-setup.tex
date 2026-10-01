@@ -1,0 +1,32 @@
+% Shared code-listing style for the report and the memo.
+% Code excerpts are extracted from the real source by tools/build_latex.py
+% (docs/shared/generated/*.py); they are never copied by hand.
+\definecolor{codebg}{HTML}{F6F8FA}
+\definecolor{codeframe}{HTML}{D0D7DE}
+\definecolor{codecomment}{HTML}{2E7D32}
+\definecolor{codekeyword}{HTML}{1565C0}
+\definecolor{codestring}{HTML}{A0522D}
+\lstdefinestyle{project}{
+  language=Python,
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{codekeyword}\bfseries,
+  commentstyle=\color{codecomment}\itshape,
+  stringstyle=\color{codestring},
+  backgroundcolor=\color{codebg},
+  frame=single, rulecolor=\color{codeframe},
+  framesep=3pt, xleftmargin=4pt, xrightmargin=4pt,
+  breaklines=true, breakatwhitespace=true,
+  postbreak=\mbox{\textcolor{codeframe}{$\hookrightarrow$}\space},
+  columns=fullflexible, keepspaces=true,
+  showstringspaces=false, tabsize=4,
+  upquote=true,
+  aboveskip=4pt, belowskip=4pt,
+  % pdflatex + listings cannot read multi-byte UTF-8 characters directly:
+  % map every non-ASCII character used in the excerpts to a LaTeX equivalent.
+  literate=
+    {—}{{---}}1 {–}{{--}}1 {→}{{$\rightarrow$}}1 {·}{{$\cdot$}}1
+    {✓}{{\checkmark}}1 {✗}{{$\times$}}1 {█}{{\rule{0.5em}{0.7em}}}1
+    {💰}{{\$}}1 {é}{{\'e}}1 {è}{{\`e}}1 {à}{{\`a}}1 {ê}{{\^e}}1 {ç}{{\c{c}}}1
+    {⚠}{{!}}1 {…}{{...}}1 {─}{{-}}1
+}
+\lstset{style=project}

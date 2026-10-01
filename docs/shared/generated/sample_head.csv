@@ -1,0 +1,5 @@
+id,date,amount,kind,category,description
+c9af18f8,2026-04-01,1513.94,income,Salary,Paycheck
+96fc734d,2026-04-01,950.0,expense,Housing,Rent (shared apartment)
+1d61fac3,2026-04-03,25.77,expense,Groceries,Farmers market
+d3016989,2026-04-03,26.24,expense,Dining Out,Coffee
