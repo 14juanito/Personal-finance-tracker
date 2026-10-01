@@ -50,7 +50,7 @@ def test_google_docstrings_and_type_hints(path: Path) -> None:
             isinstance(node.returns, ast.Constant) and node.returns.value is None
         )
         is_property = any(getattr(d, "id", "") == "property" for d in node.decorator_list)
-        if returns_value and not is_property and "Returns:" not in doc:
+        if returns_value and not is_property and "Returns:" not in doc and "Yields:" not in doc:
             problems.append(f"{node.name}: no Returns section")
         if any(a.annotation is None for a in params):
             problems.append(f"{node.name}: missing parameter type hints")

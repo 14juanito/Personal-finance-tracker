@@ -48,7 +48,7 @@ PALETTE: list[str] = [
 ]
 MAX_PIE_SLICES = 7
 FIGSIZE: tuple[float, float] = (8, 5)
-DPI = 120
+DPI = 150  # print quality for the PDF report
 
 _money = FuncFormatter(lambda value, _pos: f"${value:,.0f}")
 
